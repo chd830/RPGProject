@@ -12,7 +12,7 @@ public class Warrior extends Character {
 
 	@Override
 	public void attack(Object o, int attack) {
-		if(o.getClass().getName().equals("com.Project1.Slime")) {
+		if(o.getClass().getName().equals("com.project1.Slime")) {
 			Slime m = (Slime)o;
 			int cur = m.getHP();
 			m.setHP(cur - attack);
