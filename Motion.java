@@ -1,4 +1,4 @@
-package com.Project1;
+package com.project1;
 
 public interface Motion {
 	public void attack(Object o, int attack);
