@@ -1,4 +1,4 @@
-package com.Project1;
+package com.project1;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public class Slime extends Monster{
 
 	@Override
 	public void attack(Object o, int attack) {
-		if(o.getClass().getName().equals("com.Project1.Warrior")) {
+		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			Warrior w = (Warrior)o;
 			int cur = w.getHP();
 			w.setHP(cur - attack);
@@ -26,7 +26,7 @@ public class Slime extends Monster{
 	@Override
 	public void attackJudgement(Object o, int evasion) {
 		Random rand = new Random();
-		if(o.getClass().getName().equals("com.Project1.Warrior")) {
+		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			Warrior w = (Warrior)o;
 			int num = rand.nextInt(100);
 			num+=100;
