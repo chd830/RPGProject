@@ -1,12 +1,11 @@
 package com.project1;
 
-import java.util.List;
-
 public class Monster {
 	private int level;
 	private int HP;
 	private int attack;
 	private int evasion;
+	private boolean isAlive;
 	
 	public int getLevel() {
 		return level;
@@ -32,4 +31,11 @@ public class Monster {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
+	public boolean isAlive() {
+		return isAlive;
+	}
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+	
 }

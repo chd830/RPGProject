@@ -8,6 +8,7 @@ public class Character {
 	private int attack;
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int evasion;
+	private boolean isAlive;
 	List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
@@ -45,6 +46,13 @@ public class Character {
 		this.evasion = evasion;
 	}
 	
+	public boolean isAlive() {
+		return isAlive;
+	}
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+	
 	public int[] getExperience() {
 		return experience;
 	}
@@ -58,5 +66,4 @@ public class Character {
 	public void setItem(List<String> item) {
 		this.item = item;
 	}
-	
 }
