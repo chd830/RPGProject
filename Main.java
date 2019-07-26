@@ -1,9 +1,6 @@
 package com.project1;
-<<<<<<< HEAD
 
 import java.util.Scanner;
-=======
->>>>>>> 93a2bc7b421d5e438e7666520bfb2f6524abd010
 
 public class Main {
 	public static void main(String[] args) {

@@ -1,17 +1,4 @@
 package com.project1;
-<<<<<<< HEAD
-
-public class Character implements Motion {
-
-	private int level;
-	private int HP; //체력
-	private int MP; //마력
-	private int attack; //공격력
-	private int[] experience = {5, 10, 20, 20, 20}; //경험치
-	private int evasion; //회피율
-	private int critical; //치명타율
-
-=======
 import java.util.*;
 
 public class Character {
@@ -21,9 +8,9 @@ public class Character {
 	private int attack;
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int evasion;
+	private int critical;
 	List<String> item = new ArrayList<String>();
 	
->>>>>>> 93a2bc7b421d5e438e7666520bfb2f6524abd010
 	public int getLevel() {
 		return level;
 	}
@@ -65,16 +52,6 @@ public class Character {
 	public void setCritical(int critical) {
 		this.critical = critical;
 	}
-<<<<<<< HEAD
-
-	@Override
-	public void attack(Object o, int attack) {
-		System.out.println("");
-	}
-	@Override
-	public void attackJudgement(Object o, int evasion) {
-
-=======
 	
 	public int[] getExperience() {
 		return experience;
@@ -88,12 +65,7 @@ public class Character {
 	}
 	public void setItem(List<String> item) {
 		this.item = item;
->>>>>>> 93a2bc7b421d5e438e7666520bfb2f6524abd010
 	}
 
-	@Override
-	public void print(Object o) {
-
-	}
 
 }

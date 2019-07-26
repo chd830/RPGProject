@@ -32,18 +32,5 @@ public class Monster {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
-<<<<<<< HEAD
-	@Override
-	public void attack(Object o, int attack) {
-	}
 
-	@Override
-	public void attackJudgement(Object o, int evasion) {
-	}
-	@Override
-	public void print(Object o) {
-	}
-	
-=======
->>>>>>> 93a2bc7b421d5e438e7666520bfb2f6524abd010
 }

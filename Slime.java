@@ -48,4 +48,8 @@ public class Slime extends Monster implements Motion {
 		
 	}
 
+	@Override
+	public void print(Object o) {
+	}
+
 }
