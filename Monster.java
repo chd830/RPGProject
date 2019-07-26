@@ -1,6 +1,8 @@
 package com.project1;
 
-public class Monster  implements Motion {
+import java.util.List;
+
+public class Monster {
 	private int level;
 	private int HP;
 	private int attack;
@@ -30,6 +32,7 @@ public class Monster  implements Motion {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
+<<<<<<< HEAD
 	@Override
 	public void attack(Object o, int attack) {
 	}
@@ -41,4 +44,6 @@ public class Monster  implements Motion {
 	public void print(Object o) {
 	}
 	
+=======
+>>>>>>> 93a2bc7b421d5e438e7666520bfb2f6524abd010
 }

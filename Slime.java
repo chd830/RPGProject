@@ -1,8 +1,9 @@
 package com.project1;
 
+import java.util.List;
 import java.util.Random;
 
-public class Slime extends Monster{
+public class Slime extends Monster implements Motion {
 	public Slime() {
 
 		setLevel(1);
@@ -39,6 +40,12 @@ public class Slime extends Monster{
 				this.attack(o, evasion);
 			}
 		}
+	}
+
+	@Override
+	public void takeMedicine(Object o, List<String> item) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
