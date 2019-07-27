@@ -1,7 +1,7 @@
 package com.project1;
 import java.util.*;
 
-public class Character {
+public class Character implements Motion {
 	private int level;
 	private int HP;
 	private int MP;
@@ -9,6 +9,7 @@ public class Character {
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int evasion;
 	private int critical;
+	private boolean isAlive;
 	List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
@@ -46,6 +47,14 @@ public class Character {
 		this.evasion = evasion;
 	}	
 	
+	
+	public boolean isAlive() {
+		return isAlive;
+	}
+	public void setIsAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+	
 	public int getCritical() {
 		return critical;
 	}
@@ -65,6 +74,36 @@ public class Character {
 	}
 	public void setItem(List<String> item) {
 		this.item = item;
+	}
+	@Override
+	public void getItem(Object o1, Object o2, List<String> item) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void attack(Object o, int attack) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void attackJudgement(Object o, int evasion) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void print(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dead(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void useItem(Object o1, Object o2, List<String> item) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

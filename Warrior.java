@@ -2,7 +2,7 @@ package com.project1;
 
 import java.util.List;
 
-public class Warrior extends Character implements Motion {
+public class Warrior extends Character {
 	public Warrior() {
 
 		setLevel(1);
@@ -11,7 +11,7 @@ public class Warrior extends Character implements Motion {
 		setAttack(10);
 		setEvasion(10);
 		setCritical(10);	
-		System.out.println("Àü»ç¸¦ ¼±ÅÃÇß½À´Ï´Ù.");
+		System.out.println("Warrior is selected");
 
 	}
 
@@ -19,16 +19,16 @@ public class Warrior extends Character implements Motion {
 	public void print(Object o) {
 		Warrior w = (Warrior)o;
 		System.out.println();
-		System.out.println("Àü»çÀÇ ·¹º§: "+w.getLevel());		
+		System.out.println("Warrior's Level is: "+w.getLevel());		
 		System.out.println("HP: " +w.getHP()+ ", MP: " +w.getMP());
-		System.out.println("°ø°Ý·Â: " +w.getAttack());
-		System.out.println("È¸ÇÇÀ²: " +w.getEvasion());
-		System.out.println("Ä¡¸íÅ¸À²: " +w.getCritical());
+		System.out.println("Attack: " +w.getAttack());
+		System.out.println("Evasion: " +w.getEvasion());
+		System.out.println("Critical: " +w.getCritical());
 	}
 
 
 	@Override
-	public void takeMedicine(Object o, List<String> item) {
+	public void useItem(Object o1, Object o2, List<String> item) {
 		// TODO Auto-generated method stub
 
 	}
@@ -45,8 +45,23 @@ public class Warrior extends Character implements Motion {
 			Slime m = (Slime)o;
 			int cur = m.getHP();
 			m.setHP(cur - attack);
-			System.out.println("½½¶óÀÓÀÇ Hp°¡ "+cur + "¿¡¼­ "+m.getHP()+"ÀÌ µÇ¾ú½À´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Hpï¿½ï¿½ "+cur + "ï¿½ï¿½ï¿½ï¿½ "+m.getHP()+"ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
+	}
+
+	@Override
+	public void getItem(Object o1, Object o2, List<String> item) {
+		
+	}
+
+	@Override
+	public void dead(Object o) {
+		Monster c = null;
+		if(o.getClass().getName().equals("com.project1.Slime")) {
+		c = (Slime)o;
+		}
+		System.out.println("Slime is dead.");
+		c.setIsAlive(false);
 	}		
 }
 

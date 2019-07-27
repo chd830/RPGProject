@@ -2,11 +2,12 @@ package com.project1;
 
 import java.util.List;
 
-public class Monster {
+public class Monster implements Motion {
 	private int level;
 	private int HP;
 	private int attack;
 	private int evasion;
+	private boolean isAlive;
 	
 	public int getLevel() {
 		return level;
@@ -31,6 +32,42 @@ public class Monster {
 	}
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
+	}
+	public boolean isAlive() {
+		return isAlive;
+	}
+	public void setIsAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+	@Override
+	public void attack(Object o, int attack) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void attackJudgement(Object o, int evasion) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void print(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dead(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void getItem(Object o1, Object o2, List<String> item) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void useItem(Object o1, Object o2, List<String> item) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
