@@ -9,6 +9,11 @@ public class Main {
 
 		Character c = new Warrior();
 		Monster m = new Slime();
+		c.getItemByMonster(m, c.getItem());
+		c.getItemByMonster(m, c.getItem());
+		c.getItemByMonster(m, c.getItem());
+		
+		c.print(c);
 		System.out.print("1.Attack 2.UseItem: ");
 		int num = sc.nextInt();
 		recur:for(int i = 0; ; i++) {

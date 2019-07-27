@@ -7,6 +7,7 @@ public class Monster implements Motion {
 	private int HP;
 	private int attack;
 	private int evasion;
+	private String status;
 	private boolean isAlive;
 	
 	public int getLevel() {
@@ -32,6 +33,12 @@ public class Monster implements Motion {
 	}
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public boolean getIsAl() {
 		return isAlive;

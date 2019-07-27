@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Warrior extends Character {
 	Random rand = new Random();
+	Scanner sc = new Scanner(System.in);
 	public Warrior() {
 		setLevel(1);
 		setHP(100);
@@ -23,13 +24,41 @@ public class Warrior extends Character {
 		System.out.println("HP: " +w.getHP()+ ", MP: " +w.getMP());
 		System.out.println("Attack: " +w.getAttack());
 		System.out.println("Evasion: " +w.getEvasion());
-		System.out.println("Critical: " +w.getCritical());
+		System.out.println("Critical: " +w.getCritical()+"\n");
 	}
 
 
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
-
+		Warrior w = (Warrior)o1;
+		if(item.size() < 0) {
+			System.out.println("Item is empty");
+			return;
+		}
+		System.out.println("Select Item: ");
+		for(int i = 0; i < item.size(); i++) {
+			System.out.print((i+1)+"."+item.get(i)+"\t");
+		}
+		int num = sc.nextInt();
+		System.out.println("\'"+item.get(num - 1)+"\' is selected");
+		if(item.get(num - 1).equals("Hp up")) {
+			int cur = w.getHP();
+			w.setHP(cur + 10);
+			System.out.println("Hp of the warrior is become "+cur + " to "+w.getHP());
+		}
+		else if(item.get(num - 1).equals("Mp up")) {
+			int cur = w.getMP();
+			w.setMP(cur + 10);
+			System.out.println("Mp of the warrior is become "+cur + " to "+w.getMP());
+		}
+		else {
+			if(o2.getClass().getName().equals("com.project1.Slime")) {
+				Slime s = (Slime)o2;
+				s.setStatus("Iced");
+				System.out.println("Slime is Iced.");
+			}
+		}
+		item.remove(num - 1);
 	}
 
 	@Override
