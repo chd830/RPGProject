@@ -3,7 +3,7 @@ import java.util.*;
 
 public interface Motion {
 	public void useItem(Object o1, Object o2, List<String> item);
-	public void getItem(Object o1, Object o2, List<String> item);
+	public void getItemByMonster(Object o1, List<String> item);
 	public void attack(Object o, int attack);
 	public void attackJudgement(Object o, int evasion);
 	public void print(Object o);

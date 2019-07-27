@@ -9,17 +9,16 @@ public class Main {
 
 		Character c = new Warrior();
 		Monster m = new Slime();
-
+		System.out.print("1.Attack 2.UseItem: ");
+		int num = sc.nextInt();
 		recur:for(int i = 0; ; i++) {
 			if(i%2 == 0) {
 				boolean check = true;
 				do {
-					System.out.print("1.Attack 2.UseItem: ");
-					int num = sc.nextInt();
+					if(m.getHP() == 0 || c.getHP() == 0)
+						break recur;
 					switch(num) {
 					case 1:
-						if(m.getHP() == 0)
-							break recur;
 						c.attackJudgement(m, c.getAttack());
 						check = false;
 						break;
@@ -37,10 +36,11 @@ public class Main {
 				} while(check);
 			}
 			else {
-				if(c.getHP() == 0)
-					break recur;
 				m.attackJudgement(c, m.getAttack());
 			}
+		}
+		if(m.getHP() == 0) {
+			c.getItemByMonster(m, c.item);
 		}
 	}
 }

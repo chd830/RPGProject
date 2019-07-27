@@ -48,7 +48,7 @@ public class Character implements Motion {
 	}	
 	
 	
-	public boolean isAlive() {
+	public boolean getIsAlive() {
 		return isAlive;
 	}
 	public void setIsAlive(boolean isAlive) {
@@ -76,35 +76,21 @@ public class Character implements Motion {
 		this.item = item;
 	}
 	@Override
-	public void getItem(Object o1, Object o2, List<String> item) {
-		// TODO Auto-generated method stub
-		
+	public void getItemByMonster(Object o1, List<String> item) {
 	}
 	@Override
 	public void attack(Object o, int attack) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void attackJudgement(Object o, int evasion) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void print(Object o) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void dead(Object o) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
 }

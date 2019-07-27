@@ -33,7 +33,7 @@ public class Monster implements Motion {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
-	public boolean isAlive() {
+	public boolean getIsAl() {
 		return isAlive;
 	}
 	public void setIsAlive(boolean isAlive) {
@@ -41,31 +41,21 @@ public class Monster implements Motion {
 	}
 	@Override
 	public void attack(Object o, int attack) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void attackJudgement(Object o, int evasion) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void print(Object o) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void dead(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void getItem(Object o1, Object o2, List<String> item) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
+	}
+	@Override
+	public void getItemByMonster(Object o1, List<String> item) {
 		// TODO Auto-generated method stub
 		
 	}
