@@ -27,7 +27,6 @@ public class Warrior extends Character {
 		System.out.println("Critical: " +w.getCritical()+"\n");
 	}
 
-
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 		Warrior w = (Warrior)o1;
@@ -74,7 +73,6 @@ public class Warrior extends Character {
 			}
 		}
 		attack(m, m.getAttack());
-
 	}
 
 	@Override
@@ -108,7 +106,6 @@ public class Warrior extends Character {
 			System.out.println("Get \'Iced\'");
 			item.add("Iced");
 		}
-			
 	}
 
 	@Override
