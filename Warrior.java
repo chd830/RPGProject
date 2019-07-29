@@ -14,7 +14,7 @@ public class Warrior extends Character {
 		setEvasion(10);
 		setCritical(10);	
 		setIsAlive(true);
-		System.out.println("Warrior is selected");
+		System.out.println("Warrior is selected.");
 	}
 
 	@Override
