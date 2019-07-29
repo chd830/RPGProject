@@ -50,6 +50,7 @@ public class Monster implements Motion, Serializable {
 	public void setIsAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
+	
 	@Override
 	public void print(Object o) {
 	}
