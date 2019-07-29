@@ -61,8 +61,6 @@ public class Monster implements Motion, Serializable {
 	}
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public boolean criticalJudgement(int critical) {
