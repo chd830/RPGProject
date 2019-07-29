@@ -6,6 +6,7 @@ import java.util.*;
 public class Monster implements Motion, Serializable {
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int attack;
 	private int evasion;
 	private String status;
@@ -23,6 +24,13 @@ public class Monster implements Motion, Serializable {
 	}
 	public void setHP(int hP) {
 		HP = hP;
+	}
+	
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
 	}
 	
 	public int getAttack() {

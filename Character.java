@@ -5,7 +5,9 @@ import java.util.*;
 public class Character implements Motion, Serializable {
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int MP;
+	private int MaxMP;
 	private int attack;
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
@@ -27,6 +29,13 @@ public class Character implements Motion, Serializable {
 		HP = hP;
 	}
 
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
+	}
+	
 	public int getMP() {
 		return MP;
 	}
@@ -34,6 +43,13 @@ public class Character implements Motion, Serializable {
 		MP = mP;
 	}
 
+	public int getMaxMP() {
+		return MaxMP;
+	}
+	public void setMaxMP(int maxMP) {
+		MaxMP = maxMP;
+	}
+	
 	public int getAttack() {
 		return attack;
 	}

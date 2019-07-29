@@ -9,6 +9,7 @@ public class Slime extends Monster {
 	public Slime() {
 		setLevel(1);
 		setHP(100);
+		setMaxHP(this.getHP());
 		setAttack(10);
 		setEvasion(100);
 		setIsAlive(true);
@@ -58,7 +59,6 @@ public class Slime extends Monster {
 		} catch(Exception e) {
 		}
 		
-		System.out.println("The state of the slime was released from \'Iced\'.");
 		m.setStatus("");
 		count = 0;
 		Random rand = new Random();

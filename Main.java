@@ -41,7 +41,7 @@ public class Main {
 				//아이템사용
 				switch(num) {
 				case 1:
-					c.attackJudgement(c, m, c.getAttack());
+					c.attackJudgement(c, m, c.getEvasion());
 					break;
 				case 2:
 					if(c.getItem().size() <= 0) {

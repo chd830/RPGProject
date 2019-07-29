@@ -8,7 +8,9 @@ public class Warrior extends Character {
 	public Warrior() {
 		setLevel(1);
 		setHP(100);
+		setMaxHP(this.getHP());
 		setMP(10);
+		setMaxMP(this.getMaxMP());
 		setCritical(100);
 		setAttack(10);
 		setEvasion(10);
@@ -72,7 +74,7 @@ public class Warrior extends Character {
 			m = (Slime)o2;
 		}
 		if(num >= (100 - evasion)) {
-			System.out.println("Warrior succeeded in evasion and became "+m.getHP()+"HP.");
+			System.out.println("Slime succeeded in evasion and became "+m.getHP()+"HP.");
 			return;
 		}
 		attack(o1, m, ((Warrior)o1).getAttack());
@@ -152,6 +154,8 @@ public class Warrior extends Character {
 		Warrior w = (Warrior)o1;
 		Monster m = null;
 		String str = "";
+		int hp = w.getHP();
+		int mp = w.getMP();
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
@@ -161,14 +165,24 @@ public class Warrior extends Character {
 		for(int i = 0; i < w.getHP()/10; i++) {
 			System.out.print("бс");
 		}
+		for(;hp < w.getMaxHP();hp += 10) {
+			System.out.print("бр");
+		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < w.getMP()/10; i++) {
 			System.out.print("бс");
+		}
+		for(;w.getMP() < w.getMaxMP();mp+=10) {
+			System.out.print("бр");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
 			System.out.print("бс");
+		}
+		hp = m.getHP();
+		for(;hp < m.getMaxHP();hp += 10) {
+			System.out.print("бр");
 		}
 		System.out.println("");
 	}
