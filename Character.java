@@ -9,10 +9,6 @@ public class Character implements Motion {
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
-<<<<<<< HEAD
-=======
-	private int critical;
->>>>>>> 248825b00653809bab5f07d19f820671784a918d
 	private boolean isAlive;
 	List<String> item = new ArrayList<String>();
 	
@@ -66,13 +62,6 @@ public class Character implements Motion {
 		this.critical = critical;
 	}
 	
-	public int getCritical() {
-		return critical;
-	}
-	public void setCritical(int critical) {
-		this.critical = critical;
-	}
-	
 	public boolean isAlive() {
 		return isAlive;
 	}
@@ -93,32 +82,6 @@ public class Character implements Motion {
 	public void setItem(List<String> item) {
 		this.item = item;
 	}
-	@Override
-<<<<<<< HEAD
-	public void useItem(Object o1, Object o2, List<String> item) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void attacked(Object o1, int attack) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void attackJudgement(Object o1, int evasion) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void getItem(Object o, List<String> item) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void dead(Object o) {
-		// TODO Auto-generated method stub
-		
-=======
 	public void getItemByMonster(Object o1, List<String> item) {
 	}
 	@Override
@@ -135,6 +98,5 @@ public class Character implements Motion {
 	}
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
->>>>>>> 248825b00653809bab5f07d19f820671784a918d
 	}
 }

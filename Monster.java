@@ -7,13 +7,8 @@ public class Monster implements Motion {
 	private int HP;
 	private int attack;
 	private int evasion;
-<<<<<<< HEAD
-	private boolean isAlive;
-	private String damaged;
-=======
 	private String status;
 	private boolean isAlive;
->>>>>>> 248825b00653809bab5f07d19f820671784a918d
 	
 	public int getLevel() {
 		return level;
@@ -42,47 +37,6 @@ public class Monster implements Motion {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
-<<<<<<< HEAD
-	
-	public boolean isAlive() {
-		return isAlive;
-	}
-	public void setAlive(boolean isAlive) {
-		this.isAlive = isAlive;
-	}
-	
-	public String getDamaged() {
-		return damaged;
-	}
-	public void setDamaged(String damaged) {
-		this.damaged = damaged;
-	}
-	@Override
-	public void useItem(Object o1, Object o2, List<String> item) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void attacked(Object o1, int attack) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void attackJudgement(Object o1, int evasion) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void getItem(Object o, List<String> item) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void dead(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-=======
 	public String getStatus() {
 		return status;
 	}
@@ -115,6 +69,4 @@ public class Monster implements Motion {
 		// TODO Auto-generated method stub
 		
 	}
-
->>>>>>> 248825b00653809bab5f07d19f820671784a918d
 }
