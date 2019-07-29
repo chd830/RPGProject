@@ -1,7 +1,8 @@
 package com.project1;
+import java.io.*;
 import java.util.*;
 
-public class Character implements Motion {
+public class Character implements Motion, Serializable {
 	private int level;
 	private int HP;
 	private int MP;
@@ -85,18 +86,22 @@ public class Character implements Motion {
 	public void getItemByMonster(Object o1, List<String> item) {
 	}
 	@Override
-	public void attack(Object o, int attack) {
+	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 	@Override
-	public void attackJudgement(Object o, int evasion) {
+	public void attack(Object o1, Object o2, int attack) {
+	}
+	@Override
+	public void attackJudgement(Object o1, Object o2, int evasion) {
+	}
+	@Override
+	public boolean criticalJudgement(int critical) {
+		return false;
 	}
 	@Override
 	public void print(Object o) {
 	}
 	@Override
 	public void dead(Object o) {
-	}
-	@Override
-	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 }
