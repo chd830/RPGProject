@@ -28,13 +28,42 @@ public class Slime extends Monster {
 	@Override
 	public void attackJudgement(Object o, int evasion) {	//회피
 		Random rand = new Random();
-		Warrior w = (Warrior)o;
-		int num = rand.nextInt(100);
-		if(num >= (100 - evasion)) {
-			System.out.println("Warrior succeeded in evasion and became "+w.getHP()+"HP.");
-		}
-		else {
-			attack(w, evasion);
+		if(o.getClass().getName().equals("com.project1.Warrior")) {
+			Warrior w = (Warrior)o;
+			int num = rand.nextInt(100);
+			num+=100;
+			System.out.println(num+" : "+(100 - evasion));
+			if(num >= (100 - evasion)) {
+				System.out.println("회피에 성공해서 Hp는 "+w.getHP()+"입니다.");
+			}
+			else {
+				System.out.println("회피실패");
+				this.attack(o, evasion);
+			}
+		}else if(o.getClass().getName().equals("com.project1.Magician")) {
+			Magician m = (Magician)o;
+			int num = rand.nextInt(100);
+			num+=100;
+			System.out.println(num+" : "+(100 - evasion));
+			if(num >= (100 - evasion)) {
+				System.out.println("회피에 성공해서 Hp는 "+m.getHP()+"입니다.");
+			}
+			else {
+				System.out.println("회피실패");
+				this.attack(o, evasion);
+			}			
+		}else if(o.getClass().getName().equals("com.project1.Archer")) {
+			Archer a = (Archer)o;
+			int num = rand.nextInt(100);
+			num+=100;
+			System.out.println(num+" : "+(100 - evasion));
+			if(num >= (100 - evasion)) {
+				System.out.println("회피에 성공해서 Hp는 "+a.getHP()+"입니다.");
+			}
+			else {
+				System.out.println("회피실패");
+				this.attack(o, evasion);
+			}			
 		}
 	}
 

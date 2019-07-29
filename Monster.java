@@ -67,7 +67,5 @@ public class Monster implements Motion {
 	}
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
-		// TODO Auto-generated method stub
-		
 	}
 }
