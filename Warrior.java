@@ -36,12 +36,12 @@ public class Warrior extends Character {
 			System.out.println("Item is empty");
 			return;
 		}
-		System.out.println("Select Item: ");
+		System.out.print("Select Item: \t");
 		for(int i = 0; i < item.size(); i++) {
 			System.out.print((i+1)+"."+item.get(i)+"\t");
 		}
 		int num = sc.nextInt();
-		System.out.println("\'"+item.get(num - 1)+"\' is selected");
+		System.out.println(item.get(num - 1)+"\' is selected");
 		if(item.get(num - 1).equals("Hp up")) {
 			int cur = w.getHP();
 			w.setHP(cur + 10);
@@ -68,14 +68,14 @@ public class Warrior extends Character {
 		Random rand = new Random();
 		Monster m = null;
 		int num = rand.nextInt(100);
-		if(o1.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o1;
-			if(num >= (100 - evasion)) {
-				System.out.println("Warrior succeeded in evasion and became "+m.getHP()+"HP.");
-				return;
-			}
+		if(o2.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o2;
 		}
-		attack(m, o2, m.getAttack());
+		if(num >= (100 - evasion)) {
+			System.out.println("Warrior succeeded in evasion and became "+m.getHP()+"HP.");
+			return;
+		}
+		attack(o1, m, ((Warrior)o1).getAttack());
 	}
 
 	//크리티컬이 터지는지 확인하는 메서드(현재는 무조건 크리티컬상태)
@@ -85,23 +85,23 @@ public class Warrior extends Character {
 		if(num > (100 - critical)) {
 			return true;
 		}
-		return false;
+	 	return false;
 	}
 	
 	//공격메서드
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
 		//슬라임만 공격당하도록 되어있음
-		Monster m = (Slime)o1;
+		Monster m = (Slime)o2;
 		int cur = m.getHP();
 		//크리티컬이 터졌을 때 데미지가 두배로 들어가게 되어있음.
-		if(criticalJudgement(((Warrior)o2).getCritical())) {
+		if(criticalJudgement(((Warrior)o1).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
 		}
 		m.setHP(cur - attack);
 		System.out.println("Slime was attacked and became "+m.getHP()+"HP.");
-		if(m.getHP() == 0) {
+		if(m.getHP() <= 0) {
 			isAlive(m);
 		}
 	}
@@ -111,22 +111,23 @@ public class Warrior extends Character {
 	public void getItemByMonster(Object o1, List<String> item) {
 		Monster m = null;
 		//슬라임에게 아이템을 얻는다고 표시
-		if(o1.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o1;
-			System.out.println("Get item from slime");
-		}
+	
 		int num = rand.nextInt(10);
 		if(num < 3) {
-			System.out.println("Get \'Hp up\'");
+			System.out.print("Get \'Hp up\'");
 			item.add("Hp up");
 		}
 		else if(num < 6) {
-			System.out.println("Get \'Mp up\'");
+			System.out.print("Get \'Mp up\'");
 			item.add("Mp up");
 		}
 		else {
-			System.out.println("Get \'Iced\'");
+			System.out.print("Get \'Iced\'");
 			item.add("Iced");
+		}
+		if(o1.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o1;
+			System.out.print(" from slime\n");
 		}
 	}
 
@@ -141,6 +142,36 @@ public class Warrior extends Character {
 		c.setIsAlive(false);
 		return false;
 	}		
+	//Warrior의 스킬. 캐릭터, 몬스터, 캐릭터의 공격
+	public void skill(Object o1, Object o2, int attack) {
+		System.out.println("스킬을 사용했습니다.");
+		attack(o1, o2, attack*2);
+	}
+
+	public void showStatus(Object o1, Object o2) {
+		Warrior w = (Warrior)o1;
+		Monster m = null;
+		String str = "";
+		if(o2.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o2;
+			str = "Slime";
+		}
+		System.out.println("\nWarrior");
+		System.out.print("HP: ");
+		for(int i = 0; i < w.getHP()/10; i++) {
+			System.out.print("■");
+		}
+		System.out.print("\nMP: ");
+		for(int i = 0; i < w.getMP()/10; i++) {
+			System.out.print("■");
+		}
+		System.out.println("\n\n"+str);
+		System.out.print("HP: ");
+		for(int i = 0; i < m.getHP()/10; i++) {
+			System.out.print("■");
+		}
+		System.out.println("");
+	}
 }
 
 

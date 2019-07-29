@@ -108,4 +108,8 @@ public class Character implements Motion, Serializable {
 	@Override
 	public void skill(Object o1, Object o2, int attack) {
 	}
+	
+	public void showStatus(Object o1, Object o2) {
+		
+	}
 }
