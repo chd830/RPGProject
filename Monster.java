@@ -44,7 +44,7 @@ public class Monster implements Motion, Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public boolean getIsAl() {
+	public boolean getIsAlive() {
 		return isAlive;
 	}
 	public void setIsAlive(boolean isAlive) {
@@ -54,9 +54,6 @@ public class Monster implements Motion, Serializable {
 	public void print(Object o) {
 	}
 	@Override
-	public void dead(Object o) {
-	}
-	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 	@Override
@@ -64,17 +61,19 @@ public class Monster implements Motion, Serializable {
 	}
 	@Override
 	public boolean criticalJudgement(int critical) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
-		// TODO Auto-generated method stub
-		
+	}
+	@Override
+	public void skill(Object o1, Object o2, int attack) {
+	}
+	@Override
+	public boolean isAlive(Object o) {
+		return false;
 	}
 }

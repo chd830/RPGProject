@@ -102,7 +102,7 @@ public class Warrior extends Character {
 		m.setHP(cur - attack);
 		System.out.println("Slime was attacked and became "+m.getHP()+"HP.");
 		if(m.getHP() == 0) {
-			dead(m);
+			isAlive(m);
 		}
 	}
 
@@ -116,7 +116,6 @@ public class Warrior extends Character {
 			System.out.println("Get item from slime");
 		}
 		int num = rand.nextInt(10);
-		System.out.println("Random Item: "+num);
 		if(num < 3) {
 			System.out.println("Get \'Hp up\'");
 			item.add("Hp up");
@@ -131,15 +130,16 @@ public class Warrior extends Character {
 		}
 	}
 
-	//죽은거 확인하는 메서드.
+	//죽었다고 표시하는 메서드
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
 		Monster c = null;
 		if(o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime)o;
 			System.out.println("Slime is dead.");
 		}
 		c.setIsAlive(false);
+		return false;
 	}		
 }
 

@@ -102,6 +102,10 @@ public class Character implements Motion, Serializable {
 	public void print(Object o) {
 	}
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
+		return false;
+	}
+	@Override
+	public void skill(Object o1, Object o2, int attack) {
 	}
 }
