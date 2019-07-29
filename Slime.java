@@ -21,6 +21,18 @@ public class Slime extends Monster implements Motion {
 			w.setHP(cur - attack);
 			System.out.print("끈적");
 			System.out.println(cur + "이 "+w.getHP()+"이 되었습니다.");
+		}else if(o.getClass().getName().equals("com.project1.Magician")) {
+			Magician m = (Magician)o;
+			int cur = m.getHP();
+			m.setHP(cur - attack);
+			System.out.print("끈적");
+			System.out.println(cur + "이 "+m.getHP()+"이 되었습니다.");
+		}else if(o.getClass().getName().equals("com.project1.Archer")) {
+			Archer a = (Archer)o;
+			int cur = a.getHP();
+			a.setHP(cur - attack);
+			System.out.print("끈적");
+			System.out.println(cur + "이 "+a.getHP()+"이 되었습니다.");
 		}
 	}
 
@@ -39,6 +51,30 @@ public class Slime extends Monster implements Motion {
 				System.out.println("회피실패");
 				this.attack(o, evasion);
 			}
+		}else if(o.getClass().getName().equals("com.project1.Magician")) {
+			Magician m = (Magician)o;
+			int num = rand.nextInt(100);
+			num+=100;
+			System.out.println(num+" : "+(100 - evasion));
+			if(num >= (100 - evasion)) {
+				System.out.println("회피에 성공해서 Hp는 "+m.getHP()+"입니다.");
+			}
+			else {
+				System.out.println("회피실패");
+				this.attack(o, evasion);
+			}			
+		}else if(o.getClass().getName().equals("com.project1.Archer")) {
+			Archer a = (Archer)o;
+			int num = rand.nextInt(100);
+			num+=100;
+			System.out.println(num+" : "+(100 - evasion));
+			if(num >= (100 - evasion)) {
+				System.out.println("회피에 성공해서 Hp는 "+a.getHP()+"입니다.");
+			}
+			else {
+				System.out.println("회피실패");
+				this.attack(o, evasion);
+			}			
 		}
 	}
 

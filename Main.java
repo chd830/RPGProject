@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		Character c = new Warrior();
 		
 		Scanner sc = new Scanner(System.in);
 
@@ -11,9 +12,9 @@ public class Main {
 //		Archer arc = new Archer(); 
 //		Magician mag = new Magician();
 
-		Character c = new Magician();		
+		Character m = new Magician();		
 		
-		c.print(c);
+		m.print();
 		
 		Slime s = new Slime();
 		c.attack(s, c.getAttack());

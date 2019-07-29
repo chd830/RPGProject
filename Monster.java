@@ -33,4 +33,10 @@ public class Monster {
 		this.evasion = evasion;
 	}
 
+	public void takeMedicine(Object o, List<String> item) {
+	}
+	
+	public void print(Object o) {
+	}
+	
 }

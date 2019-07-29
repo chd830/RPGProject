@@ -1,4 +1,5 @@
 package com.project1;
+
 import java.util.*;
 
 public interface Motion {

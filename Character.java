@@ -1,4 +1,5 @@
 package com.project1;
+
 import java.util.*;
 
 public class Character {
@@ -53,9 +54,6 @@ public class Character {
 		this.critical = critical;
 	}
 	
-	public int[] getExperience() {
-		return experience;
-	}
 	public void setExperience(int[] experience) {
 		this.experience = experience;
 	}
