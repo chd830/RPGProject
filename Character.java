@@ -7,6 +7,7 @@ public class Character implements Motion {
 	private int attack;
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int evasion;
+	private int critical; //치명타율
 	
 	public int getLevel() {
 		return level;
@@ -41,7 +42,15 @@ public class Character implements Motion {
 	}
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
+	}	
+	
+	public int getCritical() {
+		return critical;
 	}
+	public void setCritical(int critical) {
+		this.critical = critical;
+	}
+	
 	@Override
 	public void attack(Object o, int attack) {
 		System.out.println("");
