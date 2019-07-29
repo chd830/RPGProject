@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Slime extends Monster {
 	Random rand = new Random();
+	static int count = 0;
 	
 	public Slime() {
 		setLevel(1);
@@ -13,72 +14,95 @@ public class Slime extends Monster {
 		setIsAlive(true);
 		System.out.println("You met slime");
 	}
-<<<<<<< HEAD
-	
-=======
-
-	//공격하는 메서드
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
+	//공격하는 메서드. 몬스터, 캐릭터, 몬스터의 공격력
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		Warrior w = (Warrior)o1;
-		int cur = w.getHP();
-		w.setHP(cur - attack);
-		System.out.println("Warrior was attacked and became "+w.getHP()+"HP.");
-		if(w.getHP() == 0) {
-			dead(w);
+		Character c = null;
+		String str = "";
+		if(o2.getClass().getName().equals("com.project1.Warrior")) {
+			str = "Warrior";
+			c = (Warrior)o2;
+		} else if(o2.getClass().getName().equals("com.project1.Magician")) {
+			str = "Magician";
+			c = (Magician)o2;
+		} else {
+			str = "Archer";
+			c = (Archer)o2;
+		}
+		int cur = c.getHP();
+		c.setHP(cur - attack);
+		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
+
+		if(c.getHP() == 0) {
+			isAlive(c);
 		}
 	}
 
-	//공격인지 회피인지 판정체크 메서드
+	//공격인지 회피인지 판정체크 메서드. 몬스터, 캐릭터, 몬스터의 회피
 	@Override
-	public void attackJudgement(Object o, int evasion) {	//회피
+	public void attackJudgement(Object o1, Object o2, int evasion) {
+		Monster m = (Slime)o1;
+		//얼음상태
+		try {
+			if(m.getStatus().equals("Iced") && count < 1) {
+				count++;
+				return;
+			}
+			else if(m.getStatus().equals("Fired")&& count < 1) {
+				count++;
+				System.out.println("Slime is in Fired status");
+				attack(o2, m, 2);
+				return;
+			}
+		} catch(Exception e) {
+		}
+		
+		System.out.println("The state of the slime was released from \'Iced\'.");
+		m.setStatus("");
+		count = 0;
 		Random rand = new Random();
-		if(o.getClass().getName().equals("com.project1.Warrior")) {
-			Warrior w = (Warrior)o;
-			int num = rand.nextInt(100);
-			num+=100;
-			System.out.println(num+" : "+(100 - evasion));
+		Character c = null;
+		int num = rand.nextInt(100);
+		if(o2.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o2;
 			if(num >= (100 - evasion)) {
-				System.out.println("회피에 성공해서 Hp는 "+w.getHP()+"입니다.");
+				System.out.println("Warrior succeeded in evasion and became "+c.getHP()+"HP.");
+				return;
 			}
-			else {
-				System.out.println("회피실패");
-				this.attack(o, evasion);
-			}
-		}else if(o.getClass().getName().equals("com.project1.Magician")) {
-			Magician m = (Magician)o;
-			int num = rand.nextInt(100);
+		} else if(o2.getClass().getName().equals("com.project1.Magician")) {
+			c = (Magician)o2;
 			num+=100;
-			System.out.println(num+" : "+(100 - evasion));
 			if(num >= (100 - evasion)) {
-				System.out.println("회피에 성공해서 Hp는 "+m.getHP()+"입니다.");
+				System.out.println("Magician succeeded in evasion and became "+c.getHP()+"HP.");
 			}
-			else {
-				System.out.println("회피실패");
-				this.attack(o, evasion);
-			}			
-		}else if(o.getClass().getName().equals("com.project1.Archer")) {
-			Archer a = (Archer)o;
-			int num = rand.nextInt(100);
+		} else {
+			c = (Archer)o2;
 			num+=100;
-			System.out.println(num+" : "+(100 - evasion));
 			if(num >= (100 - evasion)) {
-				System.out.println("회피에 성공해서 Hp는 "+a.getHP()+"입니다.");
+				System.out.println("Archer succeeded in evasion and became "+c.getHP()+"HP.");
 			}
-			else {
-				System.out.println("회피실패");
-				this.attack(o, evasion);
-			}			
 		}
+		attack(o2, m, c.getAttack());
 	}
 
-	//죽은거 확인하는 메서드. 
+	//죽은거 확인하는 메서드. 캐릭터
 	@Override
-	public void dead(Object o) {
-		Character c = (Warrior)o;
-		System.out.println("Warrior is dead.");
+	public boolean isAlive(Object o) {
+		Character c = null;
+		if(o.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o;
+			System.out.println("Warrior is dead.");
+		}
+		else if(o.getClass().getName().equals("com.project1.Magician")) {
+			c = (Magician)o;
+			System.out.println("Magician is dead.");
+		}
+		else {
+			c = (Archer)o;
+			System.out.println("Archer is dead.");
+		}
 		c.setIsAlive(false);
+		return false;
 	}
 
 }
