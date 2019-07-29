@@ -1,10 +1,19 @@
 package com.project1;
 
+import java.io.*;
 import java.util.*;
 
-public class Warrior extends Character {
-	Scanner sc = new Scanner(System.in);
-	Random rand = new Random();
+import com.project1.Character;
+
+public class Warrior extends Character implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5716387998910136780L;
+	
+	transient Scanner sc = new Scanner(System.in);
+	transient Random rand = new Random();
+	
 	public Warrior() {
 		setLevel(1);
 		setHP(100);
@@ -149,7 +158,8 @@ public class Warrior extends Character {
 		System.out.println("스킬을 사용했습니다.");
 		attack(o1, o2, attack*2);
 	}
-
+	
+	//HP, MP를 보여줌.
 	public void showStatus(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		Monster m = null;
@@ -185,6 +195,20 @@ public class Warrior extends Character {
 			System.out.print("□");
 		}
 		System.out.println("");
+	}
+
+	@SuppressWarnings("unchecked")
+	public Character set() {
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("c:\\Users\\stu\\Desktop\\Project1\\data.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			return (Character)ois.readObject();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return null;
+		
 	}
 }
 

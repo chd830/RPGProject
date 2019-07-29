@@ -9,6 +9,7 @@ public class Monster implements Motion, Serializable {
 	private int MaxHP;
 	private int attack;
 	private int evasion;
+	private int experience;
 	private String status;
 	private boolean isAlive;
 	
@@ -46,6 +47,14 @@ public class Monster implements Motion, Serializable {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
+	
+	public int getExperience() {
+		return experience;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	
 	public String getStatus() {
 		return status;
 	}

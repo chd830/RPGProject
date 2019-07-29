@@ -1,6 +1,9 @@
 package com.project1;
-import java.io.*;
-import java.util.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Character implements Motion, Serializable {
 	private int level;
@@ -9,11 +12,11 @@ public class Character implements Motion, Serializable {
 	private int MP;
 	private int MaxMP;
 	private int attack;
-	private int[] experience = {5, 10, 20, 20, 20};
+	transient private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
-	List<String> item = new ArrayList<String>();
+	transient List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
 		return level;
@@ -126,6 +129,17 @@ public class Character implements Motion, Serializable {
 	}
 	
 	public void showStatus(Object o1, Object o2) {
-		
+	}
+	transient List<Character> characterList = new ArrayList();
+	
+	public void save(Character c) {
+		try {
+			FileOutputStream fos = new FileOutputStream("c:\\Users\\stu\\Desktop\\Project1\\data.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(c);
+			oos.close();
+			} catch(Exception e) {
+				System.out.println(e.toString());
+			}
 	}
 }
