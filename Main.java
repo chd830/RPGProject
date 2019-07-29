@@ -3,79 +3,90 @@ package com.project1;
 import java.io.*;
 import java.util.*;
 
+import com.project1.Character;
+
 public class Main {
 	public static void main(String[] args) throws Exception {
-		
+		//If file does not exist
 		Scanner sc = new Scanner(System.in);
 		System.out.print("1.Warrior 2.Magician 3.Archer: ");
 		int num = sc.nextInt();
-		//		switch(num) {
-		//		case 1:
-		Warrior c = new Warrior();
-		Character l = null;
-		if(c.set() != null)
-			l = c.set();
-		System.out.println(l.getLevel()+"."+l.getClass().getName().substring(13,l.getClass().getName().length()));
-//		//			break;
-//		//		case 2:
-//		//			Magician c = new Magician();
-//		//			break;
-//		//		case 3:
-//		//			Archer c = new Archer();
-//		//			break;
-//		//	}
-//
-//		c.print(c);
-//		Monster m = new Slime();
-//
-//		//		//·£´ýÀ¸·Î ¾ÆÀÌÅÛ »ý¼º
-//		//		c.getItemByMonster(m, c.getItem());
-//		//		c.getItemByMonster(m, c.getItem());
-//		//		c.getItemByMonster(m, c.getItem());
-//
-//		//°ø°Ý°ú ¾ÆÀÌÅÛ»ç¿ë ¹Ýº¹¿ë ¿¹½ÃÄÚµå
-//		int i = 0;
-//		while(m.getIsAlive() && c.getIsAlive()) {
-//
-//			if(i%2 == 0) {
-//				c.showStatus(c, m);
-//				System.out.print("1.Attack 2.UseItem 3.Skill: ");
-//				num = sc.nextInt();
-//				if(m.getHP() <= 0 || c.getHP() <= 0)
-//					break;
-//				//¾ÆÀÌÅÛ»ç¿ë
-//				switch(num) {
-//				case 1:
-//					c.attackJudgement(c, m, c.getEvasion());
-//					break;
-//				case 2:
-//					if(c.getItem().size() <= 0) {
-//						System.out.println("Item is null");
-//						break;
-//					}
-//					c.useItem(c, m, c.getItem());
-//					break;
-//				case 3:
-//					c.skill(c, m, c.getAttack());
-//				}
-//			}
-//			else {
-//				m.attack(m, c, m.getAttack());
-//			}
-//			//¸ó½ºÅÍ°¡ °ø°Ý
-//			if(m.getHP() == 0) {
-//				c.getItemByMonster(m, c.item);
-//			}
-//			i++;
+
+
+		Character c = null;
+
+		switch(num) {
+		case 1:
+			c = new Warrior();
+			break;
+		case 2:
+			c = new Magician();
+			break;
+		case 3:
+			c = new Archer();
+			break;
+		}
+
+//		//If file exist. Get data from file. Need to Change Position.
+		List<Character> l = new ArrayList();
+//		l = c.set();
+//		for(int i = 0; i < l.size(); i++) {
+//			System.out.println((i + 1 ) +".Lv"+l.get(i).getLevel()+" "+l.get(i).getClass().getName().substring(13,l.getClass().getName().length() + 1));
 //		}
-//		System.out.print("1.Save 2.Exit: ");
-//		num = sc.nextInt();
-//		if(num == 1) {
-//			c.save(c);
-//		}
-//		else {
-//
-//		}
+
+		//Detailed data print
+		c.print(c);
+		Monster m = new Slime();
+
+		//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//		c.getItemByMonster(m, c.getItem());
+		//		c.getItemByMonster(m, c.getItem());
+		//		c.getItemByMonster(m, c.getItem());
+
+		//ï¿½ï¿½ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Û»ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
+		int i = 0;
+		while(m.getIsAlive() && c.getIsAlive()) {
+
+			if(i%2 == 0) {
+				c.showStatus(c, m);
+				System.out.print("1.Attack 2.UseItem 3.Skill: ");
+				num = sc.nextInt();
+				if(m.getHP() <= 0 || c.getHP() <= 0)
+					break;
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Û»ï¿½ï¿½
+				switch(num) {
+				case 1:
+					c.attackJudgement(c, m, c.getEvasion());
+					break;
+				case 2:
+					if(c.getItem().size() <= 0) {
+						System.out.println("Item is null");
+						break;
+					}
+					c.useItem(c, m, c.getItem());
+					break;
+				case 3:
+					c.skill(c, m, c.getAttack());
+				}
+			}
+			else {
+				m.attack(m, c, m.getAttack());
+			}
+			//ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½
+			if(m.getHP() == 0) {
+				c.getItemByMonster(m, c.item);
+			}
+			i++;
+		}
+		System.out.print("1.Save 2.Exit: ");
+		num = sc.nextInt();
+		if(num == 1) {
+			l.add(c);
+			c.save(l);
+		}
+		else {
+
+		}
 
 	}
 }

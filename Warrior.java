@@ -10,7 +10,6 @@ public class Warrior extends Character implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5716387998910136780L;
-	
 	transient Scanner sc = new Scanner(System.in);
 	transient Random rand = new Random();
 	
@@ -27,7 +26,7 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("Warrior is selected");
 	}
 
-	//Ä³¸¯ÅÍÀÇ Á¤º¸ Ãâ·Â ¸Þ¼­µå
+	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 	@Override
 	public void print(Object o) {
 		Warrior w = (Warrior)o;
@@ -39,7 +38,7 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("Critical: " +w.getCritical()+"\n");
 	}
 
-	//¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö È­±ë¤¤ÇÏ°í ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â ¸Þ¼­µå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È­ï¿½ë¤¤ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 		Warrior w = (Warrior)o1;
@@ -73,7 +72,7 @@ public class Warrior extends Character implements Serializable {
 		item.remove(num - 1);
 	}
 
-	//°ø°ÝÀÎÁö È¸ÇÇÀÎÁö ÆÇÁ¤Ã¼Å© ¸Þ¼­µå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼Å© ï¿½Þ¼ï¿½ï¿½ï¿½
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
 		Random rand = new Random();
@@ -89,7 +88,7 @@ public class Warrior extends Character implements Serializable {
 		attack(o1, m, ((Warrior)o1).getAttack());
 	}
 
-	//Å©¸®Æ¼ÄÃÀÌ ÅÍÁö´ÂÁö È®ÀÎÇÏ´Â ¸Þ¼­µå(ÇöÀç´Â ¹«Á¶°Ç Å©¸®Æ¼ÄÃ»óÅÂ)
+	//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½Æ¼ï¿½Ã»ï¿½ï¿½ï¿½)
 	@Override 
 	public boolean criticalJudgement(int critical) {
 		int num = rand.nextInt(100);
@@ -99,13 +98,13 @@ public class Warrior extends Character implements Serializable {
 	 	return false;
 	}
 	
-	//°ø°Ý¸Þ¼­µå
+	//ï¿½ï¿½ï¿½Ý¸Þ¼ï¿½ï¿½ï¿½
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		//½½¶óÀÓ¸¸ °ø°Ý´çÇÏµµ·Ï µÇ¾îÀÖÀ½
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½Ý´ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		Monster m = (Slime)o2;
 		int cur = m.getHP();
-		//Å©¸®Æ¼ÄÃÀÌ ÅÍÁ³À» ¶§ µ¥¹ÌÁö°¡ µÎ¹è·Î µé¾î°¡°Ô µÇ¾îÀÖÀ½.
+		//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½.
 		if(criticalJudgement(((Warrior)o1).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
@@ -117,11 +116,11 @@ public class Warrior extends Character implements Serializable {
 		}
 	}
 
-	//¸ó½ºÅÍ¿¡°Ô È®·ü·Î ¾ÆÀÌÅÛÀ» ¾ò´Â ¸Þ¼­µå.
+	//ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½.
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
 		Monster m = null;
-		//½½¶óÀÓ¿¡°Ô ¾ÆÀÌÅÛÀ» ¾ò´Â´Ù°í Ç¥½Ã
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´Ù°ï¿½ Ç¥ï¿½ï¿½
 	
 		int num = rand.nextInt(10);
 		if(num < 3) {
@@ -142,7 +141,7 @@ public class Warrior extends Character implements Serializable {
 		}
 	}
 
-	//Á×¾ú´Ù°í Ç¥½ÃÇÏ´Â ¸Þ¼­µå
+	//ï¿½×¾ï¿½ï¿½Ù°ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 	@Override
 	public boolean isAlive(Object o) {
 		Monster c = null;
@@ -153,13 +152,13 @@ public class Warrior extends Character implements Serializable {
 		c.setIsAlive(false);
 		return false;
 	}		
-	//WarriorÀÇ ½ºÅ³. Ä³¸¯ÅÍ, ¸ó½ºÅÍ, Ä³¸¯ÅÍÀÇ °ø°Ý
+	//Warriorï¿½ï¿½ ï¿½ï¿½Å³. Ä³ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void skill(Object o1, Object o2, int attack) {
-		System.out.println("½ºÅ³À» »ç¿ëÇß½À´Ï´Ù.");
+		System.out.println("ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		attack(o1, o2, attack*2);
 	}
 	
-	//HP, MP¸¦ º¸¿©ÁÜ.
+	//HP, MPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	public void showStatus(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		Monster m = null;
@@ -173,43 +172,31 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("\nWarrior");
 		System.out.print("HP: ");
 		for(int i = 0; i < w.getHP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("ï¿½ï¿½");
 		}
 		for(;hp < w.getMaxHP();hp += 10) {
-			System.out.print("¡à");
+			System.out.print("ï¿½ï¿½");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < w.getMP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("ï¿½ï¿½");
 		}
 		for(;w.getMP() < w.getMaxMP();mp+=10) {
-			System.out.print("¡à");
+			System.out.print("ï¿½ï¿½");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("ï¿½ï¿½");
 		}
 		hp = m.getHP();
 		for(;hp < m.getMaxHP();hp += 10) {
-			System.out.print("¡à");
+			System.out.print("ï¿½ï¿½");
 		}
 		System.out.println("");
 	}
 
-	@SuppressWarnings("unchecked")
-	public Character set() {
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("c:\\Users\\stu\\Desktop\\Project1\\data.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			return (Character)ois.readObject();
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return null;
-		
-	}
+
 }
 
 
