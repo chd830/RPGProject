@@ -2,6 +2,8 @@ package com.project1;
 import java.io.*;
 import java.util.*;
 
+import com.project1.Character;
+
 public class Character implements Motion, Serializable {
 	private int level;
 	private int HP;
@@ -12,6 +14,8 @@ public class Character implements Motion, Serializable {
 	private int evasion;
 	private boolean isAlive;
 	List<String> item = new ArrayList<String>();
+	
+//	List<Character> characterLists = new ArrayList<>();
 	
 	public int getLevel() {
 		return level;
@@ -89,19 +93,27 @@ public class Character implements Motion, Serializable {
 	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 	@Override
-	public void attack(Object o1, Object o2, int attack) {
+	public void attack(Object o1, Object o2,int attack) {
 	}
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
 	}
 	@Override
+	public void print(Object o) {
+	}
+
 	public boolean criticalJudgement(int critical) {
 		return false;
 	}
+
 	@Override
-	public void print(Object o) {
+	public void skill(Object o1, Object o2, int attack) {
 	}
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
+		return false;
 	}
+	
+	
+
 }

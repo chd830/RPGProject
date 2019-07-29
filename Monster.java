@@ -50,32 +50,34 @@ public class Monster implements Motion, Serializable {
 	public void setIsAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-	
-	@Override
-	public void print(Object o) {
-	}
-	@Override
-	public void dead(Object o) {
-	}
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
 	}
+
+	@Override
+	public void attackJudgement(Object o1, Object o2, int evasion) {
+	}
+	@Override
+	public void print(Object o) {
+	}
+
+	@Override
+	public void attack(Object o1, Object o2, int attack) {
+	}
+	@Override
+	public void skill(Object o1, Object o2, int attack) {
+	}
 	@Override
 	public boolean criticalJudgement(int critical) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public void attack(Object o1, Object o2, int attack) {
-		// TODO Auto-generated method stub
-		
+	public boolean isAlive(Object o) {
+		return false;
 	}
-	@Override
-	public void attackJudgement(Object o1, Object o2, int evasion) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
 }
