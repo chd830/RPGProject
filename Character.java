@@ -9,7 +9,8 @@ import java.util.List;
 
 public class Character implements Motion, Serializable {
 	/**
-	 * 
+	 * Serialized error in scanner >> Need to use transient
+	 * Cannot find some class >> Need to fix serialVersionUID
 	 */
 	private static final long serialVersionUID = 4379276376446092084L;
 	private int level;
