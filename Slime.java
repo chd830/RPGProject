@@ -3,6 +3,8 @@ package com.project1;
 import java.util.*;
 
 public class Slime extends Monster {
+	Random rand = new Random();
+	
 	public Slime() {
 		setLevel(1);
 		setHP(100);
@@ -11,22 +13,26 @@ public class Slime extends Monster {
 		setIsAlive(true);
 		System.out.println("You met slime");
 	}
+<<<<<<< HEAD
+	
+=======
 
+	//공격하는 메서드
+>>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
 	@Override
-	public void attack(Object o, int attack) {
-		Warrior w = (Warrior)o;
+	public void attack(Object o1, Object o2, int attack) {
+		Warrior w = (Warrior)o1;
 		int cur = w.getHP();
 		w.setHP(cur - attack);
 		System.out.println("Warrior was attacked and became "+w.getHP()+"HP.");
 		if(w.getHP() == 0) {
 			dead(w);
 		}
-		if(w.getHP() == 0)
-			dead(w);
 	}
 
+	//공격인지 회피인지 판정체크 메서드
 	@Override
-	public void attackJudgement(Object o, int evasion) {
+	public void attackJudgement(Object o, int evasion) {	//회피
 		Random rand = new Random();
 		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			Warrior w = (Warrior)o;
@@ -67,6 +73,7 @@ public class Slime extends Monster {
 		}
 	}
 
+	//죽은거 확인하는 메서드. 
 	@Override
 	public void dead(Object o) {
 		Character c = (Warrior)o;

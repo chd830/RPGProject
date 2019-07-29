@@ -1,8 +1,9 @@
 package com.project1;
 
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-public class Monster implements Motion {
+public class Monster implements Motion, Serializable {
 	private int level;
 	private int HP;
 	private int attack;
@@ -49,12 +50,7 @@ public class Monster implements Motion {
 	public void setIsAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-	@Override
-	public void attack(Object o, int attack) {
-	}
-	@Override
-	public void attackJudgement(Object o, int evasion) {
-	}
+	
 	@Override
 	public void print(Object o) {
 	}
@@ -66,5 +62,20 @@ public class Monster implements Motion {
 	}
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
+	}
+	@Override
+	public boolean criticalJudgement(int critical) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void attack(Object o1, Object o2, int attack) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void attackJudgement(Object o1, Object o2, int evasion) {
+		// TODO Auto-generated method stub
+		
 	}
 }
