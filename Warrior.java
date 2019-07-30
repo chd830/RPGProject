@@ -12,7 +12,7 @@ public class Warrior extends Character implements Serializable{
 		setLevel(1);
 		setHP(100);
 		setMP(10);
-		setCritical(100);
+		setCritical(50);
 		setAttack(10);
 		setEvasion(10);
 		setIsAlive(true);
@@ -29,10 +29,10 @@ public class Warrior extends Character implements Serializable{
 		System.out.println("Attack: " + w.getAttack());
 		System.out.println("Evasion: " + w.getEvasion());
 		System.out.println("Critical: " + w.getCritical() + "\n");
-	
-		
+
+
 	}
-	
+
 
 	//아이템이 있는지 확인하고 아이템을 사용하는 메서드
 	@Override
@@ -72,23 +72,27 @@ public class Warrior extends Character implements Serializable{
 		//캐릭터, 몬스터, 캐릭터의 회피율
 		Random rd = new Random();
 		int num = rd.nextInt(100);
-		Monster m= null;
-		m=(Slime)o2;
-		
+		Monster m =null;
+
 		//회피성공
 		//o1 : com.Project1.Warrior
 		if(o1.getClass().getName().equals("com.project1.Slime")) {
-			if(num>(100-evasion)) {
-				System.out.println("evasion success : "+getHP());
-				return;
-			}
-			else {
-				//회피 실패
-				System.out.println("evasion failure"+(getHP()-m.getAttack()));
-				attack(o1, m, m.getAttack());
-				return;
-			}
+			m= (Slime)o2;
 		}
+		else if(o1.getClass().getName().equals("com.project1.Slime2")) {
+			m=(Slime)o2;
+		}
+		if(num>=(100-evasion)) {
+			//회피 실패, 캐릭터가 공격
+			System.out.println("evasion failure : "+getHP());
+			
+		}
+		else {
+			//회피 성공
+			System.out.println("evasion success");
+			return;
+		}
+		attack(o1, m, getAttack());
 	}
 
 	//크리티컬이 터지는지 확인하는 메서드(현재는 무조건 크리티컬상태)
@@ -96,21 +100,18 @@ public class Warrior extends Character implements Serializable{
 	public boolean criticalJudgement(int critical) {
 		Random rd = new Random();
 		int num = rd.nextInt(100);
-		if(num >(100-critical)) {
-			System.out.println("critical success"+  getCritical());
-			
-			
-		}else{
-			System.out.println("critical failure" );
-		}
-		
-		
-		
-		
+		if(num >=(100-critical)) {
 
-		return false;
+			System.out.println("critical failure"+  getCritical());
+			return false;
+
+		}else{
+			System.out.println("critical success" + getCritical());
+			critical = getAttack()*2;
+			return true;
+		}
 	}
-	
+
 	//공격메서드
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
