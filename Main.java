@@ -19,7 +19,7 @@ public class Main {
 		int num = 0;
 		
 		if (f.exists()) {
-			System.out.print("\nLoad Data?[y/n] ");
+			System.out.print("Load Data?[y/n] ");
 			str = sc.next();
 		}
 
