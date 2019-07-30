@@ -2,7 +2,7 @@ package com.project1;
 
 import java.util.*;
 
-public class Slime extends Monster {
+public class Slime extends Monster implements Runnable{
 	Random rand = new Random();
 
 	static int count = 0;
@@ -14,6 +14,13 @@ public class Slime extends Monster {
 		setAttack(10);
 		setEvasion(10);
 		setIsAlive(true);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		System.out.println("You meet a slime!");
 		System.out.println();
 	}
@@ -99,6 +106,9 @@ public class Slime extends Monster {
 			System.out.println("Archer is dead.");
 		}
 		c.setIsAlive(false);
+	}
+	@Override
+	public void run() {
 	}
 
 }

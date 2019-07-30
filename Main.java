@@ -5,7 +5,7 @@ import java.util.*;
 
 import com.project1.Character;
 
-public class Main {
+public class Main implements Runnable {
 	static List<Character> l = null;
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
@@ -13,6 +13,40 @@ public class Main {
 		File f = new File("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
 		Character c = null;
 		int num = 0;
+		int a,b;
+		System.out.println("-------------------------------------------");
+		for(a=1;a<=3;a++) {
+			System.out.print(" ");
+		}
+		for(b=1;b<=3;b++) {
+			System.out.print("*");
+		}
+		for(a=1;a<=5;a++) {
+			System.out.print(" ");
+		}
+		for(b=1;b<=3;b++) {
+			System.out.print("*");
+		}
+		for(a=1;a<=5;a++) {
+			System.out.print(" ");
+		}
+		for(b=1;b<=2;b++) {
+			System.out.print("*");
+		}
+		for(a=1;a<=3;a++) {
+			System.out.print(" ");
+		}
+		for(b=1;b<=2;b++) {
+			System.out.print("*");
+		}
+		for(a=1;a<=5;a++) {
+			System.out.print(" ");
+		}
+		for(b=1;b<=5;b++) {
+			System.out.print("*");
+		}
+		System.out.println();
+		System.out.println("-------------------------------------------");
 		if(f.exists()) {
 			System.out.print("Load Data?[y/n] ");
 			str = sc.next();
@@ -27,6 +61,13 @@ public class Main {
 			} catch(Exception e ) {
 				System.out.println(e.toString());
 			}
+			
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			System.out.print("Select: ");
 			num = sc.nextInt();
 			c = l.get(num - 1);
@@ -36,6 +77,12 @@ public class Main {
 			l = new ArrayList(); 
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
+			
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 			switch(num) {
 			case 1:
@@ -58,50 +105,78 @@ public class Main {
 
 		while(m.getIsAlive() && c.getIsAlive()) {
 
-				c.showStatus(c, m);
-			
-				if(m.getHP() <= 0 || c.getHP() <= 0)
-					break;
-				recur:do {
-					System.out.print("1.Attack 2.UseItem 3.Skill: ");
-					num = sc.nextInt();
-					switch(num) {
-					case 1:
-						c.attackJudgement(c, m);
-						break recur;
-					case 2:
+			c.showStatus(c, m);
+
+			if(m.getHP() <= 0 || c.getHP() <= 0)
+				break;
+			recur:do {
+				try {
+					Thread.sleep(700);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				System.out.print("\n1.Attack 2.UseItem 3.Skill: ");
+				num = sc.nextInt();
+				switch(num) {
+				case 1:
+					c.attackJudgement(c, m);
+					break recur;
+				case 2:
+					try {
+						
 						try {
-							if(c.getItem().size() <= 0) {
-								System.out.println("Item is null");
-								break;
-							}
+							Thread.sleep(500);
+						} catch (Exception e) {
+							// TODO: handle exception
 						}
-						catch(Exception e) {
-							System.out.println(e.toString());
+						
+						if(c.getItem().size() <= 0) {
+							System.out.println("Item is null");
+							break;
 						}
-						c.useItem(c, m, c.getItem());
-						break;
-					case 3:
-						c.skill(c, m);
-						break recur;
 					}
-				} while(true);
-				m.attack(m, c);
+					catch(Exception e) {
+						System.out.println(e.toString());
+					}
+					c.useItem(c, m, c.getItem());
+					break;
+				case 3:
+					c.skill(c, m);
+					break recur;
+				}
+			} while(true);
+			m.attack(m, c);
 		}
-		
+
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			System.out.print("1.Save 2.Exit: ");
 			num = sc.nextInt();
 			try {
 				if(num == 1) {
 					l.add(c);
 					save(l);
+				}else if(num==2) {
+					m = new Slime();
 				}
 			} catch(Exception e ) {
 
 			}
 		}
+		
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		if(c.getHP() <= 0) {
 			System.out.println("Game is end");
 		}
@@ -129,6 +204,9 @@ public class Main {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+	}
+	@Override
+	public void run() {
 	}
 }
 
