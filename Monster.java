@@ -6,8 +6,10 @@ import java.util.*;
 public class Monster implements Motion, Serializable {
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int attack;
 	private int evasion;
+	private int experience;
 	private String status;
 	private boolean isAlive;
 	
@@ -25,6 +27,13 @@ public class Monster implements Motion, Serializable {
 		HP = hP;
 	}
 	
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
+	}
+	
 	public int getAttack() {
 		return attack;
 	}
@@ -39,13 +48,19 @@ public class Monster implements Motion, Serializable {
 		this.evasion = evasion;
 	}
 	
+	public int getExperience() {
+		return experience;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 	public boolean getIsAlive() {
 		return isAlive;
 	}
@@ -57,10 +72,6 @@ public class Monster implements Motion, Serializable {
 	public void print(Object o) {
 	}
 	@Override
-	public boolean isAlive(Object o) {
-		return false;
-	}
-	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 	}
 	@Override
@@ -68,20 +79,20 @@ public class Monster implements Motion, Serializable {
 	}
 	@Override
 	public boolean criticalJudgement(int critical) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void skill(Object o1, Object o2, int attack) {
 	}
+	@Override
+	public boolean isAlive(Object o) {
+		return false;
+	}
+	
 }

@@ -1,72 +1,20 @@
-/*package com.project1;
-import java.util.*;
-
-public class Main {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("1.Warrior 2.Magician 3.Archer: ");
-
-		//Character, Monster±âÁØÀ¸·Î ÀÚ½ÄÅ¬·¡½º »ı¼º
-		Character c = new Warrior();
-		Monster m = new Slime();
-
-		//·£´ıÀ¸·Î ¾ÆÀÌÅÛ »ı¼º
-		c.getItemByMonster(m, c.getItem());
-		c.getItemByMonster(m, c.getItem());
-		c.getItemByMonster(m, c.getItem());
-
-		c.print(c);
-
-		//°ø°İ°ú ¾ÆÀÌÅÛ»ç¿ë ¹İº¹¿ë ¿¹½ÃÄÚµå
-		recur:for(int i = 0; ; i++) {
-			if(i%2 == 0) {
-				System.out.print("1.Attack 2.UseItem: ");
-				int num = sc.nextInt();
-				//¾ÆÀÌÅÛ»ç¿ë
-				boolean check = true;
-				do {
-					if(m.getHP() == 0 || c.getHP() == 0)
-						break recur;
-					switch(num) {
-					case 1:
-						c.attackJudgement(m, c, c.getAttack());
-						check = false;
-						break;
-					case 2:
-						if(c.getItem().size() <= 0) {
-							System.out.println("Item is null");
-							break;
-						}
-						c.useItem(c, m, c.getItem());
-						System.out.println("Have Item");
-						check = false;
-						break;
-
-					}
-				} while(check);
-			}
-			else {
-				//°ø°İ
-				m.attackJudgement(c, m, m.getAttack());
-			}
-		}
-		//¸ó½ºÅÍ°¡ °ø°İ
-		if(m.getHP() == 0) {
-			c.getItemByMonster(m, c.item);
-		}
-	}*/
-
 package com.project1;
+
+import java.io.*;
 import java.util.*;
 
-public class Main {
+import com.project1.Character;
 
-	public static void main(String[] args) {
+public class Main {
+	public static void main(String[] args) throws Exception {
+		//If file does not exist
 		Scanner sc = new Scanner(System.in);
 		System.out.print("1.Warrior 2.Magician 3.Archer: ");
 		int num = sc.nextInt();
+
+
 		Character c = null;
+
 		switch(num) {
 		case 1:
 			c = new Warrior();
@@ -79,35 +27,40 @@ public class Main {
 			break;
 		}
 
+//		//If file exist. Get data from file. Need to Change Position.
+		List<Character> l = new ArrayList();
+//		l = c.set();
+//		for(int i = 0; i < l.size(); i++) {
+//			System.out.println((i + 1 ) +".Lv"+l.get(i).getLevel()+" "+l.get(i).getClass().getName().substring(13,l.getClass().getName().length() + 1));
+//		}
+
+		//Detailed data print
 		c.print(c);
 		Monster m = new Slime();
 
-		//·£´ıÀ¸·Î ¾ÆÀÌÅÛ »ı¼º
-		c.getItemByMonster(m, c.getItem());
-		c.getItemByMonster(m, c.getItem());
-		c.getItemByMonster(m, c.getItem());
+		//		//å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+		//		c.getItemByMonster(m, c.getItem());
+		//		c.getItemByMonster(m, c.getItem());
+		//		c.getItemByMonster(m, c.getItem());
 
-		//°ø°İ°ú ¾ÆÀÌÅÛ»ç¿ë ¹İº¹¿ë ¿¹½ÃÄÚµå
+		//å ì™ì˜™å ìŒ¥ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ìŒœì‚¼ì˜™å ï¿½ å ìŒ¥ë¸ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ˜ë“¸ì˜™
 		int i = 0;
 		while(m.getIsAlive() && c.getIsAlive()) {
 
 			if(i%2 == 0) {
-				//					c.showStatus(c, m);
-				System.out.println();
+				c.showStatus(c, m);
 				System.out.print("1.Attack 2.UseItem 3.Skill: ");
-				
 				num = sc.nextInt();
 				if(m.getHP() <= 0 || c.getHP() <= 0)
 					break;
-				
-				//¾ÆÀÌÅÛ»ç¿ë
+				//å ì™ì˜™å ì™ì˜™å ìŒœì‚¼ì˜™å ï¿½
 				switch(num) {
 				case 1:
-					c.attackJudgement(c, m, c.getAttack());
+					c.attackJudgement(c, m, c.getEvasion());
 					break;
 				case 2:
 					if(c.getItem().size() <= 0) {
-						System.out.println("No item!");
+						System.out.println("Item is null");
 						break;
 					}
 					c.useItem(c, m, c.getItem());
@@ -117,14 +70,24 @@ public class Main {
 				}
 			}
 			else {
-//				m.attack(m, c, m.getAttack()); **************
+				m.attack(m, c, m.getAttack());
 			}
-			//¸ó½ºÅÍ°¡ °ø°İ
+			//å ì™ì˜™å ì‹¶ê³¤ì˜™ å ì™ì˜™å ì™ì˜™
 			if(m.getHP() == 0) {
 				c.getItemByMonster(m, c.item);
 			}
 			i++;
 		}
+		System.out.print("1.Save 2.Exit: ");
+		num = sc.nextInt();
+		if(num == 1) {
+			l.add(c);
+			c.save(l);
+		}
+		else {
+
+		}
+
 	}
 }
 

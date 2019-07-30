@@ -1,17 +1,29 @@
 package com.project1;
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Character implements Motion, Serializable {
+	/**
+	 * Serialized error in scanner >> Need to use transient
+	 * Cannot find some class >> Need to fix serialVersionUID
+	 */
+	private static final long serialVersionUID = 4379276376446092084L;
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int MP;
+	private int MaxMP;
 	private int attack;
-	private int[] experience = {5, 10, 20, 20, 20};
+	transient private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
-	List<String> item = new ArrayList<String>();
+	transient List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
 		return level;
@@ -27,6 +39,13 @@ public class Character implements Motion, Serializable {
 		HP = hP;
 	}
 
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
+	}
+	
 	public int getMP() {
 		return MP;
 	}
@@ -34,6 +53,13 @@ public class Character implements Motion, Serializable {
 		MP = mP;
 	}
 
+	public int getMaxMP() {
+		return MaxMP;
+	}
+	public void setMaxMP(int maxMP) {
+		MaxMP = maxMP;
+	}
+	
 	public int getAttack() {
 		return attack;
 	}
@@ -99,5 +125,32 @@ public class Character implements Motion, Serializable {
 	}
 	@Override
 	public void skill(Object o1, Object o2, int attack) {
+	}
+	
+	public void showStatus(Object o1, Object o2) {
+	}
+	transient List<Character> characterList = new ArrayList();
+	
+	public void save(List<Character> c) {
+		try {
+			FileOutputStream fos = new FileOutputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(c);
+			oos.close();
+			} catch(Exception e) {
+				System.out.println(e.toString());
+			}
+	}
+	@SuppressWarnings("unchecked")
+	public List<Character> set() {
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			return (List<Character>)ois.readObject();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return null;
 	}
 }
