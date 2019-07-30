@@ -139,26 +139,5 @@ public class Character implements Motion, Serializable {
 	}
 	transient List<Character> characterList = new ArrayList();
 	
-	public void save(List<Character> c) {
-		try {
-			FileOutputStream fos = new FileOutputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(c);
-			oos.close();
-			} catch(Exception e) {
-				System.out.println(e.toString());
-			}
-	}
-	@SuppressWarnings("unchecked")
-	public List<Character> set() {
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			return (List<Character>)ois.readObject();
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return null;
-	}
+
 }

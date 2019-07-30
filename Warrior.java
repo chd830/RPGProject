@@ -26,7 +26,6 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("Warrior is selected");
 	}
 
-	//ĳ������ ���� ��� �޼���
 	@Override
 	public void print(Object o) {
 		Warrior w = (Warrior)o;
@@ -38,7 +37,6 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("Critical: " +w.getCritical()+"\n");
 	}
 
-	//�������� �ִ��� ȭ�뤤�ϰ� �������� ����ϴ� �޼���
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
 		Warrior w = (Warrior)o1;
@@ -72,7 +70,6 @@ public class Warrior extends Character implements Serializable {
 		item.remove(num - 1);
 	}
 
-	//�������� ȸ������ ����üũ �޼���
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
 		Random rand = new Random();
@@ -88,7 +85,6 @@ public class Warrior extends Character implements Serializable {
 		attack(o1, m, ((Warrior)o1).getAttack());
 	}
 
-	//ũ��Ƽ���� �������� Ȯ���ϴ� �޼���(����� ������ ũ��Ƽ�û���)
 	@Override 
 	public boolean criticalJudgement(int critical) {
 		int num = rand.nextInt(100);
@@ -98,13 +94,10 @@ public class Warrior extends Character implements Serializable {
 	 	return false;
 	}
 	
-	//���ݸ޼���
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		//�����Ӹ� ���ݴ��ϵ��� �Ǿ�����
 		Monster m = (Slime)o2;
 		int cur = m.getHP();
-		//ũ��Ƽ���� ������ �� �������� �ι�� ���� �Ǿ�����.
 		if(criticalJudgement(((Warrior)o1).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
@@ -116,11 +109,9 @@ public class Warrior extends Character implements Serializable {
 		}
 	}
 
-	//���Ϳ��� Ȯ���� �������� ��� �޼���.
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
 		Monster m = null;
-		//�����ӿ��� �������� ��´ٰ� ǥ��
 	
 		int num = rand.nextInt(10);
 		if(num < 3) {
@@ -141,7 +132,6 @@ public class Warrior extends Character implements Serializable {
 		}
 	}
 
-	//�׾��ٰ� ǥ���ϴ� �޼���
 	@Override
 	public boolean isAlive(Object o) {
 		Monster c = null;
@@ -152,13 +142,12 @@ public class Warrior extends Character implements Serializable {
 		c.setIsAlive(false);
 		return false;
 	}		
-	//Warrior�� ��ų. ĳ����, ����, ĳ������ ����
+
 	public void skill(Object o1, Object o2, int attack) {
 		System.out.println("��ų�� ����߽��ϴ�.");
 		attack(o1, o2, attack*2);
 	}
 	
-	//HP, MP�� ������.
 	public void showStatus(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		Monster m = null;
@@ -172,26 +161,26 @@ public class Warrior extends Character implements Serializable {
 		System.out.println("\nWarrior");
 		System.out.print("HP: ");
 		for(int i = 0; i < w.getHP()/10; i++) {
-			System.out.print("��");
+			System.out.print("■");
 		}
 		for(;hp < w.getMaxHP();hp += 10) {
-			System.out.print("��");
+			System.out.print("□");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < w.getMP()/10; i++) {
-			System.out.print("��");
+			System.out.print("■");
 		}
 		for(;w.getMP() < w.getMaxMP();mp+=10) {
-			System.out.print("��");
+			System.out.print("□");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("��");
+			System.out.print("■");
 		}
 		hp = m.getHP();
 		for(;hp < m.getMaxHP();hp += 10) {
-			System.out.print("��");
+			System.out.print("□");
 		}
 		System.out.println("");
 	}
