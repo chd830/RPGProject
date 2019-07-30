@@ -1,8 +1,4 @@
 package com.project1;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +15,11 @@ public class Character implements Motion, Serializable {
 	private int MP;
 	private int MaxMP;
 	private int attack;
-	transient private int[] experience = {5, 10, 20, 20, 20};
+	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
-	transient List<String> item = new ArrayList<String>();
+	List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
 		return level;

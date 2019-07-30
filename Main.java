@@ -30,13 +30,13 @@ public class Main {
 			System.out.print("Select: ");
 			num = sc.nextInt();
 			c = l.get(num - 1);
-			
+
 		}
 		else {
 			l = new ArrayList();
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
-			
+
 			switch(num) {
 			case 1:
 				c = new Warrior();
@@ -56,10 +56,6 @@ public class Main {
 		c.print(c);
 		Monster m = new Slime();
 
-		//		c.getItemByMonster(m, c.getItem());
-		//		c.getItemByMonster(m, c.getItem());
-		//		c.getItemByMonster(m, c.getItem());
-
 		int i = 0;
 		while(m.getIsAlive() && c.getIsAlive()) {
 
@@ -74,9 +70,14 @@ public class Main {
 					c.attackJudgement(c, m, c.getEvasion());
 					break;
 				case 2:
-					if(c.getItem().size() <= 0) {
-						System.out.println("Item is null");
-						break;
+					try {
+						if(c.getItem().size() <= 0) {
+							System.out.println("Item is null");
+							break;
+						}
+					}
+					catch(Exception e) {
+						System.out.println(e.toString());
 					}
 					c.useItem(c, m, c.getItem());
 					break;
@@ -87,24 +88,27 @@ public class Main {
 			else {
 				m.attack(m, c, m.getAttack());
 			}
-			if(m.getHP() == 0) {
-				c.getItemByMonster(m, c.item);
-			}
+
 			i++;
 		}
-		System.out.print("1.Save 2.Exit: ");
-		num = sc.nextInt();
-		try {
-			if(num == 1) {
-				l.add(c);
-				for(int j = 0; j < l.size(); j++)
-					System.out.println(l.get(j).getClass().getName());
-				save(l);
+		if(m.getHP() <= 0) {
+			c.getItemByMonster(m, c.item);
+			System.out.print("1.Save 2.Exit: ");
+			num = sc.nextInt();
+			try {
+				if(num == 1) {
+					l.add(c);
+					for(int j = 0; j < l.size(); j++)
+						System.out.println(l.get(j).getClass().getName());
+					save(l);
+				}
+			} catch(Exception e ) {
+
 			}
-		} catch(Exception e ) {
-
 		}
-
+		if(c.getHP() <= 0) {
+			System.out.println("Game is end");
+		}
 
 	}
 	public static void save(List<Character> c) {
