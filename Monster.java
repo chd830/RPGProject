@@ -38,13 +38,15 @@ public class Monster implements Motion, Serializable {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public boolean getIsAl() {
+	
+	public boolean getIsAlive() {
 		return isAlive;
 	}
 	public void setIsAlive(boolean isAlive) {
@@ -55,7 +57,8 @@ public class Monster implements Motion, Serializable {
 	public void print(Object o) {
 	}
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
+		return false;
 	}
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
@@ -77,5 +80,8 @@ public class Monster implements Motion, Serializable {
 	public void attackJudgement(Object o1, Object o2, int evasion) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void skill(Object o1, Object o2, int attack) {
 	}
 }

@@ -11,14 +11,9 @@ public class Warrior extends Character {
 		setLevel(1);
 		setHP(100);
 		setMP(10);
-		setCritical(100);
+		setCritical(25);
 		setAttack(10);
 		setEvasion(10);
-<<<<<<< HEAD
-		setCritical(10);
-
-=======
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
 		setIsAlive(true);
 		System.out.println("Warrior is selected.");
 	}
@@ -33,7 +28,6 @@ public class Warrior extends Character {
 		System.out.println("Attack: " + w.getAttack());
 		System.out.println("Evasion: " + w.getEvasion());
 		System.out.println("Critical: " + w.getCritical() + "\n");
-	
 		
 	}
 	
@@ -46,21 +40,26 @@ public class Warrior extends Character {
 			System.out.println("Item is empty");
 			return;
 		}
+		
 		System.out.println("Select Item: ");
 		for (int i = 0; i < item.size(); i++) {
 			System.out.print((i + 1) + "." + item.get(i) + "\t");
 		}
+		
 		int num = sc.nextInt();
 		System.out.println("\'" + item.get(num - 1) + "\' is selected");
+		
 		if (item.get(num - 1).equals("Hp up")) {
 			int cur = w.getHP();
 			w.setHP(cur + 10);
 			System.out.println("Hp of the warrior is become " + cur + " to " + w.getHP());
-		} else if (item.get(num - 1).equals("Mp up")) {
+		} 
+		else if (item.get(num - 1).equals("Mp up")) {
 			int cur = w.getMP();
 			w.setMP(cur + 10);
 			System.out.println("Mp of the warrior is become " + cur + " to " + w.getMP());
-		} else {
+		}
+		else {
 			if (o2.getClass().getName().equals("com.project1.Slime")) {
 				Slime s = (Slime) o2;
 				s.setStatus("Iced");
@@ -76,17 +75,10 @@ public class Warrior extends Character {
 		Random rand = new Random();
 		Monster m = null;
 		int num = rand.nextInt(100);
-<<<<<<< HEAD
-		if (o.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime) o;
-			if (num >= (100 - evasion)) {
-				System.out.println("Warrior succeeded in evasion and became " + m.getHP() + "HP.");
-=======
 		if(o1.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o1;
 			if(num >= (100 - evasion)) {
-				System.out.println("Warrior succeeded in evasion and became "+m.getHP()+"HP.");
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
+				System.out.println("Warrior evade the attack and the Hp is "+m.getHP()+".");
 				return;
 			}
 		}
@@ -105,24 +97,18 @@ public class Warrior extends Character {
 	
 	//공격메서드
 	@Override
-<<<<<<< HEAD
-	public void attack(Object o, int attack) {
-		Monster m = (Slime) o;
-=======
 	public void attack(Object o1, Object o2, int attack) {
 		//슬라임만 공격당하도록 되어있음
 		Monster m = (Slime)o1;
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
 		int cur = m.getHP();
 		//크리티컬이 터졌을 때 데미지가 두배로 들어가게 되어있음.
-		if(criticalJudgement(((Warrior)o2).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
 		}
 		m.setHP(cur - attack);
-		System.out.println("Slime was attacked and became " + m.getHP() + "HP.");
+		System.out.println("Slime is attacked and the slime's Hp become " + m.getHP() + ".");
 		if (m.getHP() == 0) {
-			dead(m);
+			isAlive(m);
 		}
 	}
 
@@ -130,14 +116,6 @@ public class Warrior extends Character {
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
 		Monster m = null;
-<<<<<<< HEAD
-		if (o1.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime) o1;
-			System.out.println("Get item from slime");
-		}
-		int num = rand.nextInt(10);
-		if (num < 3) {
-=======
 		//슬라임에게 아이템을 얻는다고 표시
 		if(o1.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o1;
@@ -146,19 +124,13 @@ public class Warrior extends Character {
 		int num = rand.nextInt(10);
 		System.out.println("Random Item: "+num);
 		if(num < 3) {
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
 			System.out.println("Get \'Hp up\'");
 			item.add("Hp up");
 		} else if (num < 6) {
 			System.out.println("Get \'Mp up\'");
-<<<<<<< HEAD
-			item.add("Hp up");
-		} else {
-=======
 			item.add("Mp up");
 		}
 		else {
->>>>>>> 8ffa4f21927f5e051976924c2b380704fc0479ed
 			System.out.println("Get \'Iced\'");
 			item.add("Iced");
 		}
@@ -166,12 +138,13 @@ public class Warrior extends Character {
 
 	//죽은거 확인하는 메서드.
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
 		Monster c = null;
 		if (o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime) o;
 			System.out.println("Slime is dead.");
 		}
 		c.setIsAlive(false);
+		return false;
 	}
 }

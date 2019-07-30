@@ -47,8 +47,7 @@ public class Character implements Motion, Serializable {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}	
-	
-	
+
 	public boolean getIsAlive() {
 		return isAlive;
 	}
@@ -61,13 +60,6 @@ public class Character implements Motion, Serializable {
 	}
 	public void setCritical(int critical) {
 		this.critical = critical;
-	}
-	
-	public boolean isAlive() {
-		return isAlive;
-	}
-	public void setAlive(boolean isAlive) {
-		this.isAlive = isAlive;
 	}
 	
 	public int[] getExperience() {
@@ -102,6 +94,10 @@ public class Character implements Motion, Serializable {
 	public void print(Object o) {
 	}
 	@Override
-	public void dead(Object o) {
+	public boolean isAlive(Object o) {
+		return false;
+	}
+	@Override
+	public void skill(Object o1, Object o2, int attack) {
 	}
 }
