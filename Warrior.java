@@ -1,20 +1,16 @@
 package com.project1;
 
+import java.io.Serializable;
+import java.util.*;
 
-<<<<<<< HEAD
 public class Warrior extends Character implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5716387998910136780L;
-=======
-public class Warrior extends Character {
-
-	private static final long serialVersionUID = 5716387998910136780L;
-
->>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462
 	public Warrior() {
+
 		setLevel(1);
 		setHP(100);
 		setMaxHP(getHP());
@@ -27,7 +23,6 @@ public class Warrior extends Character {
 		System.out.println("Warrior is selected.");
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void print(Object o) {
 		Warrior w = (Warrior) o;
@@ -91,7 +86,7 @@ public class Warrior extends Character {
 			
 		}
 		else {
-			System.out.println("Warrior evasion success");
+			System.out.println("Slime evasion success");
 			return;
 		}
 		attack(o1, m, getAttack());
@@ -113,7 +108,7 @@ public class Warrior extends Character {
 		}
 	}
 	@Override
-	public void attack(Object o1, Object o2, int attack) {
+	public void attack(Object o1, Object o2) {
 		Monster m = (Slime)o2;
 		int cur = m.getHP();
 		if(criticalJudgement(((Warrior)o1).getCritical())) {
@@ -214,10 +209,5 @@ public class Warrior extends Character {
 			System.out.print("□");
 		}
 		System.out.println("");
-=======
-	public boolean skill(Object o1, Object o2) {
-		System.out.println("Warrior's Skill.");
-		return true;
->>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462
 	}
 }

@@ -295,14 +295,14 @@ public class Character implements Motion, Serializable {
 		System.out.println("\nArcher");
 		System.out.print("HP: ");
 		for(int i = 0; i < c.getHP()/10; i++) {
-			System.out.print("�뼚");
+			System.out.print("■");
 		}
 		for(;hp < c.getMaxHP();hp += 10) {
-			System.out.print("�뼞");
+			System.out.print("□");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < c.getMP()/10; i++) {
-			System.out.print("�뼚");
+			System.out.print("■");
 		}
 		for(;c.getMP() < c.getMaxMP();mp+=10) {
 			System.out.print("�뼞");
@@ -310,7 +310,7 @@ public class Character implements Motion, Serializable {
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("�뼚");
+			System.out.print("■");
 		}
 		hp = m.getHP();
 		for(;hp < m.getMaxHP();hp += 10) {

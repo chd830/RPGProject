@@ -17,11 +17,6 @@ public class Slime extends Monster {
 		System.out.println("You meet a slime!");
 		System.out.println();
 	}
-<<<<<<< HEAD
-
-	//�����ϴ� �޼���. ����, ĳ����, ������ ���ݷ�
-=======
->>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
@@ -89,7 +84,7 @@ public class Slime extends Monster {
 	}
 
 	@Override
-	public void isAlive(Object o) {
+	public boolean isAlive(Object o) {
 		Character c = null;
 		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o;
@@ -104,6 +99,7 @@ public class Slime extends Monster {
 			System.out.println("Archer is dead.");
 		}
 		c.setIsAlive(false);
+		return false;
 	}
 
 }
