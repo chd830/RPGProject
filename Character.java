@@ -1,8 +1,14 @@
 package com.project1;
+<<<<<<< HEAD
 import java.io.*;
 import java.util.*;
 
 import com.project1.Character;
+=======
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> a50e3e020527f8e3417320fc564d452dd131eec9
 
 public class Character implements Motion, Serializable {
 	private int level;
@@ -14,8 +20,11 @@ public class Character implements Motion, Serializable {
 	private int evasion;
 	private boolean isAlive;
 	List<String> item = new ArrayList<String>();
+<<<<<<< HEAD
 	
 //	List<Character> characterLists = new ArrayList<>();
+=======
+>>>>>>> a50e3e020527f8e3417320fc564d452dd131eec9
 	
 	public int getLevel() {
 		return level;
