@@ -1,10 +1,8 @@
 package com.project1;
 
-
 public class Warrior extends Character {
 
 	private static final long serialVersionUID = 5716387998910136780L;
-
 	public Warrior() {
 		setHP(200);
 		setMaxHP(getHP());
@@ -13,7 +11,7 @@ public class Warrior extends Character {
 		setCritical(50);
 		setAttack(10);
 		setEvasion(10);
-		setIsAlive(true);
+		setAlive(true);
 		System.out.println("Warrior is selected.");
 	}
 

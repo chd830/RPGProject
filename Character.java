@@ -29,20 +29,6 @@ public class Character implements Motion, Serializable {
 		HP = hP;
 	}
 
-	public int getMaxHP() {
-		return MaxHP;
-	}
-	public void setMaxHP(int maxHP) {
-		MaxHP = maxHP;
-	}
-
-	public int getMP() {
-		return MP;
-	}
-	public void setMP(int mP) {
-		MP = mP;
-	}
-
 	public int getMaxMP() {
 		return MaxMP;
 	}
@@ -57,6 +43,13 @@ public class Character implements Motion, Serializable {
 		this.attack = attack;
 	}
 
+	public int getCritical() {
+		return critical;
+	}
+	public void setCritical(int critical) {
+		this.critical = critical;
+	}
+	
 	public int getEvasion() {
 		return evasion;
 	}
@@ -64,18 +57,18 @@ public class Character implements Motion, Serializable {
 		this.evasion = evasion;
 	}   
 
-	public boolean getIsAlive() {
-		return isAlive;
+	public int getMaxHP() {
+		return MaxHP;
 	}
-	public void setIsAlive(boolean isAlive) {
-		this.isAlive = isAlive;
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
 	}
 
-	public int getCritical() {
-		return critical;
+	public int getMP() {
+		return MP;
 	}
-	public void setCritical(int critical) {
-		this.critical = critical;
+	public void setMP(int mP) {
+		MP = mP;
 	}
 
 	public boolean isAlive() {
@@ -91,7 +84,7 @@ public class Character implements Motion, Serializable {
 	public void setSkill(boolean skill) {
 		this.skill = skill;
 	}
-	
+
 	public List<String> getItem() {
 		return item;
 	}
@@ -311,7 +304,7 @@ public class Character implements Motion, Serializable {
 		for(;hp < c.getMaxHP();hp += 10) {
 			System.out.print("□");
 		}
-		
+
 		System.out.print("\nMP: ");
 		for(int i = 0; i < c.getMP()/10; i++) {
 			System.out.print("■");
@@ -319,7 +312,7 @@ public class Character implements Motion, Serializable {
 		for(;mp < c.getMaxMP();mp += 10) {
 			System.out.print("□");
 		}
-		
+
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
@@ -332,6 +325,4 @@ public class Character implements Motion, Serializable {
 		System.out.println("");
 	}
 	transient List<Character> characterList = new ArrayList();
-
-
 }

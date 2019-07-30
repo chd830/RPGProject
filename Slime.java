@@ -3,12 +3,12 @@ package com.project1;
 import java.util.*;
 
 public class Slime extends Monster {
-	Random rand = new Random();
+   Random rand = new Random();
+
 	static int icedCount = 0;
 	static int firedCount = 0;
 
 	public Slime() {
-		setLevel(1);
 		setHP(100);
 		setMaxHP(this.getHP());
 		setAttack(10);
@@ -41,11 +41,10 @@ public class Slime extends Monster {
 		}
 		c.setHP(cur - attack);
 		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
-
-		if(c.getHP() == 0) {
-			isAlive(c);
-		}
-	}
+      if(c.getHP() == 0) {
+         isAlive(c);
+      }
+   }
 
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
@@ -104,7 +103,6 @@ public class Slime extends Monster {
 			str = "Archer";
 		}
 		System.out.println(str + " is dead.");
-		c.setIsAlive(false);
+		c.setAlive(false);
 	}
-
 }

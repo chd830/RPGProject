@@ -1,7 +1,10 @@
 package com.project1;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 import com.project1.Character;
 
@@ -54,7 +57,7 @@ public class Main {
 		c.print(c);
 		Monster m = new Slime();
 
-		while(m.getIsAlive() && c.getIsAlive()) {
+		while(m.getIsAlive() && c.isAlive()) {
 
 			c.showStatus(c, m);
 
@@ -113,7 +116,6 @@ public class Main {
 		if(c.getHP() <= 0) {
 			System.out.println("Game is end");
 		}
-
 	}
 	public static void reset(Character c) {
 		c.setMaxHP(c.getMaxHP() + 50);
@@ -145,4 +147,3 @@ public class Main {
 		}
 	}
 }
-
