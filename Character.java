@@ -57,13 +57,13 @@ public class Character implements Motion, Serializable {
 		this.evasion = evasion;
 	}   
 
-	public int getMaxHP() {
-		return MaxHP;
-	}
 	public void setMaxHP(int maxHP) {
 		MaxHP = maxHP;
 	}
 
+	public int getMaxHP() {
+		return MaxHP;
+	}
 	public int getMP() {
 		return MP;
 	}
@@ -279,7 +279,7 @@ public class Character implements Motion, Serializable {
 		}
 		else if(o1.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o1;
-			s = "Warrior";
+			s = "Warroir";
 		}
 		else {
 			c = (Magician)o1;

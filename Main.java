@@ -36,7 +36,7 @@ public class Main {
 
 		}
 		else {
-			l = new ArrayList();
+			l = new ArrayList(); 
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
 

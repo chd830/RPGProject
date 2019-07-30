@@ -15,7 +15,8 @@ public class Slime extends Monster {
 		setEvasion(10);
 		setIsAlive(true);
 		setStatus("");
-		System.out.println("You met slime");
+		System.out.println("You meet a slime!");
+		System.out.println();
 	}
 	/*
 		iced아이템 사용가능하게 fired데미지도 사용가능하게 하기. 
