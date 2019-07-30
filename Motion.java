@@ -10,10 +10,6 @@ public interface Motion {
 	public void attackJudgement(Object o1, Object o2);
 	public boolean criticalJudgement(int critical);
 	public void print(Object o);
-<<<<<<< HEAD
-	public boolean isAlive(Object o);
-}
-=======
 	public void isAlive(Object o);
+
 }
->>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462

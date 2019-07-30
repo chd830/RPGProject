@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
 import com.project1.Character;
 
-public class Main {
+
+public class Main{
 	static List<Character> l = null;
+	
 	public static void main(String[] args) throws Exception {
+		
 		Scanner sc = new Scanner(System.in);
 		String str = "";
 		File f = new File("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
@@ -57,16 +59,24 @@ public class Main {
 
 		//Detailed data print
 		c.print(c);
+		
 		Monster m = new Slime();
+		
 
 		while(m.getIsAlive() && c.getIsAlive()) {
-
+			
 				c.showStatus(c, m);
 			
 				if(m.getHP() <= 0 || c.getHP() <= 0)
 					break;
 				recur:do {
-					System.out.print("1.Attack 2.UseItem 3.Skill: ");
+					try {
+						Thread.sleep(1000);
+						System.out.print("1.Attack 2.UseItem 3.Skill: ");
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					
 					num = sc.nextInt();
 					switch(num) {
 					case 1:
@@ -90,16 +100,22 @@ public class Main {
 					}
 				} while(true);
 				m.attack(m, c);
-		}
+		
+		
 		
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
 			System.out.print("1.Save 2.Exit: ");
 			num = sc.nextInt();
 			try {
-				if(num == 1) {
+				switch (num) {
+				case 1:
 					l.add(c);
 					save(l);
+					break;
+				case 2:
+					 m = new Slime();
+					 break;
 				}
 			} catch(Exception e ) {
 
@@ -108,26 +124,30 @@ public class Main {
 		if(c.getHP() <= 0) {
 			System.out.println("Game is end");
 		}
+		}
 	}
+
 	public static void save(List<Character> c) {
 		try {
 			FileOutputStream fos = new FileOutputStream("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
-			//			FileOutputStream fos = new FileOutputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
+			// FileOutputStream fos = new
+			// FileOutputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(c);
 			oos.close();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	public static void set() {
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
-			//			fis = new FileInputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
+			// fis = new FileInputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			l = (List<Character>)ois.readObject();
+			l = (List<Character>) ois.readObject();
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
