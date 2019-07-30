@@ -1,7 +1,6 @@
 package com.project1;
 
 import java.io.*;
-<<<<<<< HEAD
 import java.util.*;
 
 public class Main{
@@ -24,7 +23,7 @@ public class Main{
 			c.showStatus(c, m);
 			recur: while(true) {
 				try {
-					//					Thread.sleep(1000);
+					Thread.sleep(1000);
 					System.out.print("1.Attack 2.UseItem 3.Skill: ");
 				} catch (Exception e) {
 				}
@@ -63,73 +62,34 @@ public class Main{
 	}
 	public static void main(String[] args) throws Exception {
 
-=======
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-import com.project1.Character;
-
-public class Main {
-	static List<Character> l = null;
-
-	public static void main(String[] args) throws Exception {
-
-		Scanner sc = new Scanner(System.in);
->>>>>>> origin/dasom
 		String str = "";
 		File f = new File("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
 		int num = 0;
-		
-		if (f.exists()) {
-			System.out.print("\nLoad Data?[y/n] ");
+		if(f.exists()) {
+			System.out.print("Load Data?[y/n] ");
 			str = sc.next();
 		}
 
-		if (str.equals("y") || str.equals("Y")) {
+		if(str.equals("y") || str.equals("Y")) {
 			try {
 				set();
-<<<<<<< HEAD
 				for(int i = 0; i < l.size(); i++) {
 					System.out.println((i + 1) + "." +l.get(i).getClass().getName().substring(13, l.get(i).getClass().getName().length()));
-=======
-				for (int i = 0; i < l.size(); i++) {
-					System.out.println((i + 1) + ".Lv" + l.get(i).getLevel() + " "
-							+ l.get(i).getClass().getName().substring(13, l.get(i).getClass().getName().length()));
->>>>>>> origin/dasom
 				}
-			} catch (Exception e) {
+			} catch(Exception e ) {
 				System.out.println(e.toString());
 			}
-			
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			
 			System.out.print("Select: ");
 			num = sc.nextInt();
 			c = l.get(num - 1);
 
-<<<<<<< HEAD
 		}
 		else {
 			l = new ArrayList(); 
-=======
-		} else {
-			l = new ArrayList();
->>>>>>> origin/dasom
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
-			
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
 
-			switch (num) {
+			switch(num) {
 			case 1:
 				c = new Warrior();
 				break;
@@ -142,7 +102,6 @@ public class Main {
 			}
 			game();
 		}
-<<<<<<< HEAD
 		System.out.println("m.hp: "+m.getHP() +", c.hp: "+c.getHP());
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
@@ -162,92 +121,6 @@ public class Main {
 			System.out.println("Game is end");
 			return;
 		}
-=======
-
-		// Detailed data print
-		c.print(c);
-
-		Monster m = new Slime();
-
-		while (m.getIsAlive() && c.getIsAlive()) {
-
-			c.showStatus(c, m);
-
-			if (m.getHP() <= 0 || c.getHP() <= 0)
-				break;
-			recur: do {
-				try {
-					Thread.sleep(1000);
-					System.out.print("\n1.Attack 2.UseItem 3.Skill: ");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-				num = sc.nextInt();
-				switch (num) {
-				case 1:
-					c.attackJudgement(c, m);
-					break recur;
-				case 2:
-					try {
-
-						try {
-							Thread.sleep(1000);
-						} catch (Exception e) {
-							// TODO: handle exception
-						}
-						if (c.getItem().size() <= 0) {
-							System.out.println("Item is null");
-
-							break;
-						}
-					} catch (Exception e) {
-						System.out.println(e.toString());
-					}
-					c.useItem(c, m, c.getItem());
-					break;
-				case 3:
-					c.skill(c, m);
-					break recur;
-				}
-			} while (true);
-			m.attack(m, c);
-
-			if (m.getHP() <= 0) {
-				c.getItemByMonster(m, c.item);
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				
-				System.out.print("1.Save 2.Exit: ");
-				num = sc.nextInt();
-				try {
-					switch (num) {
-					case 1:
-						l.add(c);
-						save(l);
-						break;
-					case 2:
-						m = new Slime();
-						break;
-					}
-				} catch (Exception e) {
-
-				}
-			}
-			if (c.getHP() <= 0) {
-				try {
-					Thread.sleep(1000);
-					System.out.println("Game is end");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
-			}
-		}
->>>>>>> origin/dasom
 	}
 	public static void reset(Character c) {
 		c.setMaxHP(c.getMaxHP() + 50);

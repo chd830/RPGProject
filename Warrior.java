@@ -15,7 +15,7 @@ public class Warrior extends Character {
 		setAlive(true);
 		try {
 			System.out.println("Warrior is selected.");
-//			Thread.sleep(1000);
+			Thread.sleep(1000);
 		} catch (Exception e) {
 		}
 		System.out.println("Warrior is selected.");
@@ -25,7 +25,7 @@ public class Warrior extends Character {
 		Warrior w = (Warrior)o1;
 		try {
 			System.out.println("Warrior's Skill.");
-//			Thread.sleep(1000);
+			Thread.sleep(1000);
 			w.setMP(w.getMP() - 10);
 		} catch (Exception e) {
 		}
