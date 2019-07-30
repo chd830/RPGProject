@@ -15,12 +15,15 @@ public class Slime extends Monster {
 		setEvasion(10);
 		setIsAlive(true);
 		setStatus("");
-		System.out.println("You meet a slime!");
-		System.out.println();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+		}
+		
+		System.out.println("You met slime");
 	}
-	/*
-		iced아이템 사용가능하게 fired데미지도 사용가능하게 하기. 
-	 */
+	
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
