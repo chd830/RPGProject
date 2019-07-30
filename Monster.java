@@ -6,8 +6,10 @@ import java.util.*;
 public class Monster implements Motion, Serializable {
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int attack;
 	private int evasion;
+	private int experience;
 	private String status;
 	private boolean isAlive;
 	
@@ -25,6 +27,13 @@ public class Monster implements Motion, Serializable {
 		HP = hP;
 	}
 	
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
+	}
+	
 	public int getAttack() {
 		return attack;
 	}
@@ -38,6 +47,14 @@ public class Monster implements Motion, Serializable {
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
 	}
+	
+	public int getExperience() {
+		return experience;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	
 	public String getStatus() {
 		return status;
 	}

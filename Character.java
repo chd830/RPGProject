@@ -1,11 +1,19 @@
 package com.project1;
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Character implements Motion, Serializable {
+	/**
+	 * Serialized error in scanner >> Need to use transient
+	 * Cannot find some class >> Need to fix serialVersionUID
+	 */
+	private static final long serialVersionUID = 4379276376446092084L;
 	private int level;
 	private int HP;
+	private int MaxHP;
 	private int MP;
+	private int MaxMP;
 	private int attack;
 	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
@@ -27,6 +35,13 @@ public class Character implements Motion, Serializable {
 		HP = hP;
 	}
 
+	public int getMaxHP() {
+		return MaxHP;
+	}
+	public void setMaxHP(int maxHP) {
+		MaxHP = maxHP;
+	}
+	
 	public int getMP() {
 		return MP;
 	}
@@ -34,6 +49,13 @@ public class Character implements Motion, Serializable {
 		MP = mP;
 	}
 
+	public int getMaxMP() {
+		return MaxMP;
+	}
+	public void setMaxMP(int maxMP) {
+		MaxMP = maxMP;
+	}
+	
 	public int getAttack() {
 		return attack;
 	}
@@ -110,6 +132,8 @@ public class Character implements Motion, Serializable {
 	}
 	
 	public void showStatus(Object o1, Object o2) {
-		
 	}
+	transient List<Character> characterList = new ArrayList();
+	
+
 }

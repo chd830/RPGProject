@@ -1,24 +1,35 @@
 package com.project1;
 
+import java.io.Serializable;
 import java.util.*;
 
+<<<<<<< HEAD
 public class Warrior extends Character {
 	Scanner sc = new Scanner(System.in);
 	Random rand = new Random();
+=======
+public class Warrior extends Character implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5716387998910136780L;
+>>>>>>> chong
 
 	public Warrior() {
 
 		setLevel(1);
 		setHP(100);
+		setMaxHP(getHP());
 		setMP(10);
-		setCritical(100);
+		setMaxMP(getMP());
+		setCritical(50);
 		setAttack(10);
 		setEvasion(10);
 		setIsAlive(true);
 		System.out.println("Warrior is selected.");
 	}
 
-	//Ä³¸¯ÅÍÀÇ Á¤º¸ Ãâ·Â ¸Þ¼­µå
 	@Override
 	public void print(Object o) {
 		Warrior w = (Warrior) o;
@@ -32,22 +43,28 @@ public class Warrior extends Character {
 
 	}
 
+<<<<<<< HEAD
 
 	//¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö È­±ë¤¤ÇÏ°í ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â ¸Þ¼­µå
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
+=======
+	@Override
+	public void useItem(Object o1, Object o2, List<String> item) {
+		Scanner sc = new Scanner(System.in);
+>>>>>>> chong
 		Warrior w = (Warrior) o1;
 		if (item.size() < 0) {
 			System.out.println("Item is empty");
 			return;
 		}
-		System.out.print("Select Item: \t");
-		for(int i = 0; i < item.size(); i++) {
-			System.out.print((i+1)+"."+item.get(i)+"\t");
+		System.out.println("Select Item: ");
+		for (int i = 0; i < item.size(); i++) {
+			System.out.print((i + 1) + "." + item.get(i) + "\t");
 		}
 		int num = sc.nextInt();
-		System.out.println(item.get(num - 1)+"\' is selected");
-		if(item.get(num - 1).equals("Hp up")) {
+		System.out.println("\'" + item.get(num - 1) + "\' is selected");
+		if (item.get(num - 1).equals("Hp up")) {
 			int cur = w.getHP();
 			w.setHP(cur + 10);
 			System.out.println("Hp of the warrior is become " + cur + " to " + w.getHP());
@@ -65,81 +82,121 @@ public class Warrior extends Character {
 		item.remove(num - 1);
 	}
 
-	//°ø°ÝÀÎÁö È¸ÇÇÀÎÁö ÆÇÁ¤Ã¼Å© ¸Þ¼­µå
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
+<<<<<<< HEAD
 		Random rand = new Random();
 		Monster m = null;
 		int num = rand.nextInt(100);
 		if(o1.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o1;
+=======
+		Random rd = new Random();
+		int num = rd.nextInt(100);
+		Monster m =null;
+
+		//o1 : com.Project1.Warrior
+		if(o1.getClass().getName().equals("com.project1.Slime")) {
+			m= (Slime)o2;
+>>>>>>> chong
 		}
-		if(num >= (100 - evasion)) {
-			System.out.println("Warrior succeeded in evasion and became "+m.getHP()+"HP.");
+		else if(o1.getClass().getName().equals("com.project1.Slime2")) {
+			m=(Slime)o2;
+		}
+		System.out.println("num: "+ num + ", evasion: "+(100-evasion));
+		if(num>=(100-evasion)) {
+			
+		}
+		else {
+			System.out.println("Slime evasion success");
 			return;
 		}
+<<<<<<< HEAD
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 		}
 		attack(o1, m, ((Warrior)o1).getAttack());
+=======
+		attack(o1, m, getAttack());
+>>>>>>> chong
 	}
 
-	//Å©¸®Æ¼ÄÃÀÌ ÅÍÁö´ÂÁö È®ÀÎÇÏ´Â ¸Þ¼­µå(ÇöÀç´Â ¹«Á¶°Ç Å©¸®Æ¼ÄÃ»óÅÂ)
 	@Override 
 	public boolean criticalJudgement(int critical) {
-		int num = rand.nextInt(100);
-		if(num > (100 - critical)) {
+		Random rd = new Random();
+		int num = rd.nextInt(100);
+		if(num >=(100-critical)) {
+
+			System.out.println("critical failure"+  getCritical());
+			return false;
+
+		}else{
+			System.out.println("critical success" + getCritical());
+			critical = getAttack()*2;
 			return true;
 		}
+<<<<<<< HEAD
 		return false;
 	}
 
 	//°ø°Ý¸Þ¼­µå
+=======
+	}
+>>>>>>> chong
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		//½½¶óÀÓ¸¸ °ø°Ý´çÇÏµµ·Ï µÇ¾îÀÖÀ½
 		Monster m = (Slime)o2;
 		int cur = m.getHP();
-		//Å©¸®Æ¼ÄÃÀÌ ÅÍÁ³À» ¶§ µ¥¹ÌÁö°¡ µÎ¹è·Î µé¾î°¡°Ô µÇ¾îÀÖÀ½.
 		if(criticalJudgement(((Warrior)o1).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
 		}
 		m.setHP(cur - attack);
-		System.out.println("Slime was attacked and became "+m.getHP()+"HP.");
 		if(m.getHP() <= 0) {
+			m.setHP(0);
+		}
+		System.out.println("Slime was attacked and became " + m.getHP() + "HP.");
+		if (m.getHP() == 0) {
 			isAlive(m);
 		}
+
 	}
 
-	//¸ó½ºÅÍ¿¡°Ô È®·ü·Î ¾ÆÀÌÅÛÀ» ¾ò´Â ¸Þ¼­µå.
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
+		Random rand = new Random();
 		Monster m = null;
+<<<<<<< HEAD
 		if (o1.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime) o1;
 			System.out.println("Get item from slime");
 		}
 		//½½¶óÀÓ¿¡°Ô ¾ÆÀÌÅÛÀ» ¾ò´Â´Ù°í Ç¥½Ã
+=======
+		if(o1.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o1;
+			System.out.println("Get item from slime");
+		}
+>>>>>>> chong
 		int num = rand.nextInt(10);
+		System.out.println("Random Item: "+num);
 		if(num < 3) {
 			System.out.println("Get \'Hp up\'");
 			item.add("Hp up");
 		} else if (num < 6) {
+<<<<<<< HEAD
 			System.out.print("Get \'Mp up\'");
+=======
+			System.out.println("Get \'Mp up\'");
+>>>>>>> chong
 			item.add("Mp up");
 		}
 		else {
-			System.out.print("Get \'Iced\'");
+			System.out.println("Get \'Iced\'");
 			item.add("Iced");
-		}
-		if(o1.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o1;
-			System.out.print(" from slime\n");
 		}
 	}
 
-	//Á×¾ú´Ù°í Ç¥½ÃÇÏ´Â ¸Þ¼­µå
 	@Override
 	public boolean isAlive(Object o) {
 		Monster c = null;
@@ -150,16 +207,18 @@ public class Warrior extends Character {
 		c.setIsAlive(false);
 		return false;
 	}		
-	//WarriorÀÇ ½ºÅ³. Ä³¸¯ÅÍ, ¸ó½ºÅÍ, Ä³¸¯ÅÍÀÇ °ø°Ý
+
 	public void skill(Object o1, Object o2, int attack) {
-		System.out.println("½ºÅ³À» »ç¿ëÇß½À´Ï´Ù.");
+		System.out.println("ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		attack(o1, o2, attack*2);
 	}
-
+	
 	public void showStatus(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		Monster m = null;
 		String str = "";
+		int hp = w.getHP();
+		int mp = w.getMP();
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
@@ -167,16 +226,26 @@ public class Warrior extends Character {
 		System.out.println("\nWarrior");
 		System.out.print("HP: ");
 		for(int i = 0; i < w.getHP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("â– ");
+		}
+		for(;hp < w.getMaxHP();hp += 10) {
+			System.out.print("â–¡");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < w.getMP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("â– ");
+		}
+		for(;w.getMP() < w.getMaxMP();mp+=10) {
+			System.out.print("â–¡");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("¡á");
+			System.out.print("â– ");
+		}
+		hp = m.getHP();
+		for(;hp < m.getMaxHP();hp += 10) {
+			System.out.print("â–¡");
 		}
 		System.out.println("");
 	}
