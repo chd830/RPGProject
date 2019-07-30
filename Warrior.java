@@ -13,7 +13,7 @@ public class Warrior extends Character implements Serializable{
 		setLevel(1);
 		setHP(100);
 		setMaxHP(getHP());
-		setMP(10);
+		setMP(0);
 		setMaxMP(getMP());
 		setCritical(50);
 		setAttack(10);
@@ -72,14 +72,14 @@ public class Warrior extends Character implements Serializable{
 		int num = rd.nextInt(100);
 		Monster m =null;
 		//o1 : com.Project1.Warrior
-		if(o1.getClass().getName().equals("com.project1.Slime")) {
+		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m= (Slime)o2;
 		}
-		else if(o1.getClass().getName().equals("com.project1.Slime2")) {
+		else if(o2.getClass().getName().equals("com.project1.Slime2")) {
 			m=(Slime)o2;
 		}
 		System.out.println("num: "+ num + ", evasion: "+(100-evasion));
-		if(num>=(100-evasion)) {
+		if(num>=(100-m.getEvasion())) {
 		}
 		else {
 			System.out.println("Slime evasion success");
@@ -95,7 +95,6 @@ public class Warrior extends Character implements Serializable{
 		if(num >=(100-critical)) {
 			return false;	
 		}else{
-			System.out.println("critical success, " + "critical : "+getCritical());
 			return true;
 		}
 	}
@@ -159,8 +158,13 @@ public class Warrior extends Character implements Serializable{
 	}		
 
 	public void skill(Object o1, Object o2, int attack) {
-		System.out.println("��ų�� ����߽��ϴ�.");
+		System.out.println("스킬을 사용 했습니다.");
+		Warrior w = (Warrior)o1;
 		attack(o1, o2, attack*2);
+		if(w.getMP()<=0) {
+			System.out.println("MP가 0입니다.");
+			return;
+		}
 	}
 	
 	public void showStatus(Object o1, Object o2) {
