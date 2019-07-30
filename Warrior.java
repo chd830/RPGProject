@@ -1,15 +1,21 @@
 package com.project1;
 
+<<<<<<< HEAD
 import java.io.*;
 import java.util.*;
 
 import com.project1.Character;
 
 public class Warrior extends Character implements Serializable{
+=======
+
+public class Warrior extends Character {
+
+	private static final long serialVersionUID = 5716387998910136780L;
+>>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462
 
 	private static final long serialVersionUID = 5716387998910136780L;
 	public Warrior() {
-
 		setLevel(1);
 		setHP(100);
 		setMaxHP(getHP());
@@ -22,6 +28,7 @@ public class Warrior extends Character implements Serializable{
 		System.out.println("Warrior is selected.");
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void print(Object o) {
 		Warrior w = (Warrior) o;
@@ -202,5 +209,10 @@ public class Warrior extends Character implements Serializable{
 			System.out.print("□");
 		}
 		System.out.println("");
+=======
+	public boolean skill(Object o1, Object o2) {
+		System.out.println("Warrior's Skill.");
+		return true;
+>>>>>>> 983d5fef80fac27cffece770453c85e3f08c1462
 	}
 }
