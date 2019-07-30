@@ -56,10 +56,8 @@ public class Main {
 		c.print(c);
 		Monster m = new Slime();
 
-		int i = 0;
 		while(m.getIsAlive() && c.getIsAlive()) {
 
-			if(i%2 == 0) {
 				c.showStatus(c, m);
 			
 				if(m.getHP() <= 0 || c.getHP() <= 0)
@@ -69,7 +67,7 @@ public class Main {
 					num = sc.nextInt();
 					switch(num) {
 					case 1:
-						c.attackJudgement(c, m, c.getAttack());
+						c.attackJudgement(c, m);
 						break recur;
 					case 2:
 						try {
@@ -84,17 +82,13 @@ public class Main {
 						c.useItem(c, m, c.getItem());
 						break;
 					case 3:
-						c.skill(c, m, c.getAttack());
+						c.skill(c, m);
 						break recur;
 					}
 				} while(true);
-			}
-			else {
-				m.attack(m, c, m.getAttack());
-			}
-
-			i++;
+				m.attack(m, c);
 		}
+		
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
 			System.out.print("1.Save 2.Exit: ");
@@ -102,8 +96,6 @@ public class Main {
 			try {
 				if(num == 1) {
 					l.add(c);
-					for(int j = 0; j < l.size(); j++)
-						System.out.println(l.get(j).getClass().getName());
 					save(l);
 				}
 			} catch(Exception e ) {

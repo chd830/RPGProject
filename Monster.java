@@ -82,17 +82,17 @@ public class Monster implements Motion, Serializable {
 		return false;
 	}
 	@Override
-	public void attack(Object o1, Object o2, int attack) {
+	public void attack(Object o1, Object o2) {
 	}
 	@Override
-	public void attackJudgement(Object o1, Object o2, int evasion) {
+	public void attackJudgement(Object o1, Object o2) {
 	}
 	@Override
-	public void skill(Object o1, Object o2, int attack) {
+	public boolean skill(Object o1, Object o2) {
+		return true;
 	}
 	@Override
-	public boolean isAlive(Object o) {
-		return false;
+	public void isAlive(Object o) {
 	}
 	
 }
