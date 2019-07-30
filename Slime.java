@@ -11,7 +11,7 @@ public class Slime extends Monster {
 		setHP(100);
 		setMaxHP(this.getHP());
 		setAttack(10);
-		setEvasion(100);
+		setEvasion(10);
 		setIsAlive(true);
 		System.out.println("You met slime");
 	}

@@ -61,29 +61,33 @@ public class Main {
 
 			if(i%2 == 0) {
 				c.showStatus(c, m);
-				System.out.print("1.Attack 2.UseItem 3.Skill: ");
-				num = sc.nextInt();
+			
 				if(m.getHP() <= 0 || c.getHP() <= 0)
 					break;
-				switch(num) {
-				case 1:
-					c.attackJudgement(c, m, c.getEvasion());
-					break;
-				case 2:
-					try {
-						if(c.getItem().size() <= 0) {
-							System.out.println("Item is null");
-							break;
+				recur:do {
+					System.out.print("1.Attack 2.UseItem 3.Skill: ");
+					num = sc.nextInt();
+					switch(num) {
+					case 1:
+						c.attackJudgement(c, m, c.getEvasion());
+						break recur;
+					case 2:
+						try {
+							if(c.getItem().size() <= 0) {
+								System.out.println("Item is null");
+								break;
+							}
 						}
+						catch(Exception e) {
+							System.out.println(e.toString());
+						}
+						c.useItem(c, m, c.getItem());
+						break;
+					case 3:
+						c.skill(c, m, c.getAttack());
+						break recur;
 					}
-					catch(Exception e) {
-						System.out.println(e.toString());
-					}
-					c.useItem(c, m, c.getItem());
-					break;
-				case 3:
-					c.skill(c, m, c.getAttack());
-				}
+				} while(true);
 			}
 			else {
 				m.attack(m, c, m.getAttack());

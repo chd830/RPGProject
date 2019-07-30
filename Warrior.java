@@ -82,12 +82,12 @@ public class Warrior extends Character implements Serializable{
 		else if(o1.getClass().getName().equals("com.project1.Slime2")) {
 			m=(Slime)o2;
 		}
+		System.out.println("num: "+ num + ", evasion: "+(100-evasion));
 		if(num>=(100-evasion)) {
-			System.out.println("evasion failure : "+getHP());
 			
 		}
 		else {
-			System.out.println("evasion success");
+			System.out.println("Slime evasion success");
 			return;
 		}
 		attack(o1, m, getAttack());
