@@ -1,70 +1,64 @@
 package com.project1;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.*;
 
-import com.project1.Character;
+public class Warrior extends Character implements Serializable{
+	Scanner sc = new Scanner(System.in);
+	Random rand = new Random();
 
-public class Warrior extends Character implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5716387998910136780L;
-	transient Scanner sc = new Scanner(System.in);
-	transient Random rand = new Random();
-	
 	public Warrior() {
+
 		setLevel(1);
 		setHP(100);
-		setMaxHP(this.getHP());
 		setMP(10);
-		setMaxMP(this.getMaxMP());
-		setCritical(100);
+		setCritical(50);
 		setAttack(10);
 		setEvasion(10);
 		setIsAlive(true);
 		System.out.println("Warrior is selected");
 	}
 
-	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+	//Ä³¸¯ÅÍÀÇ Á¤º¸ Ãâ·Â ¸Þ¼­µå
 	@Override
 	public void print(Object o) {
-		Warrior w = (Warrior)o;
+		Warrior w = (Warrior) o;
 		System.out.println();
-		System.out.println("Warrior's Level is: "+w.getLevel());		
-		System.out.println("HP: " +w.getHP()+ ", MP: " +w.getMP());
-		System.out.println("Attack: " +w.getAttack());
-		System.out.println("Evasion: " +w.getEvasion());
-		System.out.println("Critical: " +w.getCritical()+"\n");
+		System.out.println("Warrior's Level is: " + w.getLevel());
+		System.out.println("HP: " + w.getHP() + ", MP: " + w.getMP());
+		System.out.println("Attack: " + w.getAttack());
+		System.out.println("Evasion: " + w.getEvasion());
+		System.out.println("Critical: " + w.getCritical() + "\n");
+
+
 	}
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È­ï¿½ë¤¤ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+
+	//¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ°í ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â ¸Þ¼­µå
 	@Override
 	public void useItem(Object o1, Object o2, List<String> item) {
-		Warrior w = (Warrior)o1;
-		if(item.size() < 0) {
+		Warrior w = (Warrior) o1;
+		if (item.size() < 0) {
 			System.out.println("Item is empty");
 			return;
 		}
-		System.out.print("Select Item: \t");
-		for(int i = 0; i < item.size(); i++) {
-			System.out.print((i+1)+"."+item.get(i)+"\t");
+		System.out.println("Select Item: ");
+		for (int i = 0; i < item.size(); i++) {
+			System.out.print((i + 1) + "." + item.get(i) + "\t");
 		}
 		int num = sc.nextInt();
-		System.out.println(item.get(num - 1)+"\' is selected");
-		if(item.get(num - 1).equals("Hp up")) {
+		System.out.println("\'" + item.get(num - 1) + "\' is selected");
+		if (item.get(num - 1).equals("Hp up")) {
 			int cur = w.getHP();
 			w.setHP(cur + 10);
-			System.out.println("Hp of the warrior is become "+cur + " to "+w.getHP());
-		}
-		else if(item.get(num - 1).equals("Mp up")) {
+			System.out.println("Hp of the warrior is become " + cur + " to " + w.getHP());
+		} else if (item.get(num - 1).equals("Mp up")) {
 			int cur = w.getMP();
 			w.setMP(cur + 10);
-			System.out.println("Mp of the warrior is become "+cur + " to "+w.getMP());
-		}
-		else {
-			if(o2.getClass().getName().equals("com.project1.Slime")) {
-				Slime s = (Slime)o2;
+			System.out.println("Mp of the warrior is become " + cur + " to " + w.getMP());
+		} else {
+			if (o2.getClass().getName().equals("com.project1.Slime")) {
+				Slime s = (Slime) o2;
 				s.setStatus("Iced");
 				System.out.println("Slime is Iced.");
 			}
@@ -72,131 +66,104 @@ public class Warrior extends Character implements Serializable {
 		item.remove(num - 1);
 	}
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼Å© ï¿½Þ¼ï¿½ï¿½ï¿½
+	//°ø°ÝÀÎÁö È¸ÇÇÀÎÁö ÆÇÁ¤Ã¼Å© ¸Þ¼­µå
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
-		Random rand = new Random();
-		Monster m = null;
-		int num = rand.nextInt(100);
-		if(o2.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o2;
+		//Ä³¸¯ÅÍ, ¸ó½ºÅÍ, Ä³¸¯ÅÍÀÇ È¸ÇÇÀ²
+		Random rd = new Random();
+		int num = rd.nextInt(100);
+		Monster m =null;
+
+		//È¸ÇÇ¼º°ø
+		//o1 : com.Project1.Warrior
+		if(o1.getClass().getName().equals("com.project1.Slime")) {
+			m= (Slime)o2;
 		}
-		if(num >= (100 - evasion)) {
-			System.out.println("Slime succeeded in evasion and became "+m.getHP()+"HP.");
+		else if(o1.getClass().getName().equals("com.project1.Slime2")) {
+			m=(Slime)o2;
+		}
+		if(num>=(100-evasion)) {
+			//È¸ÇÇ ½ÇÆÐ, Ä³¸¯ÅÍ°¡ °ø°Ý
+			System.out.println("evasion failure : "+getHP());
+			
+		}
+		else {
+			//È¸ÇÇ ¼º°ø
+			System.out.println("evasion success");
 			return;
 		}
-		attack(o1, m, ((Warrior)o1).getAttack());
+		attack(o1, m, getAttack());
 	}
 
-	//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½Æ¼ï¿½Ã»ï¿½ï¿½ï¿½)
+	//Å©¸®Æ¼ÄÃÀÌ ÅÍÁö´ÂÁö È®ÀÎÇÏ´Â ¸Þ¼­µå(ÇöÀç´Â ¹«Á¶°Ç Å©¸®Æ¼ÄÃ»óÅÂ)
 	@Override 
 	public boolean criticalJudgement(int critical) {
-		int num = rand.nextInt(100);
-		if(num > (100 - critical)) {
+		Random rd = new Random();
+		int num = rd.nextInt(100);
+		if(num >=(100-critical)) {
+
+			System.out.println("critical failure"+  getCritical());
+			return false;
+
+		}else{
+			System.out.println("critical success" + getCritical());
+			critical = getAttack()*2;
 			return true;
 		}
-	 	return false;
 	}
-	
-	//ï¿½ï¿½ï¿½Ý¸Þ¼ï¿½ï¿½ï¿½
+
+	//°ø°Ý¸Þ¼­µå
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
-		//ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½Ý´ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½
-		Monster m = (Slime)o2;
+		//½½¶óÀÓ¸¸ °ø°Ý´çÇÏµµ·Ï µÇ¾îÀÖÀ½
+		Monster m = (Slime)o1;
 		int cur = m.getHP();
-		//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½.
-		if(criticalJudgement(((Warrior)o1).getCritical())) {
+		//Å©¸®Æ¼ÄÃÀÌ ÅÍÁ³À» ¶§ µ¥¹ÌÁö°¡ µÎ¹è·Î µé¾î°¡°Ô µÇ¾îÀÖÀ½.
+		if(criticalJudgement(((Warrior)o2).getCritical())) {
 			attack *= 2;
 			System.out.println("Critical damage!");
 		}
 		m.setHP(cur - attack);
-		System.out.println("Slime was attacked and became "+m.getHP()+"HP.");
-		if(m.getHP() <= 0) {
+		System.out.println("Slime was attacked and became " + m.getHP() + "HP.");
+		if (m.getHP() == 0) {
 			isAlive(m);
 		}
+
 	}
 
-	//ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½.
+	//¸ó½ºÅÍ¿¡°Ô È®·ü·Î ¾ÆÀÌÅÛÀ» ¾ò´Â ¸Þ¼­µå
 	@Override
 	public void getItemByMonster(Object o1, List<String> item) {
 		Monster m = null;
-		//ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´Ù°ï¿½ Ç¥ï¿½ï¿½
-	
-		int num = rand.nextInt(10);
-		if(num < 3) {
-			System.out.print("Get \'Hp up\'");
-			item.add("Hp up");
+		//½½¶óÀÓ¿¡°Ô ¾ÆÀÌÅÛÀ» ¾ò´Â´Ù°í Ç¥½Ã
+		if(o1.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o1;
+			System.out.println("Get item from slime");
 		}
-		else if(num < 6) {
-			System.out.print("Get \'Mp up\'");
+		int num = rand.nextInt(10);
+		System.out.println("Random Item: "+num);
+		if(num < 3) {
+			System.out.println("Get \'Hp up\'");
+			item.add("Hp up");
+		} else if (num < 6) {
+			System.out.println("Get \'Mp up\'");
 			item.add("Mp up");
 		}
 		else {
-			System.out.print("Get \'Iced\'");
+			System.out.println("Get \'Iced\'");
 			item.add("Iced");
-		}
-		if(o1.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o1;
-			System.out.print(" from slime\n");
 		}
 	}
 
-	//ï¿½×¾ï¿½ï¿½Ù°ï¿½ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+	//Á×Àº°Å È®ÀÎÇÏ´Â ¸Þ¼­µå.
 	@Override
 	public boolean isAlive(Object o) {
 		Monster c = null;
-		if(o.getClass().getName().equals("com.project1.Slime")) {
-			c = (Slime)o;
+		if (o.getClass().getName().equals("com.project1.Slime")) {
+			c = (Slime) o;
 			System.out.println("Slime is dead.");
 		}
 		c.setIsAlive(false);
 		return false;
-	}		
-	//Warriorï¿½ï¿½ ï¿½ï¿½Å³. Ä³ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	public void skill(Object o1, Object o2, int attack) {
-		System.out.println("ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
-		attack(o1, o2, attack*2);
 	}
-	
-	//HP, MPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
-	public void showStatus(Object o1, Object o2) {
-		Warrior w = (Warrior)o1;
-		Monster m = null;
-		String str = "";
-		int hp = w.getHP();
-		int mp = w.getMP();
-		if(o2.getClass().getName().equals("com.project1.Slime")) {
-			m = (Slime)o2;
-			str = "Slime";
-		}
-		System.out.println("\nWarrior");
-		System.out.print("HP: ");
-		for(int i = 0; i < w.getHP()/10; i++) {
-			System.out.print("ï¿½ï¿½");
-		}
-		for(;hp < w.getMaxHP();hp += 10) {
-			System.out.print("ï¿½ï¿½");
-		}
-		System.out.print("\nMP: ");
-		for(int i = 0; i < w.getMP()/10; i++) {
-			System.out.print("ï¿½ï¿½");
-		}
-		for(;w.getMP() < w.getMaxMP();mp+=10) {
-			System.out.print("ï¿½ï¿½");
-		}
-		System.out.println("\n\n"+str);
-		System.out.print("HP: ");
-		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("ï¿½ï¿½");
-		}
-		hp = m.getHP();
-		for(;hp < m.getMaxHP();hp += 10) {
-			System.out.print("ï¿½ï¿½");
-		}
-		System.out.println("");
-	}
-
-
 }
-
-
