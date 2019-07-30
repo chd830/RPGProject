@@ -33,7 +33,7 @@ public class Main {
 
 		}
 		else {
-			l = new ArrayList(); //N/n?쇰븣 ?덈줈??由ъ뒪?몄깮??
+			l = new ArrayList(); 
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
 

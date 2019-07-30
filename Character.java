@@ -191,6 +191,9 @@ public class Character implements Motion, Serializable {
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
 		}
 		int cur = m.getHP();
 		if(criticalJudgement(c.getCritical())) {
@@ -217,6 +220,9 @@ public class Character implements Motion, Serializable {
 			m = (Slime)o2;
 			str = "Slime";
 
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
 		}
 		if(num >= (100 - m.getEvasion())) {
 			System.out.println(str + " succeeded in evasion and became "+m.getHP()+"HP.");
@@ -241,20 +247,20 @@ public class Character implements Motion, Serializable {
 		System.out.println();
 		if(o.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer)o;
-			System.out.println("亦낃낯?뷂옙??占쎌쟿甕곤옙: "+c.getLevel());
+			System.out.println("Archer's level: "+c.getLevel());
 		}
 		else if(o.getClass().getName().equals("com.project1.Warrior")) {
-			System.out.println("占쎌읈占쎄텢占쎌벥 占쎌쟿甕곤옙: "+c.getLevel());
+			System.out.println("Warrior's level: "+c.getLevel());
 			c = (Warrior)o;
 		}
 		else {
 			c = (Magician)o;
-			System.out.println("筌띾뜄苡울옙沅쀯옙??占쎌쟿甕곤옙: "+c.getLevel());
+			System.out.println("Magician's level: "+c.getLevel());
 		}
 		System.out.println("HP: " +c.getHP()+ ", MP: " +c.getMP());
-		System.out.println("?⑤벀爰쏙옙?? " +c.getAttack());
-		System.out.println("占쎌돳占쎈돗占쎌몛: " +c.getEvasion());
-		System.out.println("燁살꼶梨몌옙占쏙옙?? " +c.getCritical()+"\n");
+		System.out.println("Attack: " +c.getAttack());
+		System.out.println("Evasion: " +c.getEvasion());
+		System.out.println("Critical: " +c.getCritical()+"\n");
 	}
 	
 	@Override
@@ -263,6 +269,9 @@ public class Character implements Motion, Serializable {
 		if(o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime)o;
 			System.out.println("Slime is dead.");
+		}else if(o.getClass().getName().equals("com.project1.Boss")) {
+			c = (Boss)o;
+			System.out.println("Boss is dead.");
 		}
 		c.setIsAlive(false);
 	}
@@ -275,14 +284,18 @@ public class Character implements Motion, Serializable {
 
 	public void showStatus(Object o1, Object o2) {
 		Character c = null;
+		String s = "";
 		if(o1.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer)o1;
+			s = "Archer";
 		}
 		else if(o1.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o1;
+			s = "Warroir";
 		}
 		else {
 			c = (Magician)o1;
+			s = "Magician";
 		}
 		Monster m = null;
 		String str = "";
@@ -291,30 +304,33 @@ public class Character implements Motion, Serializable {
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
 		}
-		System.out.println("\nArcher");
+		System.out.println("\n" +s);
 		System.out.print("HP: ");
 		for(int i = 0; i < c.getHP()/10; i++) {
-			System.out.print("??");
+			System.out.print("■");
 		}
 		for(;hp < c.getMaxHP();hp += 10) {
-			System.out.print("??");
+			System.out.print("□");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < c.getMP()/10; i++) {
-			System.out.print("??");
+			System.out.print("■");
 		}
 		for(;c.getMP() < c.getMaxMP();mp+=10) {
-			System.out.print("占쎈폔");
+			System.out.print("□");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("??");
+			System.out.print("■");
 		}
 		hp = m.getHP();
 		for(;hp < m.getMaxHP();hp += 10) {
-			System.out.print("占쎈폔");
+			System.out.print("□");
 		}
 		System.out.println("");
 	}

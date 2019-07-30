@@ -84,7 +84,7 @@ public class Slime extends Monster {
 	}
 
 	@Override
-	public boolean isAlive(Object o) {
+	public void isAlive(Object o) {
 		Character c = null;
 		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o;
@@ -99,7 +99,6 @@ public class Slime extends Monster {
 			System.out.println("Archer is dead.");
 		}
 		c.setIsAlive(false);
-		return false;
 	}
 
 }
