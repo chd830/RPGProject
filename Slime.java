@@ -9,16 +9,11 @@ public class Slime extends Monster {
 		setLevel(1);
 		setHP(100);
 		setAttack(10);
-		setEvasion(100);
+		setEvasion(10);
 		setIsAlive(true);
 		System.out.println("You met slime");
 	}
 
-<<<<<<< HEAD
-	//°ø°ÝÇÏ´Â ¸Þ¼­µå
-=======
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½
->>>>>>> a50e3e020527f8e3417320fc564d452dd131eec9
 	@Override
 	public void attack(Object o1, Object o2, int attack) {
 		Warrior w = (Warrior)o1;
@@ -30,16 +25,9 @@ public class Slime extends Monster {
 		}
 	}
 
-<<<<<<< HEAD
-	//°ø°ÝÀÎÁö È¸ÇÇÀÎÁö ÆÇÁ¤Ã¼Å© ¸Þ¼­µå
-	@Override
-	public void attackJudgement(Object o1, Object o2, int evasion) {	//È¸ÇÇ
-=======
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼Å© ï¿½Þ¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½, Ä³ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
 	@Override
 	public void attackJudgement(Object o1, Object o2, int evasion) {
 		Monster m = (Slime)o1;
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		try {
 			if(m.getStatus().equals("Iced") && count < 1) {
 				count++;
@@ -56,7 +44,6 @@ public class Slime extends Monster {
 		
 		m.setStatus("");
 		count = 0;
->>>>>>> a50e3e020527f8e3417320fc564d452dd131eec9
 		Random rand = new Random();
 		if(o1.getClass().getName().equals("com.project1.Warrior")) {
 			Warrior w = (Warrior)o1;
@@ -95,8 +82,6 @@ public class Slime extends Monster {
 				this.attack(o1, o2,evasion);
 			}			
 		}
-<<<<<<< HEAD
-=======
 		attack(o2, m, c.getAttack());
 	}
 
@@ -117,7 +102,6 @@ public class Slime extends Monster {
 		}
 		c.setIsAlive(false);
 		return false;
->>>>>>> a50e3e020527f8e3417320fc564d452dd131eec9
 	}
 //
 //	//Á×Àº°Å È®ÀÎÇÏ´Â ¸Þ¼­µå. 
