@@ -159,24 +159,65 @@ public class Character implements Motion, Serializable {
 			str = "Magician";
 		}
 		Scanner sc = new Scanner(System.in);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		System.out.print("Select Item: \t");
+		
+		try {
+			Thread.sleep(300);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		for (int i = 0; i < item.size(); i++) {
-			System.out.print((i + 1) + "." + item.get(i) + "\t");
+			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
 		}
 		int num = sc.nextInt();
+		
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		System.out.println(item.get(num - 1) + "\' is selected");
 		if (item.get(num - 1).equals("Hp up")) {
 			int cur = c.getHP();
 			c.setHP(cur + 10);
+			
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			System.out.println("Hp of the " + str + " is become " + cur + " to " + c.getHP());
 		} else if (item.get(num - 1).equals("Mp up")) {
 			int cur = c.getMP();
 			c.setMP(cur + 10);
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			System.out.println("Mp of the " + str + " is become " + cur + " to " + c.getMP());
 		} else {
 			if (o2.getClass().getName().equals("com.project1.Slime")) {
 				Slime s = (Slime) o2;
 				s.setStatus("Iced");
+				
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
 				System.out.println("Slime is Iced.");
 			}
 		}

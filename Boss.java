@@ -12,8 +12,14 @@ public class Boss extends Monster{
 		setHP(150);
 		setMaxHP(this.getHP());
 		setAttack(20);
-		setEvasion(100);
+		setEvasion(50);
 		setIsAlive(true);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		System.out.println("You meet a boss!");
 		System.out.println();
 	}
