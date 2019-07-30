@@ -1,8 +1,4 @@
 package com.project1;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +15,11 @@ public class Character implements Motion, Serializable {
 	private int MP;
 	private int MaxMP;
 	private int attack;
-	transient private int[] experience = {5, 10, 20, 20, 20};
+	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
-	transient List<String> item = new ArrayList<String>();
+	List<String> item = new ArrayList<String>();
 	
 	public int getLevel() {
 		return level;
@@ -131,26 +127,5 @@ public class Character implements Motion, Serializable {
 	}
 	transient List<Character> characterList = new ArrayList();
 	
-	public void save(List<Character> c) {
-		try {
-			FileOutputStream fos = new FileOutputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(c);
-			oos.close();
-			} catch(Exception e) {
-				System.out.println(e.toString());
-			}
-	}
-	@SuppressWarnings("unchecked")
-	public List<Character> set() {
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("c:\\Users\\com\\Desktop\\RPGProject\\data.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			return (List<Character>)ois.readObject();
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return null;
-	}
+
 }
