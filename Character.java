@@ -241,20 +241,20 @@ public class Character implements Motion, Serializable {
 		System.out.println();
 		if(o.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer)o;
-			System.out.println("沅곸닔�쓽 �젅踰�: "+c.getLevel());
+			System.out.println("亦낃낯?뷂옙??占쎌쟿甕곤옙: "+c.getLevel());
 		}
 		else if(o.getClass().getName().equals("com.project1.Warrior")) {
-			System.out.println("�쟾�궗�쓽 �젅踰�: "+c.getLevel());
+			System.out.println("占쎌읈占쎄텢占쎌벥 占쎌쟿甕곤옙: "+c.getLevel());
 			c = (Warrior)o;
 		}
 		else {
 			c = (Magician)o;
-			System.out.println("留덈쾿�궗�쓽 �젅踰�: "+c.getLevel());
+			System.out.println("筌띾뜄苡울옙沅쀯옙??占쎌쟿甕곤옙: "+c.getLevel());
 		}
 		System.out.println("HP: " +c.getHP()+ ", MP: " +c.getMP());
-		System.out.println("怨듦꺽�젰: " +c.getAttack());
-		System.out.println("�쉶�뵾�쑉: " +c.getEvasion());
-		System.out.println("移섎챸���쑉: " +c.getCritical()+"\n");
+		System.out.println("?⑤벀爰쏙옙?? " +c.getAttack());
+		System.out.println("占쎌돳占쎈돗占쎌몛: " +c.getEvasion());
+		System.out.println("燁살꼶梨몌옙占쏙옙?? " +c.getCritical()+"\n");
 	}
 	
 	@Override
@@ -295,26 +295,26 @@ public class Character implements Motion, Serializable {
 		System.out.println("\nArcher");
 		System.out.print("HP: ");
 		for(int i = 0; i < c.getHP()/10; i++) {
-			System.out.print("■");
+			System.out.print("??");
 		}
 		for(;hp < c.getMaxHP();hp += 10) {
-			System.out.print("□");
+			System.out.print("??");
 		}
 		System.out.print("\nMP: ");
 		for(int i = 0; i < c.getMP()/10; i++) {
-			System.out.print("■");
+			System.out.print("??");
 		}
 		for(;c.getMP() < c.getMaxMP();mp+=10) {
-			System.out.print("�뼞");
+			System.out.print("占쎈폔");
 		}
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
-			System.out.print("■");
+			System.out.print("??");
 		}
 		hp = m.getHP();
 		for(;hp < m.getMaxHP();hp += 10) {
-			System.out.print("�뼞");
+			System.out.print("占쎈폔");
 		}
 		System.out.println("");
 	}
