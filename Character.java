@@ -13,18 +13,22 @@ public class Character implements Motion, Serializable {
 	 * >> Need to fix serialVersionUID
 	 */
 	private static final long serialVersionUID = 4379276376446092084L;
-	private int level;
 	private int HP;
 	private int MaxHP;
 	private int MP;
 	private int MaxMP;
 	private int attack;
+<<<<<<< HEAD
 	private int[] experience = { 5, 10, 20, 20, 20 };
+=======
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
+	private boolean skill;
 	List<String> item = new ArrayList<String>();
 
+<<<<<<< HEAD
 	public int getLevel() {
 		return level;
 	}
@@ -33,6 +37,8 @@ public class Character implements Motion, Serializable {
 		this.level = level;
 	}
 
+=======
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 	public int getHP() {
 		return HP;
 	}
@@ -79,7 +85,11 @@ public class Character implements Motion, Serializable {
 
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
+<<<<<<< HEAD
 	}
+=======
+	}   
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 
 	public boolean getIsAlive() {
 		return isAlive;
@@ -105,14 +115,19 @@ public class Character implements Motion, Serializable {
 		this.isAlive = isAlive;
 	}
 
-	public int[] getExperience() {
-		return experience;
+	public boolean isSkill() {
+		return skill;
 	}
+<<<<<<< HEAD
 
 	public void setExperience(int[] experience) {
 		this.experience = experience;
+=======
+	public void setSkill(boolean skill) {
+		this.skill = skill;
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 	}
-
+	
 	public List<String> getItem() {
 		return item;
 	}
@@ -240,9 +255,19 @@ public class Character implements Motion, Serializable {
 		if (o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime) o2;
 			str = "Slime";
+<<<<<<< HEAD
 		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
 			m = (Boss) o2;
 			str = "Boss";
+=======
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
+		}
+		if(c.isSkill()) {
+			c.skill(c, m);
+			attack *= 2;
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 		}
 		int cur = m.getHP();
 		if (criticalJudgement(c.getCritical())) {
@@ -268,6 +293,7 @@ public class Character implements Motion, Serializable {
 		if (m.getHP() == 0) {
 			isAlive(m);
 		}
+		c.setSkill(false);
 	}
 
 	@Override
@@ -280,8 +306,13 @@ public class Character implements Motion, Serializable {
 			m = (Slime) o2;
 			str = "Slime";
 
+<<<<<<< HEAD
 		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
 			m = (Boss) o2;
+=======
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 			str = "Boss";
 		}
 		if (num >= (100 - m.getEvasion())) {
@@ -291,7 +322,11 @@ public class Character implements Motion, Serializable {
 			return;
 
 		}
+<<<<<<< HEAD
 		attack(o1, m);
+=======
+		attack(o1, m);   
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 	}
 
 	@Override
@@ -308,6 +343,7 @@ public class Character implements Motion, Serializable {
 	public void print(Object o) {
 		Character c = null;
 		System.out.println();
+<<<<<<< HEAD
 		if (o.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer) o;
 			System.out.println("Archer's level: " + c.getLevel());
@@ -322,6 +358,24 @@ public class Character implements Motion, Serializable {
 		System.out.println("Attack: " + c.getAttack());
 		System.out.println("Evasion: " + c.getEvasion());
 		System.out.println("Critical: " + c.getCritical() + "\n");
+=======
+		if(o.getClass().getName().equals("com.project1.Archer")) {
+			c = (Archer)o;
+			System.out.println("Archer's");
+		}
+		else if(o.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o;
+			System.out.println("Warrior's ");
+		}
+		else {
+			c = (Magician)o;
+			System.out.println("Magician's");
+		}
+		System.out.println("HP: " +c.getHP()+ ", MP: " +c.getMP());
+		System.out.println("Attack: " +c.getAttack());
+		System.out.println("Evasion: " +c.getEvasion());
+		System.out.println("Critical: " +c.getCritical()+"\n");
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 	}
 
 	@Override
@@ -330,22 +384,26 @@ public class Character implements Motion, Serializable {
 		if (o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime) o;
 			System.out.println("Slime is dead.");
+<<<<<<< HEAD
 		} else if (o.getClass().getName().equals("com.project1.Boss")) {
 			c = (Boss) o;
+=======
+		}else if(o.getClass().getName().equals("com.project1.Boss")) {
+			c = (Boss)o;
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 			System.out.println("Boss is dead.");
 		}
 		c.setIsAlive(false);
 	}
 
 	@Override
-	public boolean skill(Object o1, Object o2) {
-		System.out.println("use Skill");
-		return true;
+	public void skill(Object o1, Object o2) {
 	}
 
 	public void showStatus(Object o1, Object o2) {
 		Character c = null;
 		String s = "";
+<<<<<<< HEAD
 		if (o1.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer) o1;
 			s = "Archer";
@@ -354,6 +412,18 @@ public class Character implements Motion, Serializable {
 			s = "Warrior";
 		} else {
 			c = (Magician) o1;
+=======
+		if(o1.getClass().getName().equals("com.project1.Archer")) {
+			c = (Archer)o1;
+			s = "Archer";
+		}
+		else if(o1.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o1;
+			s = "Warrior";
+		}
+		else {
+			c = (Magician)o1;
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 			s = "Magician";
 		}
 		Monster m = null;
@@ -363,6 +433,7 @@ public class Character implements Motion, Serializable {
 		if (o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime) o2;
 			str = "Slime";
+<<<<<<< HEAD
 		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
 			m = (Boss) o2;
 			str = "Boss";
@@ -400,6 +471,37 @@ public class Character implements Motion, Serializable {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+=======
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
+		}
+		System.out.println("\n" +s);
+		System.out.print("HP: ");
+		for(int i = 0; i < c.getHP()/10; i++) {
+			System.out.print("■");
+		}
+		for(;hp < c.getMaxHP();hp += 10) {
+			System.out.print("□");
+		}
+		
+		System.out.print("\nMP: ");
+		for(int i = 0; i < c.getMP()/10; i++) {
+			System.out.print("■");
+		}
+		for(;mp < c.getMaxMP();mp += 10) {
+			System.out.print("□");
+		}
+		
+		System.out.println("\n\n"+str);
+		System.out.print("HP: ");
+		for(int i = 0; i < m.getHP()/10; i++) {
+			System.out.print("■");
+		}
+		hp = m.getHP();
+		for(;hp < m.getMaxHP();hp += 10) {
+			System.out.print("□");
+>>>>>>> ae0573a3809c42827127b49847435b8ed4f19a2c
 		}
 		System.out.println("");
 	}

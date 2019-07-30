@@ -103,8 +103,7 @@ public class Monster implements Motion, Serializable {
 	}
 
 	@Override
-	public boolean skill(Object o1, Object o2) {
-		return true;
+	public void skill(Object o1, Object o2) {
 	}
 
 	@Override
