@@ -6,10 +6,9 @@ public class Warrior extends Character {
 	private static final long serialVersionUID = 5716387998910136780L;
 
 	public Warrior() {
-		setLevel(1);
-		setHP(100);
+		setHP(200);
 		setMaxHP(getHP());
-		setMP(10);
+		setMP(30);
 		setMaxMP(getMP());
 		setCritical(50);
 		setAttack(10);
@@ -18,8 +17,9 @@ public class Warrior extends Character {
 		System.out.println("Warrior is selected.");
 	}
 
-	public boolean skill(Object o1, Object o2) {
+	public void skill(Object o1, Object o2) {
 		System.out.println("Warrior's Skill.");
-		return true;
+		Character c = (Warrior)o1;
+		c.setMP(c.getMP() - 10);
 	}
 }

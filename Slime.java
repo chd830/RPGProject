@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Slime extends Monster {
 	Random rand = new Random();
-	static int count = 0;
+	static int icedCount = 0;
+	static int firedCount = 0;
 
 	public Slime() {
 		setLevel(1);
@@ -13,8 +14,12 @@ public class Slime extends Monster {
 		setAttack(10);
 		setEvasion(10);
 		setIsAlive(true);
+		setStatus("");
 		System.out.println("You met slime");
 	}
+	/*
+		iced아이템 사용가능하게 fired데미지도 사용가능하게 하기. 
+	 */
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
@@ -31,6 +36,9 @@ public class Slime extends Monster {
 			c = (Archer)o2;
 		}
 		int cur = c.getHP();
+		if(firedCount != 0) {
+			c.setHP(cur - 5);
+		}
 		c.setHP(cur - attack);
 		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
 
@@ -42,60 +50,60 @@ public class Slime extends Monster {
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
 		Monster m = (Slime)o1;
-		if(m.getStatus().equals("Iced") && count < 1) {
-			count++;
+		if(m.getStatus().equals("Iced") && icedCount < 2) {
+			System.out.println("Slime is in Iced status");
+			icedCount++;
 			return;
 		}
-		else if(m.getStatus().equals("Fired")&& count < 1) {
-			count++;
+		else if(m.getStatus().equals("Fired")&& firedCount < 2) {
+			firedCount++;
 			System.out.println("Slime is in Fired status");
-			attack(o2, m);
-			return;
 		}
-
 		m.setStatus("");
-		count = 0;
-		
+		icedCount = 0;
+		firedCount = 0;
+		//STR 로 정리해서 출력한번에하기
+
 		Random rand = new Random();
 		Character c = null;
+		String str = "";
 		int num = rand.nextInt(100);
 		if(o2.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o2;
-			if(num >= (100 - m.getAttack())) {
-				System.out.println("Warrior succeeded in evasion and became "+c.getHP()+"HP.");
-				return;
-			}
-		} else if(o2.getClass().getName().equals("com.project1.Magician")) {
+			str = "Warrior";
+		} 
+		else if(o2.getClass().getName().equals("com.project1.Magician")) {
 			c = (Magician)o2;
-			num+=100;
-			if(num >= (100 - m.getEvasion())) {
-				System.out.println("Magician succeeded in evasion and became "+c.getHP()+"HP.");
-			}
-		} else {
+			str = "Magician";
+		} 
+		else {
 			c = (Archer)o2;
-			num+=100;
-			if(num >= (100 - m.getEvasion())) {
-				System.out.println("Archer succeeded in evasion and became "+c.getHP()+"HP.");
-			}
+			str = "Magician";
 		}
-		attack(o2, m);
+		if(num >= (100 - m.getAttack())) {
+			System.out.println(str + " succeeded in evasion and became "+c.getHP()+"HP.");
+			return;
+		}
+		attack(m, c);
 	}
 
 	@Override
 	public void isAlive(Object o) {
 		Character c = null;
+		String str = "";
 		if(o.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o;
-			System.out.println("Warrior is dead.");
+			str = "Warrior";
 		}
 		else if(o.getClass().getName().equals("com.project1.Magician")) {
 			c = (Magician)o;
-			System.out.println("Magician is dead.");
+			str = "Magician";
 		}
 		else {
 			c = (Archer)o;
-			System.out.println("Archer is dead.");
+			str = "Archer";
 		}
+		System.out.println(str + " is dead.");
 		c.setIsAlive(false);
 	}
 

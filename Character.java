@@ -11,24 +11,16 @@ public class Character implements Motion, Serializable {
 	 * Cannot find some class >> Need to fix serialVersionUID
 	 */
 	private static final long serialVersionUID = 4379276376446092084L;
-	private int level;
 	private int HP;
 	private int MaxHP;
 	private int MP;
 	private int MaxMP;
 	private int attack;
-	private int[] experience = {5, 10, 20, 20, 20};
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
+	private boolean skill;
 	List<String> item = new ArrayList<String>();
-
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
 
 	public int getHP() {
 		return HP;
@@ -70,8 +62,7 @@ public class Character implements Motion, Serializable {
 	}
 	public void setEvasion(int evasion) {
 		this.evasion = evasion;
-	}	
-
+	}   
 
 	public boolean getIsAlive() {
 		return isAlive;
@@ -94,13 +85,13 @@ public class Character implements Motion, Serializable {
 		this.isAlive = isAlive;
 	}
 
-	public int[] getExperience() {
-		return experience;
+	public boolean isSkill() {
+		return skill;
 	}
-	public void setExperience(int[] experience) {
-		this.experience = experience;
+	public void setSkill(boolean skill) {
+		this.skill = skill;
 	}
-
+	
 	public List<String> getItem() {
 		return item;
 	}
@@ -173,7 +164,7 @@ public class Character implements Motion, Serializable {
 		}
 		item.remove(num - 1);
 	}
-	
+
 	@Override
 	public void attack(Object o1, Object o2) {
 		Monster m = null;
@@ -192,6 +183,13 @@ public class Character implements Motion, Serializable {
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
+		}
+		if(c.isSkill()) {
+			c.skill(c, m);
+			attack *= 2;
 		}
 		int cur = m.getHP();
 		if(criticalJudgement(c.getCritical())) {
@@ -206,8 +204,9 @@ public class Character implements Motion, Serializable {
 		if (m.getHP() == 0) {
 			isAlive(m);
 		}
+		c.setSkill(false);
 	}
-	
+
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
 		Random rand = new Random();
@@ -218,14 +217,17 @@ public class Character implements Motion, Serializable {
 			m = (Slime)o2;
 			str = "Slime";
 
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
 		}
 		if(num >= (100 - m.getEvasion())) {
 			System.out.println(str + " succeeded in evasion and became "+m.getHP()+"HP.");
 			return;
 		}
-		attack(o1, m);	
+		attack(o1, m);   
 	}
-	
+
 	@Override
 	public boolean criticalJudgement(int critical) {
 		Random rand = new Random();
@@ -235,55 +237,60 @@ public class Character implements Motion, Serializable {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public void print(Object o) {
 		Character c = null;
 		System.out.println();
 		if(o.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer)o;
-			System.out.println("궁수의 레벨: "+c.getLevel());
+			System.out.println("Archer's");
 		}
 		else if(o.getClass().getName().equals("com.project1.Warrior")) {
-			System.out.println("전사의 레벨: "+c.getLevel());
 			c = (Warrior)o;
+			System.out.println("Warrior's ");
 		}
 		else {
 			c = (Magician)o;
-			System.out.println("마법사의 레벨: "+c.getLevel());
+			System.out.println("Magician's");
 		}
 		System.out.println("HP: " +c.getHP()+ ", MP: " +c.getMP());
-		System.out.println("공격력: " +c.getAttack());
-		System.out.println("회피율: " +c.getEvasion());
-		System.out.println("치명타율: " +c.getCritical()+"\n");
+		System.out.println("Attack: " +c.getAttack());
+		System.out.println("Evasion: " +c.getEvasion());
+		System.out.println("Critical: " +c.getCritical()+"\n");
 	}
-	
+
 	@Override
 	public void isAlive(Object o) {
 		Monster c = null;
 		if(o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime)o;
 			System.out.println("Slime is dead.");
+		}else if(o.getClass().getName().equals("com.project1.Boss")) {
+			c = (Boss)o;
+			System.out.println("Boss is dead.");
 		}
 		c.setIsAlive(false);
 	}
-	
+
 	@Override
-	public boolean skill(Object o1, Object o2) {
-		System.out.println("use Skill");
-		return true;
+	public void skill(Object o1, Object o2) {
 	}
 
 	public void showStatus(Object o1, Object o2) {
 		Character c = null;
+		String s = "";
 		if(o1.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer)o1;
+			s = "Archer";
 		}
 		else if(o1.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o1;
+			s = "Warrior";
 		}
 		else {
 			c = (Magician)o1;
+			s = "Magician";
 		}
 		Monster m = null;
 		String str = "";
@@ -292,8 +299,11 @@ public class Character implements Motion, Serializable {
 		if(o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime)o2;
 			str = "Slime";
+		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+			m = (Boss)o2;
+			str = "Boss";
 		}
-		System.out.println("\nArcher");
+		System.out.println("\n" +s);
 		System.out.print("HP: ");
 		for(int i = 0; i < c.getHP()/10; i++) {
 			System.out.print("■");
@@ -301,13 +311,15 @@ public class Character implements Motion, Serializable {
 		for(;hp < c.getMaxHP();hp += 10) {
 			System.out.print("□");
 		}
+		
 		System.out.print("\nMP: ");
 		for(int i = 0; i < c.getMP()/10; i++) {
 			System.out.print("■");
 		}
-		for(;c.getMP() < c.getMaxMP();mp+=10) {
+		for(;mp < c.getMaxMP();mp += 10) {
 			System.out.print("□");
 		}
+		
 		System.out.println("\n\n"+str);
 		System.out.print("HP: ");
 		for(int i = 0; i < m.getHP()/10; i++) {
