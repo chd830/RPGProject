@@ -33,7 +33,7 @@ public class Main {
 
 		}
 		else {
-			l = new ArrayList();
+			l = new ArrayList(); //N/n일때 새로운 리스트생성
 			System.out.print("1.Warrior 2.Magician 3.Archer: ");
 			num = sc.nextInt();
 
@@ -56,15 +56,6 @@ public class Main {
 		c.print(c);
 		Monster m = new Slime();
 
-<<<<<<< HEAD
-		//		//占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
-		//		c.getItemByMonster(m, c.getItem());
-		//		c.getItemByMonster(m, c.getItem());
-		//		c.getItemByMonster(m, c.getItem());
-
-		//占쏙옙占쌥곤옙 占쏙옙占쏙옙占쌜삼옙占� 占쌥븝옙占쏙옙 占쏙옙占쏙옙占쌘듸옙
-=======
->>>>>>> 2aa29df789e1ae6d0342e796062c7b5df523ac76
 		int i = 0;
 		while(m.getIsAlive() && c.getIsAlive()) {
 
@@ -73,22 +64,12 @@ public class Main {
 			
 				if(m.getHP() <= 0 || c.getHP() <= 0)
 					break;
-<<<<<<< HEAD
-				//占쏙옙占쏙옙占쌜삼옙占�
-				switch(num) {
-				case 1:
-					c.attackJudgement(c, m, c.getEvasion());
-					break;
-				case 2:
-					if(c.getItem().size() <= 0) {
-						System.out.println("Item is null");
-=======
 				recur:do {
 					System.out.print("1.Attack 2.UseItem 3.Skill: ");
 					num = sc.nextInt();
 					switch(num) {
 					case 1:
-						c.attackJudgement(c, m, c.getEvasion());
+						c.attackJudgement(c, m, c.getAttack());
 						break recur;
 					case 2:
 						try {
@@ -101,7 +82,6 @@ public class Main {
 							System.out.println(e.toString());
 						}
 						c.useItem(c, m, c.getItem());
->>>>>>> 2aa29df789e1ae6d0342e796062c7b5df523ac76
 						break;
 					case 3:
 						c.skill(c, m, c.getAttack());
@@ -112,14 +92,7 @@ public class Main {
 			else {
 				m.attack(m, c, m.getAttack());
 			}
-<<<<<<< HEAD
-			//占쏙옙占싶곤옙 占쏙옙占쏙옙
-			if(m.getHP() == 0) {
-				c.getItemByMonster(m, c.item);
-			}
-=======
 
->>>>>>> 2aa29df789e1ae6d0342e796062c7b5df523ac76
 			i++;
 		}
 		if(m.getHP() <= 0) {
