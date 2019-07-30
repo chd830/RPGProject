@@ -160,6 +160,11 @@ public class Character implements Motion, Serializable {
 				s.setStatus("Iced");
 				System.out.println("Slime is Iced.");
 			}
+			else {
+				Boss b = (Boss)o2;
+				b.setStatus("ICed");
+				System.out.println("Boss is Iced");
+			}
 		}
 		item.remove(num - 1);
 	}
@@ -180,25 +185,22 @@ public class Character implements Motion, Serializable {
 		if (o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime) o2;
 			str = "Slime";
-		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
+		} else {
 			m = (Boss)o2;
 			str = "Boss";
 		}
+		
 		if(c.isSkill()) {
 			c.skill(c, m);
 			attack *= 2;
-		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
-			m = (Boss) o2;
-			str = "Boss";
-		}
+		} 
 		int cur = m.getHP();
 		if (criticalJudgement(c.getCritical())) {
 			attack *= 2;
 			try {
 				System.out.println("Critical damage!");
-				Thread.sleep(1000);
+				//				Thread.sleep(1000);
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 		m.setHP(cur - attack);
@@ -206,11 +208,9 @@ public class Character implements Motion, Serializable {
 			m.setHP(0);
 		}
 		try {
-
 			System.out.println(str + " was attacked and became " + m.getHP() + "HP.");
-			Thread.sleep(1000);
+			//			Thread.sleep(1000);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		if (m.getHP() == 0) {
 			isAlive(m);
@@ -319,8 +319,8 @@ public class Character implements Motion, Serializable {
 		}
 		try {
 
-			Thread.sleep(1000);
-			
+			//			Thread.sleep(1000);
+
 			System.out.println("\n" + s);
 
 			System.out.print("HP: ");
@@ -330,7 +330,7 @@ public class Character implements Motion, Serializable {
 			for (; hp < c.getMaxHP(); hp += 10) {
 				System.out.print("□");
 			}
-			
+
 			System.out.print("\nMP: ");
 			for (int i = 0; i < c.getMP() / 10; i++) {
 				System.out.print("■");

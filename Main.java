@@ -1,22 +1,69 @@
 package com.project1;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-import com.project1.Character;
-
+import java.util.*;
 
 public class Main{
 	static List<Character> l = null;
-	
+	static Character c = null;
+	static Monster m = null;
+	static Scanner sc = new Scanner(System.in);
+
+	public static void game() {
+		int num = 0;
+
+		c.print(c);
+
+		m = randomMonster();
+
+		while(m.getIsAlive() && c.getIsAlive()) {
+
+			if(m.getHP() <= 0 || c.getHP() <= 0)
+				return;
+			c.showStatus(c, m);
+			recur: while(true) {
+				try {
+					//					Thread.sleep(1000);
+					System.out.print("1.Attack 2.UseItem 3.Skill: ");
+				} catch (Exception e) {
+				}
+
+				num = sc.nextInt();
+				switch(num) {
+				case 1:
+					c.attackJudgement(c, m);
+					break recur;
+				case 2:
+					try {
+						if(c.getItem().size() <= 0) {
+							System.out.println("Item is null");
+							break;
+						}
+					}
+					catch(Exception e) {
+						System.out.println(e.toString());
+					}
+					c.useItem(c, m, c.getItem());
+					break;
+				case 3:
+					if(c.getMP() > 0) {
+						c.setSkill(true);
+						c.attackJudgement(c, m);
+						break recur;
+					}
+					else {
+						System.out.println("Not enough MP.");
+					}
+				}
+			}
+			m.attackJudgement(m, c);
+		}
+		return;
+	}
 	public static void main(String[] args) throws Exception {
-		
-		Scanner sc = new Scanner(System.in);
+
 		String str = "";
 		File f = new File("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
-		Character c = null;
 		int num = 0;
 		if(f.exists()) {
 			System.out.print("Load Data?[y/n] ");
@@ -53,72 +100,26 @@ public class Main{
 				c = new Archer();
 				break;
 			}
+			game();
 		}
-
-		c.print(c);
-		
-		Monster m = new Slime();
-		
-
-		while(m.getIsAlive() && c.getIsAlive()) {
-			
-			if(m.getHP() <= 0 || c.getHP() <= 0)
-				break;
-			recur:do {
-				c.showStatus(c, m);
-				try {
-//					Thread.sleep(1000);
-					System.out.print("1.Attack 2.UseItem 3.Skill: ");
-				} catch (Exception e) {
-				}
-				
-				num = sc.nextInt();
-				switch(num) {
-				case 1:
-					c.attackJudgement(c, m);
-					break recur;
-				case 2:
-					try {
-						if(c.getItem().size() <= 0) {
-							System.out.println("Item is null");
-							break;
-						}
-					}
-					catch(Exception e) {
-						System.out.println(e.toString());
-					}
-					c.useItem(c, m, c.getItem());
-					break;
-				case 3:
-					if(c.getMP() > 0) {
-						c.setSkill(true);
-						c.attackJudgement(c, m);
-					}
-					else {
-						System.out.println("Not enough MP.");
-					}
-				}
-			} while(true);
-			m.attackJudgement(m, c);
-		}
-		c.showStatus(c, m);
-		
+		System.out.println("m.hp: "+m.getHP() +", c.hp: "+c.getHP());
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
-			System.out.print("1.Save 2.Exit: ");
+			System.out.print("1.Save 2.Continue: ");
 			num = sc.nextInt();
-				switch (num) {
-				case 1:
-					l.add(c);
-					save(l);
-					break;
-				case 2:
-					 m = new Slime();
-					 break;
-				}
+			switch (num) {
+			case 1:
+				l.add(c);
+				save(l);
+				return;
+			case 2:
+				game();
+				break;
+			}
 		}
 		if(c.getHP() <= 0) {
 			System.out.println("Game is end");
+			return;
 		}
 	}
 	public static void reset(Character c) {
@@ -150,5 +151,13 @@ public class Main{
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+	}
+	public static Monster randomMonster() {
+		Random rand = new Random();
+		int num = rand.nextInt(10);
+		if(num >= 0) 
+			return new Boss();
+		else 
+			return new Slime();
 	}
 }

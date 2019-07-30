@@ -18,7 +18,6 @@ public class Slime extends Monster {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 		}
 		
 		System.out.println("You met slime");
@@ -65,7 +64,6 @@ public class Slime extends Monster {
 		m.setStatus("");
 		icedCount = 0;
 		firedCount = 0;
-		//STR 로 정리해서 출력한번에하기
 
 		Random rand = new Random();
 		Character c = null;
