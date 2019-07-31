@@ -90,7 +90,6 @@ public class Monster implements Motion, Serializable {
 	}
 
 	@Override
-	public void isAlive(Object o) {
-	
+	public void isAlive(Object o) {	
 	}
 }

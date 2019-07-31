@@ -13,19 +13,27 @@ public class Warrior extends Character {
 		setAttack(20);
 		setEvasion(10);
 		setAlive(true);
+		
 		try {
-			System.out.println("Warrior is selected.");
+			Thread.sleep(700);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		System.out.println("Warrior is selected.");
+		
+		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {
 		}
-		System.out.println("Warrior is selected.");
+		
 	}
 
 	public void skill(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		try {
-			System.out.println("Warrior's Skill.");
 			Thread.sleep(1000);
+			System.out.println("Warrior's Skill.");
 			w.setMP(w.getMP() - 10);
 		} catch (Exception e) {
 		}
