@@ -109,7 +109,7 @@ public class Character implements Motion, Serializable {
 		int num = rand.nextInt(10);
 		if (num < 3) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -117,7 +117,7 @@ public class Character implements Motion, Serializable {
 			item.add("Hp up");
 		} else if (num < 6) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -125,7 +125,7 @@ public class Character implements Motion, Serializable {
 			item.add("Mp up");
 		} else {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -157,7 +157,7 @@ public class Character implements Motion, Serializable {
 		Scanner sc = new Scanner(System.in);
 
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -220,7 +220,7 @@ public class Character implements Motion, Serializable {
 				Boss b = (Boss)o2;
 				b.setStatus("ICed");
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -259,7 +259,7 @@ public class Character implements Motion, Serializable {
 		if (criticalJudgement(c.getCritical())) {
 			attack *= 2;
 			try {				
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				System.out.println("Critical damage!");
 			} catch (Exception e) {
 			}
@@ -269,7 +269,7 @@ public class Character implements Motion, Serializable {
 			m.setHP(0);
 		}
 		try {			
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			System.out.println(str + " was attacked and became " + m.getHP() + "HP.");
 		} catch (Exception e) {
 		}
@@ -295,7 +295,7 @@ public class Character implements Motion, Serializable {
 		}
 		if (num >= (100 - m.getEvasion())) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -382,13 +382,7 @@ public class Character implements Motion, Serializable {
 			str = "Boss";
 		}
 		try {
-<<<<<<< HEAD
-
-			Thread.sleep(1000);
-
-=======
-			Thread.sleep(1000);
->>>>>>> 3c4098b2e611ea2f407df925a648210258889776
+			Thread.sleep(500);
 			System.out.println("\n" + s);
 
 			System.out.print("HP: ");
@@ -431,8 +425,13 @@ public class Character implements Motion, Serializable {
 		} else {
 			ch = (Magician) c;
 		}
-		System.out.print("Which ability? ");
-		System.out.println("1.HP 2.MP 3.Attack 4.Evasion 5.Critical");
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.print("\nWhich ability? ");
+		System.out.print("\n1.HP 2.MP 3.Attack 4.Evasion 5.Critical: ");
 		int num = sc.nextInt();
 		switch(num) {
 		case 1:
