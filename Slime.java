@@ -16,11 +16,11 @@ public class Slime extends Monster {
 		setIsAlive(true);
 		setStatus("");
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(700);
 		} catch (InterruptedException e) {
 		}
 
-		System.out.println("You meet slime");
+		System.out.println("You meet a slime");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Slime extends Monster {
 		}
 		c.setHP(cur - attack);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -59,7 +59,7 @@ public class Slime extends Monster {
 		Monster m = (Slime)o1;
 		if(m.getStatus().equals("Iced") && icedCount < 2) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -70,7 +70,7 @@ public class Slime extends Monster {
 		else if(m.getStatus().equals("Fired")&& firedCount < 2) {
 			firedCount++;
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -98,7 +98,7 @@ public class Slime extends Monster {
 		}
 		if(num >= (100 - m.getAttack())) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -125,7 +125,7 @@ public class Slime extends Monster {
 			str = "Archer";
 		}
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

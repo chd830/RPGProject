@@ -25,7 +25,7 @@ public class Main{
 				if(m.getHP() <= 0 || c.getHP() <= 0)
 					return;
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 					System.out.print("\n1.Attack 2.UseItem 3.Skill: ");
 				} catch (Exception e) {
 				}
@@ -39,7 +39,7 @@ public class Main{
 					try {
 						if(c.getItem().size() <= 0) {
 							try {
-								Thread.sleep(1000);
+								Thread.sleep(500);
 							} catch (Exception e) {
 								// TODO: handle exception
 							}
@@ -60,7 +60,7 @@ public class Main{
 					}
 					else {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(500);
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
@@ -121,7 +121,7 @@ public class Main{
 				c.getItemByMonster(m, c.item);
 				c.getItemByMonster(m, c.item);
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}

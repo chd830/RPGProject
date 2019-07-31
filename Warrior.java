@@ -15,7 +15,7 @@ public class Warrior extends Character {
 		setAlive(true);
 		
 		try {
-			Thread.sleep(700);
+			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -23,7 +23,7 @@ public class Warrior extends Character {
 		System.out.println("Warrior is selected.");
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (Exception e) {
 		}
 		
@@ -32,7 +32,7 @@ public class Warrior extends Character {
 	public void skill(Object o1, Object o2) {
 		Warrior w = (Warrior)o1;
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 			System.out.println("Warrior's Skill.");
 			w.setMP(w.getMP() - 10);
 		} catch (Exception e) {
