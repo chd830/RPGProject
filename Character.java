@@ -137,7 +137,7 @@ public class Character implements Motion, Serializable {
 			str = "Slime";
 
 		}
-		System.out.print(" from " + str + "\n");
+		System.out.print(" from " + str);
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class Character implements Motion, Serializable {
 		}
 
 		for (int i = 0; i < item.size(); i++) {
-			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
+			System.out.print((i + 1) + "." + item.get(i) + "\t");
 		}
 		int num = sc.nextInt();
 
@@ -283,6 +283,17 @@ public class Character implements Motion, Serializable {
 	public void attackJudgement(Object o1, Object o2) {
 		Random rand = new Random();
 		Monster m = null;
+		Character c = null;
+		if (o1.getClass().getName().equals("com.project1.Archer")) {
+			c = (Archer) o1;
+		} else if (o1.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior) o1;
+		} else {
+			c = (Magician) o1;
+		}
+		if(c.isSkill()) {
+			c.setMP(c.getMP() - 10);
+		}
 		String str = "";
 		int num = rand.nextInt(100);
 		if (o2.getClass().getName().equals("com.project1.Slime")) {
@@ -297,13 +308,9 @@ public class Character implements Motion, Serializable {
 			try {
 				Thread.sleep(500);
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
-
 			System.out.println(str + " succeeded in evasion and became " + m.getHP() + "HP.");
-
 			return;
-
 		}
 		attack(o1, m);   
 	}
@@ -430,24 +437,24 @@ public class Character implements Motion, Serializable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.print("\nWhich ability? ");
-		System.out.print("\n1.HP 2.MP 3.Attack 4.Evasion 5.Critical: ");
+		System.out.print("\n\nWhich ability? ");
+		System.out.print("\n1.HP 2.MP 3.Attack 4.Evasion 5.Critical\n");
 		int num = sc.nextInt();
 		switch(num) {
 		case 1:
-			ch.setMaxHP(ch.getMaxHP() + 50);
+			ch.setMaxHP(ch.getMaxHP() + 30);
 			break;
 		case 2:
-			ch.setMaxMP(ch.getMaxMP() + 50);
+			ch.setMaxMP(ch.getMaxMP() + 30);
 			break;
 		case 3:
-			ch.setAttack(ch.getAttack()+20);
+			ch.setAttack(ch.getAttack()+10);
 			break;
 		case 4:
-			ch.setEvasion(ch.getEvasion()+20);
+			ch.setEvasion(ch.getEvasion()+10);
 			break;
 		case 5:
-			ch.setCritical(ch.getCritical()+20);
+			ch.setCritical(ch.getCritical()+10);
 			break;
 		}
 	}

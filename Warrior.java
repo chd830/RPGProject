@@ -34,7 +34,6 @@ public class Warrior extends Character {
 		try {
 			Thread.sleep(500);
 			System.out.println("Warrior's Skill.");
-			w.setMP(w.getMP() - 10);
 		} catch (Exception e) {
 		}
 	}

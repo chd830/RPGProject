@@ -97,6 +97,7 @@ public class Main{
 			System.out.print("Select: ");
 			num = sc.nextInt();
 			c = l.get(num - 1);
+			l.remove(num - 1);
 		}
 		else {
 			l = new ArrayList(); 
@@ -127,25 +128,23 @@ public class Main{
 				}
 				c.abilityRise(c);
 				reset(c);
-				System.out.print("1.Save 2.Continue: ");
-				num = sc.nextInt();
-				switch (num) {
-				case 1:
-					l.add(c);
-					save(l);
-					return;
-				case 2:
-					game();
-					break;
-				}
+				do {
+					System.out.print("1.Save 2.Continue: ");
+
+					num = sc.nextInt();
+					if(num == 1) {
+						l.add(c);
+						save(l);
+						return;
+					}
+					
+				} while(num != 1 && num != 2);
 			}
 			if(c.getHP() <= 0) {
 				System.out.println("Game is end");
 				System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
 				return;
 			}
-			c.abilityRise(c);
-			reset(c);
 		}
 	}
 	public static void reset(Character c) {
