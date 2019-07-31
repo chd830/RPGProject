@@ -1,132 +1,47 @@
 package com.project1;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
-public class Magician extends Character implements Motion, Runnable{
+public class Magician extends Character implements Motion{
 
-	Scanner sc = new Scanner(System.in);
-	Random rd = new Random();
+	private static final long serialVersionUID = -1644685707880637214L;
 
 	public Magician() {
-
-		setLevel(1);
-		setHP(30);
-		setMP(100);
+		setHP(60);
+		setMaxHP(this.getHP());
+		setMP(150);
+		setMaxMP(this.getMP());
 		setAttack(30);
 		setEvasion(30);
 		setCritical(30);
-		System.out.println("마법사를 선택했습니다.");
-
+		setAlive(true);
+		System.out.println("Magician is selected.");
 	}
 
-	@Override
-	public void print(Object o) {
-		Magician m = (Magician)o;
-		System.out.println();
-		System.out.println("마법사의 레벨: "+m.getLevel());
-		System.out.println("HP: " +m.getHP()+ ", MP: " +m.getMP());
-		System.out.println("공격력: " +m.getAttack());
-		System.out.println("회피율: " +m.getEvasion());
-		System.out.println("치명타율: " +m.getCritical());
-		System.out.println();
-	}
-
-	@Override
-	public void attack(Object o, int attack) {
-
-		Slime s = (Slime)o;
-		int a;
-		int i = 0;
-		int num[] = new int[2];
-
-		num[0] = s.getAttack(); //공격성공
-		num[1] = s.getEvasion(); //슬라임이 회피	
-
-		try {
-
-			while(true) {
-
-				System.out.println();
-				do {
-					System.out.print("1. 공격 2. 아이템사용\n=>");
-					a = sc.nextInt();
-				}while(a<1||a>2);
-
-				if(a==1) {
-					System.out.println("슬라임에게 공격을 시도했습니다.");
-
-					//랜덤
-					while(i<2) {
-						num[i] = rd.nextInt(2)+1;
-
-						for(int j=0;j<i;j++) {
-							if(num[i]==num[j]) {
-								i--;
-								break;
-							}
-						}
-						i++;
-					}
-					
-					//만약 공격성공했다면 //슬라임이 공격을 회피했다면
-					if(i==0) {
-						int cur = s.getHP();
-						s.setHP(cur-attack);
-						System.out.println("슬라임의 HP가 " +cur+ "에서 " +s.getHP()+ "이 되었습니다.");
-					}else if(i==1){
-						System.out.println("슬라임의 HP가 유지되었습니다.");
-					}
-
-				}else if(a==2) {
-					System.out.println("어떤 아이템을 사용하시겠습니까?");
-					System.out.print("1. hp회복 2. mp회복 3. 빙결포션\n=>");
-					int b = sc.nextInt();
-
-					if(b==1) {
-						setHP(30);
-						System.out.println("HP가 30으로 회복되었습니다.");
-					}else if(b==2) {
-						setMP(100);
-						System.out.println("MP가 100으로 회복되었습니다.");
-					}else if(b==3) { //빙결포션
-						try {
-							Thread.sleep(10000);
-						} catch (Exception e) {
-							// TODO: handle exception
-						}
-						
-					}
-				}				
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
+	public void skill(Object o1, Object o2) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Select one: \t");
+		System.out.println("1.Iced 2.Fired");
+		Magician c = (Magician)o1;
+		Monster m = null;
+		if(o2.getClass().getName().equals("com.project1.Slime")) {
+			m = (Slime)o2;
 		}
-
-
-
-		//		switch(a) {
-		//		
-		//		case 1: System.out.println("공격을 시도했습니다.");
-		//				s
-		//		
-		//		case 2: System.out.println("어떤 아이템을 사용하시겠습니까?");
-		//		}
-
+		else {
+			m = (Boss)o2;
+		}
+		int num = sc.nextInt();
+		if(num == 1) {
+			System.out.println("\'Iced\' is selected");
+			m.setStatus("Iced");
+			System.out.println("Monster is \'Iced\'");
+		}
+		else if(num == 2) {
+			System.out.println("\'Fired\' is selected");
+			m.setStatus("Fired");
+			System.out.println("Monster is \'Fired\'");
+		}
+		c.setMP(c.getMP() - 10);
 	}
-
-	@Override
-	public void attackJudgement(Object o, int evasion) {
-	}
-
-	@Override
-	public void takeMedicine(Object o, List<String> item) {
-	}
-
-	@Override
-	public void run() {
-	}
-
 }
 

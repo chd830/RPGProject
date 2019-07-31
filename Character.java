@@ -7,24 +7,31 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Character implements Motion, Serializable {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	/**
 	 * Serialized error in scanner >> Need to use transient Cannot find some class
 	 * >> Need to fix serialVersionUID
 	 */
 	private static final long serialVersionUID = 4379276376446092084L;
-	private int level;
 	private int HP;
 	private int MaxHP;
 	private int MP;
 	private int MaxMP;
 	private int attack;
+<<<<<<< HEAD
 	private int[] experience = { 5, 10, 20, 20, 20 };
+=======
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	private int critical;
 	private int evasion;
 	private boolean isAlive;
+	private boolean skill;
 	List<String> item = new ArrayList<String>();
 
+<<<<<<< HEAD
 	public int getLevel() {
 		return level;
 	}
@@ -33,6 +40,8 @@ public class Character implements Motion, Serializable {
 		this.level = level;
 	}
 
+=======
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	public int getHP() {
 		return HP;
 	}
@@ -73,6 +82,14 @@ public class Character implements Motion, Serializable {
 		this.attack = attack;
 	}
 
+	public int getCritical() {
+		return critical;
+	}
+
+	public void setCritical(int critical) {
+		this.critical = critical;
+	}
+
 	public int getEvasion() {
 		return evasion;
 	}
@@ -84,6 +101,7 @@ public class Character implements Motion, Serializable {
 	public boolean getIsAlive() {
 		return isAlive;
 	}
+<<<<<<< HEAD
 
 	public void setIsAlive(boolean isAlive) {
 		this.isAlive = isAlive;
@@ -101,16 +119,24 @@ public class Character implements Motion, Serializable {
 		return isAlive;
 	}
 
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
 
-	public int[] getExperience() {
-		return experience;
+	public boolean isSkill() {
+		return skill;
 	}
+<<<<<<< HEAD
 
 	public void setExperience(int[] experience) {
 		this.experience = experience;
+=======
+	public void setSkill(boolean skill) {
+		this.skill = skill;
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	}
 
 	public List<String> getItem() {
@@ -127,6 +153,7 @@ public class Character implements Motion, Serializable {
 		String str = "";
 		int num = rand.nextInt(10);
 		if (num < 3) {
+<<<<<<< HEAD
 			System.out.print("Get \'Hp up\'");
 			item.add("Hp up");
 		} else if (num < 6) {
@@ -134,6 +161,30 @@ public class Character implements Motion, Serializable {
 			item.add("Mp up");
 		} else {
 			System.out.print("Get \'Iced\'");
+=======
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Hp up\'");
+			item.add("Hp up");
+		} else if (num < 6) {
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Mp up\'");
+			item.add("Mp up");
+		} else {
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Iced\'");
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			item.add("Iced");
 		}
 		if (o1.getClass().getName().equals("com.project1.Slime")) {
@@ -159,43 +210,59 @@ public class Character implements Motion, Serializable {
 			str = "Magician";
 		}
 		Scanner sc = new Scanner(System.in);
-		
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		System.out.print("Select Item: \t");
-		
-		try {
-			Thread.sleep(300);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		for (int i = 0; i < item.size(); i++) {
-			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
-		}
-		int num = sc.nextInt();
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
+		System.out.print("Select Item: \t");
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
+		try {
+			Thread.sleep(300);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+<<<<<<< HEAD
+		
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
+		for (int i = 0; i < item.size(); i++) {
+			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
+		}
+		int num = sc.nextInt();
+
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+<<<<<<< HEAD
+		
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 		System.out.println(item.get(num - 1) + "\' is selected");
 		if (item.get(num - 1).equals("Hp up")) {
 			int cur = c.getHP();
 			c.setHP(cur + 10);
-			
+
 			try {
 				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			System.out.println("Hp of the " + str + " is become " + cur + " to " + c.getHP());
 		} else if (item.get(num - 1).equals("Mp up")) {
 			int cur = c.getMP();
@@ -205,20 +272,34 @@ public class Character implements Motion, Serializable {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			System.out.println("Mp of the " + str + " is become " + cur + " to " + c.getMP());
 		} else {
 			if (o2.getClass().getName().equals("com.project1.Slime")) {
 				Slime s = (Slime) o2;
 				s.setStatus("Iced");
-				
+
 				try {
 					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+
 				System.out.println("Slime is Iced.");
+			}
+			else {
+				Boss b = (Boss)o2;
+				b.setStatus("ICed");
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				System.out.println("Boss is Iced");
 			}
 		}
 		item.remove(num - 1);
@@ -240,34 +321,57 @@ public class Character implements Motion, Serializable {
 		if (o2.getClass().getName().equals("com.project1.Slime")) {
 			m = (Slime) o2;
 			str = "Slime";
+<<<<<<< HEAD
 		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
 			m = (Boss) o2;
+=======
+		} else {
+			m = (Boss)o2;
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			str = "Boss";
 		}
+
+		if(c.isSkill()) {
+			c.skill(c, m);
+			attack *= 2;
+		} 
 		int cur = m.getHP();
 		if (criticalJudgement(c.getCritical())) {
 			attack *= 2;
+<<<<<<< HEAD
 			try {
 				System.out.println("Critical damage!");
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				// TODO: handle exception
+=======
+			try {				
+				Thread.sleep(500);
+				System.out.println("Critical damage!");
+			} catch (Exception e) {
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			}
 		}
 		m.setHP(cur - attack);
 		if (m.getHP() <= 0) {
 			m.setHP(0);
 		}
+<<<<<<< HEAD
 		try {
 
 			System.out.println(str + " was attacked and became " + m.getHP() + "HP.");
 			Thread.sleep(1000);
+=======
+		try {			
+			Thread.sleep(500);
+			System.out.println(str + " was attacked and became " + m.getHP() + "HP.");
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		if (m.getHP() == 0) {
 			isAlive(m);
 		}
+		c.setSkill(false);
 	}
 
 	@Override
@@ -285,13 +389,25 @@ public class Character implements Motion, Serializable {
 			str = "Boss";
 		}
 		if (num >= (100 - m.getEvasion())) {
+<<<<<<< HEAD
+=======
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 
 			System.out.println(str + " succeeded in evasion and became " + m.getHP() + "HP.");
 
 			return;
 
 		}
+<<<<<<< HEAD
 		attack(o1, m);
+=======
+		attack(o1, m);   
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	}
 
 	@Override
@@ -308,6 +424,7 @@ public class Character implements Motion, Serializable {
 	public void print(Object o) {
 		Character c = null;
 		System.out.println();
+<<<<<<< HEAD
 		if (o.getClass().getName().equals("com.project1.Archer")) {
 			c = (Archer) o;
 			System.out.println("Archer's level: " + c.getLevel());
@@ -322,6 +439,24 @@ public class Character implements Motion, Serializable {
 		System.out.println("Attack: " + c.getAttack());
 		System.out.println("Evasion: " + c.getEvasion());
 		System.out.println("Critical: " + c.getCritical() + "\n");
+=======
+		if(o.getClass().getName().equals("com.project1.Archer")) {
+			c = (Archer)o;
+			System.out.println("Archer's");
+		}
+		else if(o.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o;
+			System.out.println("Warrior's ");
+		}
+		else {
+			c = (Magician)o;
+			System.out.println("Magician's");
+		}
+		System.out.println("HP: " +c.getHP()+ ", MP: " +c.getMP());
+		System.out.println("Attack: " +c.getAttack());
+		System.out.println("Evasion: " +c.getEvasion());
+		System.out.println("Critical: " +c.getCritical()+"\n");
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 	}
 
 	@Override
@@ -330,17 +465,20 @@ public class Character implements Motion, Serializable {
 		if (o.getClass().getName().equals("com.project1.Slime")) {
 			c = (Slime) o;
 			System.out.println("Slime is dead.");
+<<<<<<< HEAD
 		} else if (o.getClass().getName().equals("com.project1.Boss")) {
 			c = (Boss) o;
+=======
+		}else if(o.getClass().getName().equals("com.project1.Boss")) {
+			c = (Boss)o;
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			System.out.println("Boss is dead.");
 		}
 		c.setIsAlive(false);
 	}
 
 	@Override
-	public boolean skill(Object o1, Object o2) {
-		System.out.println("use Skill");
-		return true;
+	public void skill(Object o1, Object o2) {
 	}
 
 	public void showStatus(Object o1, Object o2) {
@@ -368,24 +506,39 @@ public class Character implements Motion, Serializable {
 			str = "Boss";
 		}
 		try {
+<<<<<<< HEAD
 
 			Thread.sleep(1000);
 			
+=======
+			Thread.sleep(500);
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			System.out.println("\n" + s);
 
 			System.out.print("HP: ");
 			for (int i = 0; i < c.getHP() / 10; i++) {
 				System.out.print("■");
 			}
+<<<<<<< HEAD
 
 			for (; hp < c.getMaxHP(); hp += 10) {
 				System.out.print("□");
 			}
+=======
+			for (; hp < c.getMaxHP(); hp += 10) {
+				System.out.print("□");
+			}
+
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 			System.out.print("\nMP: ");
 			for (int i = 0; i < c.getMP() / 10; i++) {
 				System.out.print("■");
 			}
+<<<<<<< HEAD
 			for (; c.getMP() < c.getMaxMP(); mp += 10) {
+=======
+			for (; mp < c.getMaxMP(); mp += 10) {
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 				System.out.print("□");
 			}
 
@@ -399,11 +552,53 @@ public class Character implements Motion, Serializable {
 				System.out.print("□");
 			}
 		} catch (Exception e) {
+<<<<<<< HEAD
 			// TODO: handle exception
+=======
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 		}
 		System.out.println("");
 	}
 
+<<<<<<< HEAD
 	transient List<Character> characterList = new ArrayList();
 
+=======
+	public void abilityRise(Character c) {
+		Scanner sc = new Scanner(System.in);
+		Character ch = null;
+		if (c.getClass().getName().equals("com.project1.Archer")) {
+			ch = (Archer) c;
+		} else if (c.getClass().getName().equals("com.project1.Warrior")) {
+			ch = (Warrior) c;
+		} else {
+			ch = (Magician) c;
+		}
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		System.out.print("\nWhich ability? ");
+		System.out.print("\n1.HP 2.MP 3.Attack 4.Evasion 5.Critical: ");
+		int num = sc.nextInt();
+		switch(num) {
+		case 1:
+			ch.setMaxHP(ch.getMaxHP() + 50);
+			break;
+		case 2:
+			ch.setMaxMP(ch.getMaxMP() + 50);
+			break;
+		case 3:
+			ch.setAttack(ch.getAttack()+20);
+			break;
+		case 4:
+			ch.setEvasion(ch.getEvasion()+20);
+			break;
+		case 5:
+			ch.setCritical(ch.getCritical()+20);
+			break;
+		}
+	}
+>>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
 }

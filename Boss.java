@@ -1,33 +1,28 @@
 package com.project1;
 
-import java.util.*;
+import java.util.Random;
 
-public class Slime extends Monster {
-	Random rand = new Random();
-
+public class Boss extends Monster{
+   Random rd = new Random();
 	static int icedCount = 0;
 	static int firedCount = 0;
 
-	public Slime() {
-		setHP(100);
-		setMaxHP(this.getHP());
-		setAttack(10);
-		setEvasion(10);
-		setIsAlive(true);
-		setStatus("");
-		try {
-			Thread.sleep(700);
-		} catch (InterruptedException e) {
-		}
-
-		System.out.println("You meet a slime");
-	}
+   public Boss() {
+      setHP(150);
+      setMaxHP(this.getHP());
+      setAttack(20);
+      setEvasion(50);
+      setIsAlive(true);
+      setStatus("");
+      System.out.println("You meet a boss!");
+      System.out.println();
+   }
 
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
 		String str = "";
-		int attack = ((Slime)o1).getAttack();
+		int attack = ((Boss)o1).getAttack();
 		if(o2.getClass().getName().equals("com.project1.Warrior")) {
 			str = "Warrior";
 			c = (Warrior)o2;
@@ -43,42 +38,28 @@ public class Slime extends Monster {
 			c.setHP(cur - 5);
 		}
 		c.setHP(cur - attack);
-		try {
-			Thread.sleep(500);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
-		if(c.getHP() == 0) {
-			isAlive(c);
-		}
-	}
+     if(c.getHP() == 0) {
+        isAlive(c);
+     }
+  }
 
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
-		Monster m = (Slime)o1;
+		Monster m = (Boss)o1;
 		if(m.getStatus().equals("Iced") && icedCount < 2) {
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			System.out.println("Slime is in Iced status");
+			System.out.println("Boss is in Iced status");
 			icedCount++;
 			return;
 		}
 		else if(m.getStatus().equals("Fired")&& firedCount < 2) {
 			firedCount++;
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			System.out.println("Slime is in Fired status");
+			System.out.println("Boss is in Fired status");
 		}
 		m.setStatus("");
 		icedCount = 0;
 		firedCount = 0;
+		//STR 로 정리해서 출력한번에하기
 
 		Random rand = new Random();
 		Character c = null;
@@ -97,11 +78,6 @@ public class Slime extends Monster {
 			str = "Magician";
 		}
 		if(num >= (100 - m.getAttack())) {
-			try {
-				Thread.sleep(500);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
 			System.out.println(str + " succeeded in evasion and became "+c.getHP()+"HP.");
 			return;
 		}
@@ -124,12 +100,9 @@ public class Slime extends Monster {
 			c = (Archer)o;
 			str = "Archer";
 		}
-		try {
-			Thread.sleep(500);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		System.out.println(str + " is dead.");
 		c.setAlive(false);
 	}
+
+
 }
