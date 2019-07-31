@@ -1,49 +1,23 @@
 package com.project1;
 
-import java.util.List;
+public class Archer extends Character implements Motion {
 
-public class Archer extends Character implements Motion{
 	public Archer() {
-
-		setLevel(1);
-		setHP(50);
-		setMP(50);
-		setAttack(25);
+		setHP(100);
+		setMaxHP(this.getHP());
+		setMP(100);
+		setMaxMP(this.getMP());
+		setAttack(30);
 		setEvasion(20);
 		setCritical(15);
-		System.out.println("±Ã¼ö¸¦ ¼±ÅÃÇß½À´Ï´Ù.");
-		
-	}
-	
-	@Override
-	public void print(Object o) {
-		Warrior w = (Warrior)o;
-		System.out.println();
-		System.out.println("±Ã¼öÀÇ ·¹º§: "+w.getLevel());		
-		System.out.println("HP: " +w.getHP()+ ", MP: " +w.getMP());
-		System.out.println("°ø°İ·Â: " +w.getAttack());
-		System.out.println("È¸ÇÇÀ²: " +w.getEvasion());
-		System.out.println("Ä¡¸íÅ¸À²: " +w.getCritical());
-	}
+		setAlive(true);
+		System.out.println("ê¶ìˆ˜ë¥¼ ì„ íƒí–ˆìŠµë‹ˆë‹¤.");
 
-	@Override
-	public void attack(Object o, int attack) {
-		if(o.getClass().getName().equals("com.project1.Slime")) {
-			Slime m = (Slime)o;
-			int cur = m.getHP();
-			m.setHP(cur-attack);
-			System.out.println("½½¶óÀÓÀÇ HP°¡ " +cur+ "¿¡¼­ " +m.getHP()+ "ÀÌ µÇ¾ú½À´Ï´Ù.");
-		}		
 	}
-	
-	@Override
-	public void attackJudgement(Object o, int evasion) {
-		
+	//Archerì˜ ìŠ¤í‚¬
+	public void skill(Object o1, Object o2, int attack) {
+		System.out.println("ìŠ¤í‚¬ì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤.");
+		Character c = (Archer)o1;
+		c.setMP(c.getMP() - 10);
 	}
-
-	@Override
-	public void takeMedicine(Object o, List<String> item) {
-	}
-	
-
 }
