@@ -3,7 +3,7 @@ package com.project1;
 import java.util.*;
 
 public class Slime extends Monster {
-   Random rand = new Random();
+	Random rand = new Random();
 
 	static int icedCount = 0;
 	static int firedCount = 0;
@@ -19,10 +19,10 @@ public class Slime extends Monster {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 		}
-		
-		System.out.println("You met slime");
+
+		System.out.println("You meet slime");
 	}
-	
+
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
@@ -43,22 +43,37 @@ public class Slime extends Monster {
 			c.setHP(cur - 5);
 		}
 		c.setHP(cur - attack);
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
-      if(c.getHP() == 0) {
-         isAlive(c);
-      }
-   }
+		if(c.getHP() == 0) {
+			isAlive(c);
+		}
+	}
 
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
 		Monster m = (Slime)o1;
 		if(m.getStatus().equals("Iced") && icedCount < 2) {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			System.out.println("Slime is in Iced status");
 			icedCount++;
 			return;
 		}
 		else if(m.getStatus().equals("Fired")&& firedCount < 2) {
 			firedCount++;
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			System.out.println("Slime is in Fired status");
 		}
 		m.setStatus("");
@@ -82,6 +97,11 @@ public class Slime extends Monster {
 			str = "Magician";
 		}
 		if(num >= (100 - m.getAttack())) {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			System.out.println(str + " succeeded in evasion and became "+c.getHP()+"HP.");
 			return;
 		}
@@ -103,6 +123,11 @@ public class Slime extends Monster {
 		else {
 			c = (Archer)o;
 			str = "Archer";
+		}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		System.out.println(str + " is dead.");
 		c.setAlive(false);

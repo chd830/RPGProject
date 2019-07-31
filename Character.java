@@ -108,13 +108,28 @@ public class Character implements Motion, Serializable {
 		String str = "";
 		int num = rand.nextInt(10);
 		if (num < 3) {
-			System.out.print("Get \'Hp up\'");
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Hp up\'");
 			item.add("Hp up");
 		} else if (num < 6) {
-			System.out.print("Get \'Mp up\'");
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Mp up\'");
 			item.add("Mp up");
 		} else {
-			System.out.print("Get \'Iced\'");
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			System.out.print("\nGet \'Iced\'");
 			item.add("Iced");
 		}
 		if (o1.getClass().getName().equals("com.project1.Slime")) {
@@ -140,43 +155,43 @@ public class Character implements Motion, Serializable {
 			str = "Magician";
 		}
 		Scanner sc = new Scanner(System.in);
-		
+
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		System.out.print("Select Item: \t");
-		
+
 		try {
 			Thread.sleep(300);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		for (int i = 0; i < item.size(); i++) {
 			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
 		}
 		int num = sc.nextInt();
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		System.out.println(item.get(num - 1) + "\' is selected");
 		if (item.get(num - 1).equals("Hp up")) {
 			int cur = c.getHP();
 			c.setHP(cur + 10);
-			
+
 			try {
 				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 			System.out.println("Hp of the " + str + " is become " + cur + " to " + c.getHP());
 		} else if (item.get(num - 1).equals("Mp up")) {
 			int cur = c.getMP();
@@ -186,24 +201,29 @@ public class Character implements Motion, Serializable {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 			System.out.println("Mp of the " + str + " is become " + cur + " to " + c.getMP());
 		} else {
 			if (o2.getClass().getName().equals("com.project1.Slime")) {
 				Slime s = (Slime) o2;
 				s.setStatus("Iced");
-				
+
 				try {
 					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+
 				System.out.println("Slime is Iced.");
 			}
 			else {
 				Boss b = (Boss)o2;
 				b.setStatus("ICed");
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				System.out.println("Boss is Iced");
 			}
 		}
@@ -230,7 +250,7 @@ public class Character implements Motion, Serializable {
 			m = (Boss)o2;
 			str = "Boss";
 		}
-		
+
 		if(c.isSkill()) {
 			c.skill(c, m);
 			attack *= 2;
@@ -238,9 +258,9 @@ public class Character implements Motion, Serializable {
 		int cur = m.getHP();
 		if (criticalJudgement(c.getCritical())) {
 			attack *= 2;
-			try {
+			try {				
+				Thread.sleep(1000);
 				System.out.println("Critical damage!");
-				//				Thread.sleep(1000);
 			} catch (Exception e) {
 			}
 		}
@@ -248,9 +268,9 @@ public class Character implements Motion, Serializable {
 		if (m.getHP() <= 0) {
 			m.setHP(0);
 		}
-		try {
+		try {			
+			Thread.sleep(1000);
 			System.out.println(str + " was attacked and became " + m.getHP() + "HP.");
-			//			Thread.sleep(1000);
 		} catch (Exception e) {
 		}
 		if (m.getHP() == 0) {
@@ -271,11 +291,14 @@ public class Character implements Motion, Serializable {
 
 		}else if(o2.getClass().getName().equals("com.project1.Boss")) {
 			m = (Boss)o2;
-		} else if (o2.getClass().getName().equals("com.project1.Boss")) {
-			m = (Boss) o2;
 			str = "Boss";
 		}
 		if (num >= (100 - m.getEvasion())) {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 			System.out.println(str + " succeeded in evasion and became " + m.getHP() + "HP.");
 
@@ -360,7 +383,7 @@ public class Character implements Motion, Serializable {
 		}
 		try {
 
-			//			Thread.sleep(1000);
+			Thread.sleep(1000);
 
 			System.out.println("\n" + s);
 

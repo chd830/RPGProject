@@ -24,7 +24,7 @@ public class Main{
 			recur: while(true) {
 				try {
 					Thread.sleep(1000);
-					System.out.print("1.Attack 2.UseItem 3.Skill: ");
+					System.out.print("\n1.Attack 2.UseItem 3.Skill: ");
 				} catch (Exception e) {
 				}
 
@@ -36,6 +36,11 @@ public class Main{
 				case 2:
 					try {
 						if(c.getItem().size() <= 0) {
+							try {
+								Thread.sleep(1000);
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
 							System.out.println("Item is null");
 							break;
 						}
@@ -52,6 +57,11 @@ public class Main{
 						break recur;
 					}
 					else {
+						try {
+							Thread.sleep(1000);
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
 						System.out.println("Not enough MP.");
 					}
 				}
@@ -66,6 +76,7 @@ public class Main{
 		File f = new File("C:\\Users\\stu\\Desktop\\Project1\\data.txt");
 		int num = 0;
 		if(f.exists()) {
+			System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
 			System.out.print("Load Data?[y/n] ");
 			str = sc.next();
 		}
@@ -105,6 +116,13 @@ public class Main{
 		System.out.println("m.hp: "+m.getHP() +", c.hp: "+c.getHP());
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			System.out.print("1.Save 2.Continue: ");
 			num = sc.nextInt();
 			switch (num) {
@@ -119,6 +137,7 @@ public class Main{
 		}
 		if(c.getHP() <= 0) {
 			System.out.println("Game is end");
+			System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
 			return;
 		}
 	}
