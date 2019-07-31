@@ -10,8 +10,8 @@ public class Warrior extends Character {
 		setMP(50);
 		setMaxMP(getMP());
 		setCritical(30);
-		setAttack(15);
-		setEvasion(15);
+		setAttack(20);
+		setEvasion(10);
 		setAlive(true);
 		try {
 			System.out.println("Warrior is selected.");

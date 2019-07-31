@@ -104,28 +104,31 @@ public class Main{
 				break;
 			}
 		}
-		game();
-		if(m.getHP() <= 0) {
-			c.getItemByMonster(m, c.item);
-			c.abilityRise(c);
-			reset(c);
-			System.out.print("1.Save 2.Continue: ");
-			num = sc.nextInt();
-			switch (num) {
-			case 1:
-				l.add(c);
-				save(l);
+		while(true) {
+			game();
+			if(m.getHP() <= 0) {
+				c.getItemByMonster(m, c.item);
+				c.getItemByMonster(m, c.item);
+				c.abilityRise(c);
+				reset(c);
+				System.out.print("1.Save 2.Continue: ");
+				num = sc.nextInt();
+				switch (num) {
+				case 1:
+					l.add(c);
+					save(l);
+					return;
+				case 2:
+					game();
+					break;
+				}
+			}
+			if(c.getHP() <= 0) {
+				System.out.println("Game is end");
 				return;
-			case 2:
-				game();
-				break;
 			}
 		}
-		if(c.getHP() <= 0) {
-			System.out.println("Game is end");
-			return;
-		}
-		
+
 	}
 	public static void reset(Character c) {
 		Scanner sc = new Scanner(System.in);
@@ -137,8 +140,8 @@ public class Main{
 		} else {
 			ch = (Magician) c;
 		}
-		ch.setMaxHP(ch.getMaxHP() + 50);
-		ch.setMaxMP(ch.getMaxMP() + 50);
+		ch.setMaxHP(ch.getMaxHP());
+		ch.setMaxMP(ch.getMaxMP());
 		ch.setHP(ch.getMaxHP());
 		ch.setMP(ch.getMaxMP());
 	}
