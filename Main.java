@@ -162,6 +162,7 @@ public class Main{
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		// Detailed data print
 		c.print(c);
@@ -255,28 +256,40 @@ public class Main{
 				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
+=======
+		while(true) {
+			game();
+			if(m.getHP() <= 0) {
+				c.getItemByMonster(m, c.item);
+				c.getItemByMonster(m, c.item);
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				c.abilityRise(c);
+				reset(c);
+				System.out.print("1.Save 2.Continue: ");
+				num = sc.nextInt();
+				switch (num) {
+				case 1:
+					l.add(c);
+					save(l);
+					return;
+				case 2:
+					game();
+					break;
+				}
+>>>>>>> 98830d59c218577e51fed5f2c4f0faf2e379a1d1
 			}
-			
+			if(c.getHP() <= 0) {
+				System.out.println("Game is end");
+				System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+				return;
+			}
 			c.abilityRise(c);
 			reset(c);
-			System.out.print("1.Save 2.Continue: ");
-			num = sc.nextInt();
-			switch (num) {
-			case 1:
-				l.add(c);
-				save(l);
-				return;
-			case 2:
-				game();
-				break;
-			}
 		}
-		if(c.getHP() <= 0) {
-			System.out.println("Game is end");
-			System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-			return;
-		}
-		
 	}
 	public static void reset(Character c) {
 		Scanner sc = new Scanner(System.in);
@@ -288,8 +301,8 @@ public class Main{
 		} else {
 			ch = (Magician) c;
 		}
-		ch.setMaxHP(ch.getMaxHP() + 50);
-		ch.setMaxMP(ch.getMaxMP() + 50);
+		ch.setMaxHP(ch.getMaxHP());
+		ch.setMaxMP(ch.getMaxMP());
 		ch.setHP(ch.getMaxHP());
 		ch.setMP(ch.getMaxMP());
 >>>>>>> 1c76cb2f341968c7ace7becb2912148191eab126
