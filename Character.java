@@ -140,43 +140,43 @@ public class Character implements Motion, Serializable {
 			str = "Magician";
 		}
 		Scanner sc = new Scanner(System.in);
-		
+
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		System.out.print("Select Item: \t");
-		
+
 		try {
 			Thread.sleep(300);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		for (int i = 0; i < item.size(); i++) {
 			System.out.print((i + 1) + "." + item.get(i) + "\t : ");
 		}
 		int num = sc.nextInt();
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		System.out.println(item.get(num - 1) + "\' is selected");
 		if (item.get(num - 1).equals("Hp up")) {
 			int cur = c.getHP();
 			c.setHP(cur + 10);
-			
+
 			try {
 				Thread.sleep(500);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 			System.out.println("Hp of the " + str + " is become " + cur + " to " + c.getHP());
 		} else if (item.get(num - 1).equals("Mp up")) {
 			int cur = c.getMP();
@@ -186,19 +186,19 @@ public class Character implements Motion, Serializable {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			
+
 			System.out.println("Mp of the " + str + " is become " + cur + " to " + c.getMP());
 		} else {
 			if (o2.getClass().getName().equals("com.project1.Slime")) {
 				Slime s = (Slime) o2;
 				s.setStatus("Iced");
-				
+
 				try {
 					Thread.sleep(500);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
+
 				System.out.println("Slime is Iced.");
 			}
 			else {
@@ -230,7 +230,7 @@ public class Character implements Motion, Serializable {
 			m = (Boss)o2;
 			str = "Boss";
 		}
-		
+
 		if(c.isSkill()) {
 			c.skill(c, m);
 			attack *= 2;
@@ -359,9 +359,7 @@ public class Character implements Motion, Serializable {
 			str = "Boss";
 		}
 		try {
-
-			//			Thread.sleep(1000);
-
+			Thread.sleep(1000);
 			System.out.println("\n" + s);
 
 			System.out.print("HP: ");
@@ -394,5 +392,35 @@ public class Character implements Motion, Serializable {
 		System.out.println("");
 	}
 
-	transient List<Character> characterList = new ArrayList();
+	public void abilityRise(Character c) {
+		Scanner sc = new Scanner(System.in);
+		Character ch = null;
+		if (c.getClass().getName().equals("com.project1.Archer")) {
+			ch = (Archer) c;
+		} else if (c.getClass().getName().equals("com.project1.Warrior")) {
+			ch = (Warrior) c;
+		} else {
+			ch = (Magician) c;
+		}
+		System.out.print("Which ability? ");
+		System.out.println("1.HP 2.MP 3.Attack 4.Evasion 5.Critical");
+		int num = sc.nextInt();
+		switch(num) {
+		case 1:
+			ch.setMaxHP(ch.getMaxHP() + 50);
+			break;
+		case 2:
+			ch.setMaxMP(ch.getMaxMP() + 50);
+			break;
+		case 3:
+			ch.setAttack(ch.getAttack()+20);
+			break;
+		case 4:
+			ch.setEvasion(ch.getEvasion()+20);
+			break;
+		case 5:
+			ch.setCritical(ch.getCritical()+20);
+			break;
+		}
+	}
 }

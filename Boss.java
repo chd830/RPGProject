@@ -3,109 +3,105 @@ package com.project1;
 import java.util.Random;
 
 public class Boss extends Monster{
-	Random rd = new Random();
+   Random rd = new Random();
+	static int icedCount = 0;
+	static int firedCount = 0;
 
-	static int count = 0;
-
-	public Boss() {
-		setLevel(1);
-		setHP(150);
-		setMaxHP(this.getHP());
-		setAttack(20);
-		setEvasion(50);
-		setIsAlive(true);
-		
-		try {
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		System.out.println("You meet a boss!");
-		System.out.println();
-	}
+   public Boss() {
+      setHP(150);
+      setMaxHP(this.getHP());
+      setAttack(20);
+      setEvasion(50);
+      setIsAlive(true);
+      setStatus("");
+      System.out.println("You meet a boss!");
+      System.out.println();
+   }
 
 	@Override
 	public void attack(Object o1, Object o2) {
 		Character c = null;
+		String str = "";
 		int attack = ((Boss)o1).getAttack();
-
-		if(o2.getClass().getName().equals("com.procject1.Warrior")) {
-			c = (Warrior)o2;			
-		}else if(o2.getClass().getName().equals("com.project1.Magician")) {
+		if(o2.getClass().getName().equals("com.project1.Warrior")) {
+			str = "Warrior";
+			c = (Warrior)o2;
+		} else if(o2.getClass().getName().equals("com.project1.Magician")) {
+			str = "Magician";
 			c = (Magician)o2;
-		}else if(o2.getClass().getName().equals("com.project1.Archer")) {
+		} else {
+			str = "Archer";
 			c = (Archer)o2;
 		}
 		int cur = c.getHP();
-		c.setHP(cur - attack);
-		System.out.println("You are attacked by boss and the Hp goes down to " +c.getHP()+ ".");
-
-		if(c.getHP()==0) {
-			isAlive(c);
+		if(firedCount != 0) {
+			c.setHP(cur - 5);
 		}
-	}
+		c.setHP(cur - attack);
+		System.out.println(str+" was attacked and became "+c.getHP()+"HP.");
+     if(c.getHP() == 0) {
+        isAlive(c);
+     }
+  }
 
 	@Override
 	public void attackJudgement(Object o1, Object o2) {
-		Monster m = (Slime)o1;
-
-		if(m.getStatus().equals("Iced") && count<1) { //count°¡ 0ÀÏ¶§´Â IcedµÊ
-			count++;
-			return;
-		}else if(m.getStatus().equals("Fired") && count<1) {
-			count++;
-			System.out.println("Boss is in Fired status.");
-			attack(o2, m);
+		Monster m = (Boss)o1;
+		if(m.getStatus().equals("Iced") && icedCount < 2) {
+			System.out.println("Boss is in Iced status");
+			icedCount++;
 			return;
 		}
-		
+		else if(m.getStatus().equals("Fired")&& firedCount < 2) {
+			firedCount++;
+			System.out.println("Boss is in Fired status");
+		}
 		m.setStatus("");
-		count = 0;
+		icedCount = 0;
+		firedCount = 0;
+		//STR ë¡œ ì •ë¦¬í•´ì„œ ì¶œë ¥í•œë²ˆì—í•˜ê¸°
 
-		Random rd = new Random();
-		int num = rd.nextInt(100);
+		Random rand = new Random();
 		Character c = null;
+		String str = "";
+		int num = rand.nextInt(100);
 		if(o2.getClass().getName().equals("com.project1.Warrior")) {
 			c = (Warrior)o2;
-			if(num >= (100 - m.getAttack())) {
-				System.out.println("Warrior succeeded in evasion and became "+c.getHP()+"HP.");
-				return;
-			}
-		} else if(o2.getClass().getName().equals("com.project1.Magician")) {
+			str = "Warrior";
+		} 
+		else if(o2.getClass().getName().equals("com.project1.Magician")) {
 			c = (Magician)o2;
-			num+=100;
-			if(num >= (100 - m.getAttack())) {
-				System.out.println("Magician succeeded in evasion and became "+c.getHP()+"HP.");
-			}
-		} else {
+			str = "Magician";
+		} 
+		else {
 			c = (Archer)o2;
-			num+=100;
-			if(num >= (100 - m.getAttack())) {
-				System.out.println("Archer succeeded in evasion and became "+c.getHP()+"HP.");
-			}
+			str = "Magician";
 		}
-		attack(o2, m);
+		if(num >= (100 - m.getAttack())) {
+			System.out.println(str + " succeeded in evasion and became "+c.getHP()+"HP.");
+			return;
+		}
+		attack(m, c);
 	}
-
 
 	@Override
 	public void isAlive(Object o) {
 		Character c = null;
-		Warrior w = new Warrior();
-		Magician m = new Magician();
-		Archer a = new Archer();
-
-		if(o.getClass().getName().equals("com.procject1.Warrior")&&w.getHP()==0) {
-			c = (Warrior)o;			
-			System.out.println("Warrior is dead.");
-		}else if(o.getClass().getName().equals("com.project1.Magician")&&m.getHP()==0) {
-			c = (Magician)o;
-			System.out.println("Magician is dead.");
-		}else if(o.getClass().getName().equals("com.project1.Archer")&&a.getHP()==0) {
-			c = (Archer)o;
-			System.out.println("Archer is dead.");
+		String str = "";
+		if(o.getClass().getName().equals("com.project1.Warrior")) {
+			c = (Warrior)o;
+			str = "Warrior";
 		}
-		c.setIsAlive(false);
+		else if(o.getClass().getName().equals("com.project1.Magician")) {
+			c = (Magician)o;
+			str = "Magician";
+		}
+		else {
+			c = (Archer)o;
+			str = "Archer";
+		}
+		System.out.println(str + " is dead.");
+		c.setAlive(false);
 	}
 
 

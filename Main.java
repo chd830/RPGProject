@@ -3,6 +3,8 @@ package com.project1;
 import java.io.*;
 import java.util.*;
 
+import com.project1.Character;
+
 public class Main{
 	static List<Character> l = null;
 	static Character c = null;
@@ -18,10 +20,10 @@ public class Main{
 
 		while(m.getIsAlive() && c.getIsAlive()) {
 
-			if(m.getHP() <= 0 || c.getHP() <= 0)
-				return;
 			c.showStatus(c, m);
 			recur: while(true) {
+				if(m.getHP() <= 0 || c.getHP() <= 0)
+					return;
 				try {
 					Thread.sleep(1000);
 					System.out.print("1.Attack 2.UseItem 3.Skill: ");
@@ -56,6 +58,8 @@ public class Main{
 					}
 				}
 			}
+			if(m.getHP() <= 0 || c.getHP() <= 0)
+				return;
 			m.attackJudgement(m, c);
 		}
 		return;
@@ -82,7 +86,6 @@ public class Main{
 			System.out.print("Select: ");
 			num = sc.nextInt();
 			c = l.get(num - 1);
-
 		}
 		else {
 			l = new ArrayList(); 
@@ -100,11 +103,12 @@ public class Main{
 				c = new Archer();
 				break;
 			}
-			game();
 		}
-		System.out.println("m.hp: "+m.getHP() +", c.hp: "+c.getHP());
+		game();
 		if(m.getHP() <= 0) {
 			c.getItemByMonster(m, c.item);
+			c.abilityRise(c);
+			reset(c);
 			System.out.print("1.Save 2.Continue: ");
 			num = sc.nextInt();
 			switch (num) {
@@ -121,12 +125,22 @@ public class Main{
 			System.out.println("Game is end");
 			return;
 		}
+		
 	}
 	public static void reset(Character c) {
-		c.setMaxHP(c.getMaxHP() + 50);
-		c.setMaxMP(c.getMaxMP() + 50);
-		c.setHP(c.getMaxHP());
-		c.setMP(c.getMaxMP());
+		Scanner sc = new Scanner(System.in);
+		Character ch = null;
+		if (c.getClass().getName().equals("com.project1.Archer")) {
+			ch = (Archer) c;
+		} else if (c.getClass().getName().equals("com.project1.Warrior")) {
+			ch = (Warrior) c;
+		} else {
+			ch = (Magician) c;
+		}
+		ch.setMaxHP(ch.getMaxHP() + 50);
+		ch.setMaxMP(ch.getMaxMP() + 50);
+		ch.setHP(ch.getMaxHP());
+		ch.setMP(ch.getMaxMP());
 	}
 	public static void save(List<Character> c) {
 		try {
@@ -155,7 +169,7 @@ public class Main{
 	public static Monster randomMonster() {
 		Random rand = new Random();
 		int num = rand.nextInt(10);
-		if(num >= 0) 
+		if(num == 9) 
 			return new Boss();
 		else 
 			return new Slime();

@@ -5,13 +5,13 @@ public class Warrior extends Character {
 	private static final long serialVersionUID = 5716387998910136780L;
 	public Warrior() {
 
-		setHP(100);
+		setHP(150);
 		setMaxHP(getHP());
-		setMP(30);
+		setMP(50);
 		setMaxMP(getMP());
-		setCritical(50);
-		setAttack(10);
-		setEvasion(10);
+		setCritical(30);
+		setAttack(15);
+		setEvasion(15);
 		setAlive(true);
 		try {
 			System.out.println("Warrior is selected.");
